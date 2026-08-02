@@ -1,0 +1,18 @@
+[project]
+name = "bidirectional-sign-language"
+version = "0.1.0"
+description = "Bidirectional Sign Language Translation"
+readme = "README.md"
+requires-python = "==3.12.*"
+
+dependencies = [
+    "fiftyone>=1.19.0",
+    "huggingface-hub>=1.26.0",
+    "mediapipe>=0.10.35",
+    "numpy>=2,<3",
+    "opencv-python",
+    "pandas",
+    "requests>=2.34.2",
+    "tqdm>=4.69.0",
+    "yt-dlp",
+]

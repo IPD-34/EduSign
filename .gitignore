@@ -1,0 +1,115 @@
+# -----------------------------
+# Python
+# -----------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# UV
+.python-version
+
+# -----------------------------
+# IDE
+# -----------------------------
+.vscode/
+.idea/
+
+# -----------------------------
+# OS Files
+# -----------------------------
+.DS_Store
+Thumbs.db
+
+# -----------------------------
+# Logs
+# -----------------------------
+logs/
+*.log
+
+# -----------------------------
+# Testing
+# -----------------------------
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# -----------------------------
+# Checkpoints
+# -----------------------------
+checkpoints/
+*.ckpt
+*.pth
+*.pt
+*.onnx
+
+# -----------------------------
+# Datasets
+# -----------------------------
+data/raw/
+data/processed/
+data/interim/
+
+# Keep folder structure
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# -----------------------------
+# MediaPipe Models
+# -----------------------------
+models/*.task
+
+# -----------------------------
+# Generated files
+# -----------------------------
+*.npz
+*.npy
+*.csv
+*.pkl
+*.pickle
+
+# -----------------------------
+# Images & Videos
+# -----------------------------
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.gif
+
+# Ignore generated images
+test.png
+test_face.png
+
+# -----------------------------
+# Jupyter
+# -----------------------------
+.ipynb_checkpoints/
+
+# -----------------------------
+# Environment files
+# -----------------------------
+.env
+.env.*
+
+# -----------------------------
+# Temporary
+# -----------------------------
+*.tmp
+*.temp
+*.bak
