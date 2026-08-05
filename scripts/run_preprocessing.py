@@ -1,4 +1,9 @@
 # scripts/run_preprocessing.py
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 from src.preprocessing.config import WLASL_PROCESSED_DIR, HF_MIRROR_PROCESSED_DIR
 from src.preprocessing.metadata_readers.wlasl_reader import WLASLReader
 from src.preprocessing.metadata_readers.hf_mirror_reader import HFMirrorReader

@@ -13,6 +13,23 @@ dependencies = [
     "opencv-python",
     "pandas",
     "requests>=2.34.2",
+    "torch",
     "tqdm>=4.69.0",
     "yt-dlp",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest",
+]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu130" }
+
+[[tool.uv.index]]
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true
+
+[tool.pytest.ini_options]
+addopts = "-p no:anyio"

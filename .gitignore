@@ -113,3 +113,7 @@ test_face.png
 *.tmp
 *.temp
 *.bak
+
+robustness/__pycache__/*.pyc
+robustness/tests/__pycache__/*.pyc
+robustness/tests/fixtures/__pycache__/*.pyc
