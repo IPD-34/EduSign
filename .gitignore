@@ -52,7 +52,10 @@ htmlcov/
 # -----------------------------
 # Checkpoints
 # -----------------------------
-checkpoints/
+# Ignore checkpoint binaries by extension, wherever they live (including
+# inside checkpoints/) -- NOT a blanket "checkpoints/" directory rule,
+# which was silently also catching real metadata sidecars like
+# checkpoints/*/best_val_meta.json (small, useful, meant to be tracked).
 *.ckpt
 *.pth
 *.pt
@@ -117,3 +120,5 @@ test_face.png
 robustness/__pycache__/*.pyc
 robustness/tests/__pycache__/*.pyc
 robustness/tests/fixtures/__pycache__/*.pyc
+
+diff_output.txt
