@@ -1,0 +1,32 @@
+UNK rate: 33/182 (18.13%) across data/processed/asllrp/val/
+Full list of raw gloss strings resolving to <UNK>:
+
+  2  TIME++DCL"circular object"
+  2  HOME+WORK++
+  2  TIE_2+FISHING
+  2  WALK+
+  1  (1h)FISH
+  1  BIRD+
+  1  PEOPLE+
+  1  LEAVE-THERE
+  1  REPAIR_2
+  1  HOW++
+  1  SCRIMMAGE
+  1  (Y)WOW+
+  1  (baby-O)BY-A-HAIR
+  1  (1h)BEAT
+  1  THIRTY_2+
+  1  TWENTY-EIGHT
+  1  (crvd-L)POSS-1p
+  1  USE_2+
+  1  AGE-TWENTY-ONE_2
+  1  5"hey"
+  1  (1h)REMIND:i
+  1  (crvd-5)POSS-1p
+  1  i:CALL-ON-RELAY/VRS-1p
+  1  LIGHT-FLASH
+  1  PRINCE
+  1  NUT+
+  1  SHEET-CAKE
+  1  NOT-MIND++
+  1  2p-HELP-1p
