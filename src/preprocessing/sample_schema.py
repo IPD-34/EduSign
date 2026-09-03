@@ -18,7 +18,9 @@ class SampleMetadata:
     source: str
     fps: float
     num_frames: int
-    translation: Optional[str] = None  # full utterance text, ASLLRP only; None for WLASL
+    translation: Optional[str] = None
+    frame_indices: Optional[list[int]] = None
+    sign_spans: Optional[list[list[int] | None]] = None
 
 
 @dataclass
