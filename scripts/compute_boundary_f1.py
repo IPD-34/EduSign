@@ -8,11 +8,13 @@ hand-validated today; NOT run against the full test split today -- that
 is Day 51's job (see scripts/test_day50_wer_and_boundary_f1.py for the
 hand-validation this script's correctness rests on).
 
---- CHECKPOINT OF RECORD (Week 7 close-out decision) ---
-checkpoints/month2_asllrp/best_val_gated.pt (gate ACTIVE in the final
-architecture -- see scripts/compute_wer_beam_search.py's header for the
-full reasoning, not repeated here). boundary_logits come from
-forward_ctc_boundary_and_gate(), the same shared-encoder-pass path.
+--- CHECKPOINT OF RECORD (updated -- see docs/checkpoint_of_record_decision.md) ---
+checkpoints/month2_asllrp_gated/step_0008000.pt (step 8000, gate ACTIVE
+in the final architecture -- see scripts/compute_wer_beam_search.py's
+header for the full switch reasoning, not repeated here; supersedes
+best_val_gated.pt, which is NOT deleted and stays on disk as historical
+record). boundary_logits come from forward_ctc_boundary_and_gate(), the
+same shared-encoder-pass path.
 
 --- GROUND TRUTH: reused, not reimplemented ---
 build_boundary_targets() (src/preprocessing/boundary_labels.py) is
@@ -76,7 +78,7 @@ VOCAB_MERGED_PATH = "data/vocab_merged.json"
 DECODER_VOCAB_PATH = "data/vocab.json"
 ASLLRP_TOKEN_TO_ID_PATH = "data/asllrp_token_to_id.json"
 TEST_NPZ_DIR = "data/processed/asllrp/test"
-CHECKPOINT_PATH = "checkpoints/month2_asllrp/best_val_gated.pt"  # checkpoint of record, gate ACTIVE
+CHECKPOINT_PATH = "checkpoints/month2_asllrp_gated/step_0008000.pt"  # checkpoint of record, gate ACTIVE -- see docs/checkpoint_of_record_decision.md
 
 IOU_THRESHOLD = 0.5
 BOUNDARY_PROB_THRESHOLD = 0.5
@@ -235,8 +237,9 @@ def run_full_test_split(iou_threshold=IOU_THRESHOLD, prob_threshold=BOUNDARY_PRO
 
 def main():
     """Day 51: the real held-out run, full 122-sample test split, gate
-    active, checkpoint of record (best_val_gated.pt, step 2000). The
-    Day-50 SystemExit guard is intentionally removed here -- see Day 51's
+    active, checkpoint of record (step_0008000.pt, step 8000 -- see
+    docs/checkpoint_of_record_decision.md; supersedes best_val_gated.pt).
+    The Day-50 SystemExit guard is intentionally removed here -- see Day 51's
     structural-bug checklist report before trusting these numbers."""
     import json as _json
 

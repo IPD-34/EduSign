@@ -7,19 +7,24 @@ run against the full test split today -- that is Day 51's job (see
 scripts/test_day50_wer_and_boundary_f1.py for the hand-validation this
 script's correctness rests on).
 
---- CHECKPOINT OF RECORD (Week 7 close-out decision) ---
-checkpoints/month2_asllrp/best_val_gated.pt (step 2000, val_loss=5.7116
-on the CTC-only metric) -- the bimanual gate stays ACTIVE in the final
-architecture (small uniform benefit found in the C3 ablation, not proven
-category-specific -- see scripts/ablation_score_bimanual_gate_stage3.py).
-The earlier best_val.pt (val_loss=5.5040, gate inactive) is NOT the
-checkpoint of record anymore; its slightly-better CTC-only val_loss is
-expected and already understood (gate training is early/small-sample),
-not something this script needs to re-litigate. Decoding here therefore
-always goes through forward_ctc_boundary_and_gate() (gate active), the
-same shared-encoder-pass path Week 8 ships with -- not forward_ctc_and_
-boundary()/forward_ctc(), which would silently evaluate a model nobody
-is shipping.
+--- CHECKPOINT OF RECORD (updated -- see docs/checkpoint_of_record_decision.md) ---
+checkpoints/month2_asllrp_gated/step_0008000.pt (step 8000, gate active).
+SUPERSEDES the earlier best_val_gated.pt (step 2000): a checkpoint-
+screening pass found val CTC loss is not a reliable proxy for real
+decode quality at this training stage -- step_0008000.pt has WORSE val
+loss (6.8215 vs 5.7116) but MEANINGFULLY BETTER real WER on the full
+122-sample test split (0.9217 vs 0.9591, and 0/122 vs 37/122 empty
+decodes), confirmed on the full set, not just a screening subset.
+Boundary-F1 is tied within noise either way -- this switch is on WER
+grounds specifically. best_val_gated.pt is NOT deleted; it stays on
+disk as historical record. The bimanual gate itself still stays ACTIVE
+in the final architecture (small uniform benefit found in the C3
+ablation, not proven category-specific -- see scripts/
+ablation_score_bimanual_gate_stage3.py, which deliberately analyzed
+best_val_gated.pt specifically and is NOT affected by this switch).
+Decoding here always goes through forward_ctc_boundary_and_gate() (gate
+active) -- not forward_ctc_and_boundary()/forward_ctc(), which would
+silently evaluate a model nobody is shipping.
 
 --- DECODE METHOD DECISION: BEAM SEARCH, NOT GREEDY ---
 Greedy argmax-per-timestep decode is known, from this project's own
@@ -75,7 +80,7 @@ VOCAB_MERGED_PATH = "data/vocab_merged.json"
 DECODER_VOCAB_PATH = "data/vocab.json"
 ASLLRP_TOKEN_TO_ID_PATH = "data/asllrp_token_to_id.json"
 TEST_NPZ_DIR = "data/processed/asllrp/test"
-CHECKPOINT_PATH = "checkpoints/month2_asllrp/best_val_gated.pt"  # checkpoint of record, gate ACTIVE
+CHECKPOINT_PATH = "checkpoints/month2_asllrp_gated/step_0008000.pt"  # checkpoint of record, gate ACTIVE -- see docs/checkpoint_of_record_decision.md
 
 DEFAULT_BEAM_WIDTH = 10
 DEFAULT_EXPAND_TOP_K = 20
@@ -270,8 +275,9 @@ def run_full_test_split(beam_width=DEFAULT_BEAM_WIDTH, expand_top_k=DEFAULT_EXPA
 
 def main():
     """Day 51: the real held-out run, full 122-sample test split, gate
-    active, checkpoint of record (best_val_gated.pt, step 2000). The
-    Day-50 SystemExit guard is intentionally removed here -- structural-
+    active, checkpoint of record (step_0008000.pt, step 8000 -- see
+    docs/checkpoint_of_record_decision.md; supersedes best_val_gated.pt).
+    The Day-50 SystemExit guard is intentionally removed here -- structural-
     bug checklist (vocab shapes vs. checkpoint tensors, enable_nested_
     tensor on this exact model-construction path, a seen-training-sample
     sanity check) was run and passed before this call was ever made; see

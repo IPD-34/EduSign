@@ -59,7 +59,8 @@ def compute_confidence_signal(model: SignTransformer, landmarks: torch.Tensor,
                             MUST be checked before treating `confidence`
                             as "the model is confident about sign
                             content" -- at the current checkpoint
-                            (best_val_gated.pt, step 2000, NOT
+                            (checkpoints/month2_asllrp_gated/
+                            step_0008000.pt, step 8000, NOT
                             converged -- see spec doc), high confidence
                             in blank is the common case, not a content
                             signal.

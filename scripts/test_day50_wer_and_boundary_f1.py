@@ -20,13 +20,26 @@ the scoring on real data):
 
   PART B -- two real ASLLRP test-split samples (asllrp_63579,
   asllrp_97998228 -- the two shortest test-split utterances, picked so
-  the resulting numbers stay hand-checkable), run through the real
-  checkpoint of record (best_val_gated.pt, gate active), with the
-  EDIT-DISTANCE and IOU-MATCHING arithmetic on that real output
-  independently hand-computed and compared for exact match. This
-  proves the SCORING/aggregation logic is correct end-to-end on real
-  data, given the beam search's own output as an (already-proven-
-  correct, per Part A) black box.
+  the resulting numbers stay hand-checkable), run through
+  best_val_gated.pt (gate active, the checkpoint of record AT THE TIME
+  this validation was written), with the EDIT-DISTANCE and IOU-MATCHING
+  arithmetic on that real output independently hand-computed and
+  compared for exact match. This proves the SCORING/aggregation logic
+  is correct end-to-end on real data, given the beam search's own
+  output as an (already-proven-correct, per Part A) black box.
+
+  PINNED DELIBERATELY, not imported from compute_wer_beam_search.py's
+  (now-changed) CHECKPOINT_PATH default -- see
+  docs/checkpoint_of_record_decision.md: the checkpoint of record was
+  switched to step_0008000.pt afterward, which decodes differently on
+  these exact samples. The hand-computed numbers below (2 edits / 3
+  edits, the specific GT/pred interval lists, etc.) were derived by
+  hand against best_val_gated.pt's REAL output specifically and would
+  not match step_0008000.pt's output -- letting this import float to
+  "whatever the current default is" would silently break this file's
+  own validity instead of giving an honest failure. If you need the
+  same hand-validation exercise repeated against the new checkpoint of
+  record, that is new work, not a find-and-replace here.
 """
 import sys
 from pathlib import Path
@@ -42,11 +55,16 @@ from src.models.dataset import SignLanguageDataset
 from src.preprocessing.sample_writer import load_sample
 from src.preprocessing.boundary_labels import build_boundary_targets
 
-from scripts.compute_wer_beam_search import ctc_prefix_beam_search, edit_distance, CHECKPOINT_PATH
+from scripts.compute_wer_beam_search import ctc_prefix_beam_search, edit_distance
 from scripts.compute_boundary_f1 import (
     extract_intervals, interval_iou, match_intervals, boundary_f1_for_sample,
     compute_sample_boundary_arrays,
 )
+
+# Pinned to the checkpoint this file's hand-computed numbers were actually
+# derived against -- deliberately NOT imported from compute_wer_beam_search's
+# CHECKPOINT_PATH, which now points at step_0008000.pt (see module docstring).
+VALIDATED_CHECKPOINT_PATH = "checkpoints/month2_asllrp/best_val_gated.pt"
 
 FAILURES = []
 
@@ -176,7 +194,7 @@ def _load_model_and_dataset():
         vocab_size=len(decoder_vocab), ctc_vocab_size=ctc_vocab_size, use_bimanual_gate=True,
     ).to(device)
     loaded, skipped, new_only = load_checkpoint_partial(
-        model, CHECKPOINT_PATH,
+        model, VALIDATED_CHECKPOINT_PATH,
         prefixes_to_load=("encoder.", "ctc_head.", "boundary_head.", "bimanual_gate_head."),
     )
     print(f"  Checkpoint load: {len(loaded)} loaded, {len(skipped)} skipped, {len(new_only)} new-only")
