@@ -2,20 +2,28 @@
 Reads ASLLRP SignStream XML annotation files and yields one training
 instance per UTTERANCE (a continuous, multi-gloss sentence-level clip).
 
-Option A (deliberate scope decision): ASLLRP's raw annotation only
-gives a single reference/anchor frame per SIGN
-(DOMINANT_HAND START_FRAME == END_FRAME) -- not a true per-gloss span.
-This reader does NOT fabricate per-gloss boundaries from that.
-It exposes:
+Per-SIGN frame data (REVISED, evidence-based -- see
+scripts/audit_sign_spans.py, 30 sampled utterances, 346 signs):
+DOMINANT_HAND carries a genuine, usable [START_FRAME, END_FRAME] span
+for the large majority of signs (88.7% in the audit sample), not just
+a degenerate single-frame anchor as originally assumed. True point
+anchors (START_FRAME == END_FRAME) are the minority (6.9%),
+concentrated almost entirely in "Lexical Signs". This reader exposes
+the real span per sign via sign_spans; Day 31's boundary-target
+builder (src/preprocessing/boundary_labels.py) uses the real span
+directly where available, falling back to a tolerance window only for
+genuine point anchors.
+
+This reader does NOT fabricate a span where neither DOMINANT_HAND nor
+NON_DOMINANT_HAND is present (0/346 in the audit sample, but not
+assumed impossible) -- sign_spans holds None for that sign in that
+case.
+
+It also exposes:
   - the video file an utterance belongs to
   - the frame span to extract (utterance-level START_FRAME/END_FRAME)
   - the ordered gloss sequence (SIGN LABELs, in order) for CTC supervision,
     stored as a "|"-joined string in the gloss field (see ASLLRPSample)
-
-C2's boundary-prediction loss has no real per-gloss ground truth from
-this reader -- only CTC-style ordered-sequence supervision at the
-utterance level. Document this explicitly wherever C2's claims are
-written up.
 
 FRAME INDEXING: ASLLRP's START_FRAME/END_FRAME are 1-indexed (empirically
 confirmed via 5-sample batch visual inspection -- see project notes).
@@ -50,21 +58,22 @@ class ASLLRPUtterance:
     start_frame: int
     end_frame: int
     translation: str             # English gloss string, reference only
-    glosses: list[str]           # ordered SIGN LABELs -> CTC target sequence
+    glosses: list[str]                        # ordered SIGN LABELs -> CTC target sequence
+    sign_spans: list[tuple[int, int] | None]  # per-SIGN (start, end), raw 1-indexed; None if unavailable
     xml_source: Path             # originating file, for debugging
 
 
 @dataclass
 class ASLLRPSample:
-    """DatasetProcessor-compatible view of an ASLLRPUtterance."""
     video_id: str
-    gloss: str          # "|"-joined ordered gloss sequence
+    gloss: str
     split: str
     source: str
     video_path: Path
-    frame_start: int    # raw 1-indexed value; frame_sampler applies -1
+    frame_start: int
     frame_end: int
     translation: str
+    sign_spans: list[tuple[int, int] | None]  # NEW — carried from ASLLRPUtterance
 
 
 class ASLLRPReader:
@@ -105,6 +114,38 @@ class ASLLRPReader:
         else:
             return "test"
 
+    @staticmethod
+    def _extract_sign_span(sign_el) -> tuple[int, int] | None:
+        """
+        Per-SIGN frame span. Contrary to this reader's original
+        assumption (that ASLLRP only gives a degenerate single-frame
+        anchor via DOMINANT_HAND START_FRAME == END_FRAME), real-XML
+        inspection (30-utterance audit, 346 signs) shows DOMINANT_HAND
+        carries a genuine, usable span in the large majority of cases
+        (88.7%) -- true point anchors (6.9%) are the minority,
+        concentrated almost entirely in "Lexical Signs".
+
+        Returns (start_frame, end_frame), both raw 1-indexed, using
+        DOMINANT_HAND only (not DOMINANT_HAND_FINAL_HOLD -- a held
+        final position is a real but separate phenomenon, deliberately
+        excluded from the primary boundary target; see project notes).
+        Falls back to NON_DOMINANT_HAND if DOMINANT_HAND is absent.
+        Returns None only if neither is present at all (0/346 in the
+        audit sample, but not assumed impossible).
+        """
+        for tag in ("DOMINANT_HAND", "NON_DOMINANT_HAND"):
+            el = sign_el.find(tag)
+            if el is None:
+                continue
+            try:
+                s = int(el.get("START_FRAME", -1))
+                e = int(el.get("END_FRAME", -1))
+            except (TypeError, ValueError):
+                continue
+            if s > 0 and e >= s:
+                return (s, e)
+        return None
+
     def _parse_file(self, xml_path: Path) -> Iterator[ASLLRPUtterance]:
         try:
             tree = ET.parse(xml_path)
@@ -140,11 +181,14 @@ class ASLLRPReader:
                 )
 
                 glosses: list[str] = []
+                sign_spans: list[tuple[int, int] | None] = []
                 for sign in utterance.iter("SIGN"):
                     label_el = sign.find("LABEL")
                     label = self._clean(label_el.text if label_el is not None else None)
-                    if label:
-                        glosses.append(label)
+                    if not label:
+                        continue
+                    glosses.append(label)
+                    sign_spans.append(self._extract_sign_span(sign))
 
                 if not glosses:
                     continue  # nothing to supervise on
@@ -159,6 +203,7 @@ class ASLLRPReader:
                     end_frame=end_frame,
                     translation=translation,
                     glosses=glosses,
+                    sign_spans=sign_spans,
                     xml_source=xml_path,
                 )
 
@@ -192,6 +237,7 @@ class ASLLRPReader:
                 frame_start=utt.start_frame,
                 frame_end=utt.end_frame,
                 translation=utt.translation,
+                sign_spans=utt.sign_spans,
             )
 
         if total:

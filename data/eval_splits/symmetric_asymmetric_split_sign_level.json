@@ -1,0 +1,5515 @@
+{
+  "windows": {
+    "asllrp_1169::sign00": {
+      "video_id": "asllrp_1169",
+      "sign_index": 0,
+      "gloss": "VEGETABLE",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.015113864850718528,
+        "motion_right": 0.06895851925946772,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.21917328000982933
+      },
+      "num_frames_in_window": 12,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1169::sign01": {
+      "video_id": "asllrp_1169",
+      "sign_index": 1,
+      "gloss": "IX-3p:i",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.03966432437300682,
+        "motion_right": 0.10858039744198322,
+        "presence_fraction_left": 0.6,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.3652991267986498,
+        "reason": "ratio 0.365 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1169::sign02": {
+      "video_id": "asllrp_1169",
+      "sign_index": 2,
+      "gloss": "BROCCOLI",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.03949362150160596,
+        "motion_right": 0.17853048676624894,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.22121499928085223
+      },
+      "num_frames_in_window": 10,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1169::sign03": {
+      "video_id": "asllrp_1169",
+      "sign_index": 3,
+      "gloss": "IX-3p:j",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.09803066961467266,
+        "motion_right": 0.06919868662953377,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.8,
+        "ratio": 0.7058881358408727
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1169::sign04": {
+      "video_id": "asllrp_1169",
+      "sign_index": 4,
+      "gloss": "FINE",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0003152700373902917,
+        "motion_right": 0.013048176653683186,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.024161999469964147
+      },
+      "num_frames_in_window": 2,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_1169::sign05": {
+      "video_id": "asllrp_1169",
+      "sign_index": 5,
+      "gloss": "EAT+",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.005268242850434035,
+        "motion_right": 0.02018375787883997,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.261013973812929
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1169::sign06": {
+      "video_id": "asllrp_1169",
+      "sign_index": 6,
+      "gloss": "BUT",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.13831969164311886,
+        "motion_right": 0.11018643621355295,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.7966070116599665
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1169::sign07": {
+      "video_id": "asllrp_1169",
+      "sign_index": 7,
+      "gloss": "IX-3p:k",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.147910313680768,
+        "motion_right": 0.0442122258245945,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.29891239308718454
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1169::sign08": {
+      "video_id": "asllrp_1169",
+      "sign_index": 8,
+      "gloss": "fs-SPINACH",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.06335831095930189,
+        "motion_right": 0.1254331525415182,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.5051161489250648,
+        "reason": "ratio 0.505 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 23,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1169::sign09": {
+      "video_id": "asllrp_1169",
+      "sign_index": 9,
+      "gloss": "5\"whoa\"",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0,
+        "motion_right": 0.6419626756105572,
+        "presence_fraction_left": 0.16666666666666666,
+        "presence_fraction_right": 1.0,
+        "ratio": null,
+        "reason": "insufficient_hand_presence: presence_fraction_left=0.17, presence_fraction_right=1.00 (min required: 0.3)"
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1169::sign10": {
+      "video_id": "asllrp_1169",
+      "sign_index": 10,
+      "gloss": "REFUSE",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0,
+        "motion_right": 0.03391252877190709,
+        "presence_fraction_left": 0.0,
+        "presence_fraction_right": 1.0,
+        "ratio": null,
+        "reason": "insufficient_hand_presence: presence_fraction_left=0.00, presence_fraction_right=1.00 (min required: 0.3)"
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1169::sign11": {
+      "video_id": "asllrp_1169",
+      "sign_index": 11,
+      "gloss": "BUOY",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.1373686699080281,
+        "motion_right": 0.3824175545014441,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.3592112032804429,
+        "reason": "ratio 0.359 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 16,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1170::sign00": {
+      "video_id": "asllrp_1170",
+      "sign_index": 0,
+      "gloss": "POSS-1p+",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.00415626895846799,
+        "motion_right": 0.027717103250324726,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.14995322277840475
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1170::sign01": {
+      "video_id": "asllrp_1170",
+      "sign_index": 1,
+      "gloss": "UNCLE",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0012309361627558246,
+        "motion_right": 0.05733206868171692,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.021470290381277794
+      },
+      "num_frames_in_window": 4,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_1170::sign02": {
+      "video_id": "asllrp_1170",
+      "sign_index": 2,
+      "gloss": "IX-loc:i",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.010478041134774685,
+        "motion_right": 0.07625910080969334,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.13740053349072293
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1170::sign03": {
+      "video_id": "asllrp_1170",
+      "sign_index": 3,
+      "gloss": "NEVER",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.030490305041894317,
+        "motion_right": 0.11080374987795949,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.2751739456063237
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1170::sign04": {
+      "video_id": "asllrp_1170",
+      "sign_index": 4,
+      "gloss": "VISIT-1p",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.15185240819118917,
+        "motion_right": 0.07911831978708506,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.875,
+        "ratio": 0.5210211726604391,
+        "reason": "ratio 0.521 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1170::sign05": {
+      "video_id": "asllrp_1170",
+      "sign_index": 5,
+      "gloss": "IX-1p",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.030076550785452127,
+        "motion_right": 0.029517119750380516,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.981399760927965
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1170::sign06": {
+      "video_id": "asllrp_1170",
+      "sign_index": 6,
+      "gloss": "NEVER",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.7154179592616856,
+        "motion_right": 0.07739502191543579,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.8571428571428571,
+        "ratio": 0.10818154746255991
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1271::sign00": {
+      "video_id": "asllrp_1271",
+      "sign_index": 0,
+      "gloss": "COMPUTER_5",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.25407808599993587,
+        "motion_right": 0.2528200657106936,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9950486863741465
+      },
+      "num_frames_in_window": 14,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1271::sign01": {
+      "video_id": "asllrp_1271",
+      "sign_index": 1,
+      "gloss": "POSS-1p",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0584077350795269,
+        "motion_right": 0.06057985778898001,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9641444732831936
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1271::sign02": {
+      "video_id": "asllrp_1271",
+      "sign_index": 2,
+      "gloss": "SISTER",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.08457402558997273,
+        "motion_right": 0.17557323910295963,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.4817022572578777,
+        "reason": "ratio 0.482 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1271::sign03": {
+      "video_id": "asllrp_1271",
+      "sign_index": 3,
+      "gloss": "(1h)USE_2",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.031190544366836548,
+        "motion_right": 0.1047159805893898,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.29785849486660765
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1271::sign04": {
+      "video_id": "asllrp_1271",
+      "sign_index": 4,
+      "gloss": "fs-MAC",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.15624873246997595,
+        "motion_right": 0.054184663225896657,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.34678465782951895,
+        "reason": "ratio 0.347 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1271::sign05": {
+      "video_id": "asllrp_1271",
+      "sign_index": 5,
+      "gloss": "ONLY",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.06638955052767415,
+        "motion_right": 0.20910790655761957,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.31748943222948167,
+        "reason": "ratio 0.317 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 14,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1372::sign00": {
+      "video_id": "asllrp_1372",
+      "sign_index": 0,
+      "gloss": "ns-BOSTON",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.01860661630053073,
+        "motion_right": 0.3355448313523084,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.055451953247327906
+      },
+      "num_frames_in_window": 14,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1372::sign01": {
+      "video_id": "asllrp_1372",
+      "sign_index": 1,
+      "gloss": "WOW+",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.02519853232661262,
+        "motion_right": 0.09205429325811565,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.2737355470858615
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1372::sign02": {
+      "video_id": "asllrp_1372",
+      "sign_index": 2,
+      "gloss": "WONDERFUL",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.03491933806799352,
+        "motion_right": 0.008812193060293794,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.2523585367836884
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1372::sign03": {
+      "video_id": "asllrp_1372",
+      "sign_index": 3,
+      "gloss": "CITY/COMMUNITY_3++",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.19845817610621452,
+        "motion_right": 0.06905525433830917,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.75,
+        "ratio": 0.34795872708893033,
+        "reason": "ratio 0.348 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 16,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1473::sign00": {
+      "video_id": "asllrp_1473",
+      "sign_index": 0,
+      "gloss": "POSS-1p",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0017459442606195807,
+        "motion_right": 0.0,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.5,
+        "ratio": 0.0
+      },
+      "num_frames_in_window": 2,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_1473::sign01": {
+      "video_id": "asllrp_1473",
+      "sign_index": 1,
+      "gloss": "CAT",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.906619761721231,
+        "motion_right": 0.0033727039117366076,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.6,
+        "ratio": 0.003720086473003279
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1473::sign02": {
+      "video_id": "asllrp_1473",
+      "sign_index": 2,
+      "gloss": "IX-loc:i",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0002855327329598367,
+        "motion_right": 0.0,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.5,
+        "ratio": 0.0
+      },
+      "num_frames_in_window": 2,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_1473::sign03": {
+      "video_id": "asllrp_1473",
+      "sign_index": 3,
+      "gloss": "ONLY",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.015150321647524834,
+        "motion_right": 0.15535592241212726,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.09752007784636721
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1473::sign04": {
+      "video_id": "asllrp_1473",
+      "sign_index": 4,
+      "gloss": "EAT",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0043007711647078395,
+        "motion_right": 0.02465137792751193,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.17446372277259217
+      },
+      "num_frames_in_window": 4,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_1473::sign05": {
+      "video_id": "asllrp_1473",
+      "sign_index": 5,
+      "gloss": "CAT",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.00657209096243605,
+        "motion_right": 0.021859436528757215,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.3006523500178116,
+        "reason": "ratio 0.301 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1473::sign06": {
+      "video_id": "asllrp_1473",
+      "sign_index": 6,
+      "gloss": "EAT++",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.013687905957340263,
+        "motion_right": 0.04778783774236217,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.28643074480866154
+      },
+      "num_frames_in_window": 17,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1473::sign07": {
+      "video_id": "asllrp_1473",
+      "sign_index": 7,
+      "gloss": "(1h)part:indef",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.02687814412638545,
+        "motion_right": 0.03221970144659281,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.8342145618865683
+      },
+      "num_frames_in_window": 4,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_1473::sign08": {
+      "video_id": "asllrp_1473",
+      "sign_index": 8,
+      "gloss": "FINISH",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0,
+        "motion_right": 0.4460664987564087,
+        "presence_fraction_left": 0.2857142857142857,
+        "presence_fraction_right": 1.0,
+        "ratio": null,
+        "reason": "insufficient_hand_presence: presence_fraction_left=0.29, presence_fraction_right=1.00 (min required: 0.3)"
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1474::sign00": {
+      "video_id": "asllrp_1474",
+      "sign_index": 0,
+      "gloss": "DATE/DESSERT+",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.09768843918573111,
+        "motion_right": 0.10312265099491924,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9473034124243386
+      },
+      "num_frames_in_window": 12,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1474::sign01": {
+      "video_id": "asllrp_1474",
+      "sign_index": 1,
+      "gloss": "(G/Q)POSS-1p+",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.22867153270635754,
+        "motion_right": 0.03623878420330584,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.1584752757565189
+      },
+      "num_frames_in_window": 10,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1474::sign02": {
+      "video_id": "asllrp_1474",
+      "sign_index": 2,
+      "gloss": "FAVORITE/PREFER+",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.005249445966910571,
+        "motion_right": 0.04776095552369952,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.1099108237963484
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1474::sign03": {
+      "video_id": "asllrp_1474",
+      "sign_index": 3,
+      "gloss": "MELON/PUMPKIN+",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.05919808382168412,
+        "motion_right": 0.12486535310745239,
+        "presence_fraction_left": 0.625,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.4740953543032985,
+        "reason": "ratio 0.474 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1474::sign04": {
+      "video_id": "asllrp_1474",
+      "sign_index": 4,
+      "gloss": "PIE",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.15693302312865853,
+        "motion_right": 0.26172266574576497,
+        "presence_fraction_left": 0.8,
+        "presence_fraction_right": 0.85,
+        "ratio": 0.5996157141433897,
+        "reason": "ratio 0.600 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 20,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1575::sign00": {
+      "video_id": "asllrp_1575",
+      "sign_index": 0,
+      "gloss": "POSS-1p+",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.07763142324984074,
+        "motion_right": 0.03259395505301654,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.41985517833570585,
+        "reason": "ratio 0.420 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 4,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_1575::sign01": {
+      "video_id": "asllrp_1575",
+      "sign_index": 1,
+      "gloss": "NEW+",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.03127146977931261,
+        "motion_right": 0.12816392816603184,
+        "presence_fraction_left": 0.5,
+        "presence_fraction_right": 0.9,
+        "ratio": 0.2439958748673927
+      },
+      "num_frames_in_window": 10,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1575::sign02": {
+      "video_id": "asllrp_1575",
+      "sign_index": 2,
+      "gloss": "#CAR",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.09315936826169491,
+        "motion_right": 0.07172504952177405,
+        "presence_fraction_left": 0.8571428571428571,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.7699177319482299
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1575::sign03": {
+      "video_id": "asllrp_1575",
+      "sign_index": 3,
+      "gloss": "IX-1p",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.03881234861910343,
+        "motion_right": 0.01894773729145527,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.4881883721442509,
+        "reason": "ratio 0.488 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 3,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_1575::sign04": {
+      "video_id": "asllrp_1575",
+      "sign_index": 4,
+      "gloss": "5\"awestruck\"",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.03806031821295619,
+        "motion_right": 0.05323700176086277,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.7149222712413581
+      },
+      "num_frames_in_window": 13,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1575::sign05": {
+      "video_id": "asllrp_1575",
+      "sign_index": 5,
+      "gloss": "KISS-FIST",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.092973992228508,
+        "motion_right": 0.14074046909809113,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.6606059566542187
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1575::sign06": {
+      "video_id": "asllrp_1575",
+      "sign_index": 6,
+      "gloss": "IX-1p",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.005819554207846522,
+        "motion_right": 0.002241072477772832,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.3850934964659642,
+        "reason": "ratio 0.385 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 3,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_1676::sign00": {
+      "video_id": "asllrp_1676",
+      "sign_index": 0,
+      "gloss": "VOLUNTEER/SHIRT+",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0075362664356362075,
+        "motion_right": 0.06288907048292458,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.11983427927564023
+      },
+      "num_frames_in_window": 10,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1676::sign01": {
+      "video_id": "asllrp_1676",
+      "sign_index": 1,
+      "gloss": "IX-3p-pl-arc",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.007817783043719828,
+        "motion_right": 0.09803916048258543,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.07974143194655865
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1676::sign02": {
+      "video_id": "asllrp_1676",
+      "sign_index": 2,
+      "gloss": "NOT",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.08957423269748688,
+        "motion_right": 0.023069522343575954,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.2575464131686969
+      },
+      "num_frames_in_window": 4,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_1676::sign03": {
+      "video_id": "asllrp_1676",
+      "sign_index": 3,
+      "gloss": "CLEAR",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.07734146621078253,
+        "motion_right": 0.09149513533338904,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.8453068671789651
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1676::sign04": {
+      "video_id": "asllrp_1676",
+      "sign_index": 4,
+      "gloss": "WHO",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.3313626553863287,
+        "motion_right": 0.04939124232623726,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.1490549448568761
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1676::sign05": {
+      "video_id": "asllrp_1676",
+      "sign_index": 5,
+      "gloss": "IX-3p:i",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.001421707565896213,
+        "motion_right": 0.009709482081234455,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.14642465519803075
+      },
+      "num_frames_in_window": 2,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_1676::sign06": {
+      "video_id": "asllrp_1676",
+      "sign_index": 6,
+      "gloss": "IX-3p:j",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.008251405786722898,
+        "motion_right": 0.013555147685110569,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.6,
+        "ratio": 0.608728578869452
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1676::sign07": {
+      "video_id": "asllrp_1676",
+      "sign_index": 7,
+      "gloss": "WIN",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.18110260367393494,
+        "motion_right": 0.1650924722198397,
+        "presence_fraction_left": 0.875,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9115963485377572
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1676::sign08": {
+      "video_id": "asllrp_1676",
+      "sign_index": 8,
+      "gloss": "IX-3p-pl-arc",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.14648469351232052,
+        "motion_right": 0.11046811193227768,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.7541273377002112
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1676::sign09": {
+      "video_id": "asllrp_1676",
+      "sign_index": 9,
+      "gloss": "part:indef",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.016509778099134564,
+        "motion_right": 0.0712825721129775,
+        "presence_fraction_left": 0.875,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.231610302627237
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1677::sign00": {
+      "video_id": "asllrp_1677",
+      "sign_index": 0,
+      "gloss": "THAT",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.01826513884589076,
+        "motion_right": 0.07887644693255424,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.23156645052114144
+      },
+      "num_frames_in_window": 3,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_1677::sign01": {
+      "video_id": "asllrp_1677",
+      "sign_index": 1,
+      "gloss": "DRESS/CLOTHES",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.47144734486937523,
+        "motion_right": 0.0,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.4,
+        "ratio": 0.0
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1677::sign02": {
+      "video_id": "asllrp_1677",
+      "sign_index": 2,
+      "gloss": "LCL:1\"dress over there\"",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.6925130884919781,
+        "motion_right": 0.2539077242836356,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.9,
+        "ratio": 0.3666468237250895,
+        "reason": "ratio 0.367 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 10,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1677::sign03": {
+      "video_id": "asllrp_1677",
+      "sign_index": 3,
+      "gloss": "3\"contemplation\"",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.023742911405861378,
+        "motion_right": 0.9442191645503044,
+        "presence_fraction_left": 0.875,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.025145551263163802
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1677::sign04": {
+      "video_id": "asllrp_1677",
+      "sign_index": 4,
+      "gloss": "NOT",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.00565753411501646,
+        "motion_right": 0.015314443036913872,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.3694247385542891,
+        "reason": "ratio 0.369 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 2,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_1677::sign05": {
+      "video_id": "asllrp_1677",
+      "sign_index": 5,
+      "gloss": "POSS-1p",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.007736730156466365,
+        "motion_right": 0.011270985240116715,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.6,
+        "ratio": 0.6864289138565359
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1677::sign06": {
+      "video_id": "asllrp_1677",
+      "sign_index": 6,
+      "gloss": "FAVORITE/PREFER+",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.013475111569277942,
+        "motion_right": 0.0029224008321762085,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.25,
+        "ratio": null,
+        "reason": "insufficient_hand_presence: presence_fraction_left=1.00, presence_fraction_right=0.25 (min required: 0.3)"
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1677::sign07": {
+      "video_id": "asllrp_1677",
+      "sign_index": 7,
+      "gloss": "part:indef",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.00787882786244154,
+        "motion_right": 0.0664525218307972,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.11856326359596671
+      },
+      "num_frames_in_window": 3,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_1778::sign00": {
+      "video_id": "asllrp_1778",
+      "sign_index": 0,
+      "gloss": "IX-1p",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.015742388321086764,
+        "motion_right": 0.13343935273587704,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.8,
+        "ratio": 0.11797410582653556
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1778::sign01": {
+      "video_id": "asllrp_1778",
+      "sign_index": 1,
+      "gloss": "NEVER",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.006025194539688528,
+        "motion_right": 0.08306128066033125,
+        "presence_fraction_left": 0.8333333333333334,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.0725391481059365
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1778::sign02": {
+      "video_id": "asllrp_1778",
+      "sign_index": 2,
+      "gloss": "SEE",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.007464093388989568,
+        "motion_right": 0.013671351363882422,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.545966027082629,
+        "reason": "ratio 0.546 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 4,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_1778::sign03": {
+      "video_id": "asllrp_1778",
+      "sign_index": 3,
+      "gloss": "COW",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0,
+        "motion_right": 0.7709698483813554,
+        "presence_fraction_left": 0.4,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.0
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1778::sign04": {
+      "video_id": "asllrp_1778",
+      "sign_index": 4,
+      "gloss": "PURPLE+",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.12028270191513002,
+        "motion_right": 0.32351227290928364,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.3718025929385949,
+        "reason": "ratio 0.372 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 15,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1879::sign00": {
+      "video_id": "asllrp_1879",
+      "sign_index": 0,
+      "gloss": "POSS-1p",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.02135562151670456,
+        "motion_right": 0.025408396497368813,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.8404946576977441
+      },
+      "num_frames_in_window": 2,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_1879::sign01": {
+      "video_id": "asllrp_1879",
+      "sign_index": 1,
+      "gloss": "FRIEND",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.09394384920597076,
+        "motion_right": 0.05802046926692128,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.6176079621744271
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1879::sign02": {
+      "video_id": "asllrp_1879",
+      "sign_index": 2,
+      "gloss": "IX-loc:i",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.17087242053821683,
+        "motion_right": 0.0,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.2,
+        "ratio": null,
+        "reason": "insufficient_hand_presence: presence_fraction_left=1.00, presence_fraction_right=0.20 (min required: 0.3)"
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1879::sign03": {
+      "video_id": "asllrp_1879",
+      "sign_index": 3,
+      "gloss": "WANT+NEG",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.4034991255030036,
+        "motion_right": 0.06457328237593174,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.8571428571428571,
+        "ratio": 0.1600332647448354
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1879::sign04": {
+      "video_id": "asllrp_1879",
+      "sign_index": 4,
+      "gloss": "WANT+NEG",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.4034991255030036,
+        "motion_right": 0.06457328237593174,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.8571428571428571,
+        "ratio": 0.1600332647448354
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1879::sign05": {
+      "video_id": "asllrp_1879",
+      "sign_index": 5,
+      "gloss": "GO-OUT",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.39510367275215685,
+        "motion_right": 0.20711476542055607,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.75,
+        "ratio": 0.5242035944081854,
+        "reason": "ratio 0.524 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1879::sign06": {
+      "video_id": "asllrp_1879",
+      "sign_index": 6,
+      "gloss": "THUMB-IX-3p:i",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.009166801464743912,
+        "motion_right": 0.013695710338652134,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.6,
+        "ratio": 0.669319169146948
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1880::sign00": {
+      "video_id": "asllrp_1880",
+      "sign_index": 0,
+      "gloss": "NONE/NOTHING+",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.23073898605071008,
+        "motion_right": 0.264643426053226,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.8718863320802953
+      },
+      "num_frames_in_window": 13,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1880::sign01": {
+      "video_id": "asllrp_1880",
+      "sign_index": 1,
+      "gloss": "WANT",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.023579891538247466,
+        "motion_right": 0.026896546129137278,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.8766884575080498
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1880::sign02": {
+      "video_id": "asllrp_1880",
+      "sign_index": 2,
+      "gloss": "GO-OUT",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.41790839843451977,
+        "motion_right": 0.08536913432180882,
+        "presence_fraction_left": 0.875,
+        "presence_fraction_right": 0.75,
+        "ratio": 0.20427714456469562
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_1880::sign03": {
+      "video_id": "asllrp_1880",
+      "sign_index": 3,
+      "gloss": "part:indef",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.014185593405272812,
+        "motion_right": 0.3519436726346612,
+        "presence_fraction_left": 0.8888888888888888,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.040306431137343716
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_260::sign00": {
+      "video_id": "asllrp_260",
+      "sign_index": 0,
+      "gloss": "LOSE",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.18490164633840322,
+        "motion_right": 0.17711112461984158,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9578666719694664
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_260::sign01": {
+      "video_id": "asllrp_260",
+      "sign_index": 1,
+      "gloss": "KEY",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.03211910929530859,
+        "motion_right": 0.1352732612285763,
+        "presence_fraction_left": 0.5,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.2374387148176736
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_260::sign02": {
+      "video_id": "asllrp_260",
+      "sign_index": 2,
+      "gloss": "WHO",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.2038880456238985,
+        "motion_right": 0.03158033962245099,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.15489058971463965
+      },
+      "num_frames_in_window": 17,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_261::sign00": {
+      "video_id": "asllrp_261",
+      "sign_index": 0,
+      "gloss": "ATTENTION-WAVE",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.006252920953556895,
+        "motion_right": 0.08384196646511555,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.8,
+        "ratio": 0.07457984607456186
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_261::sign01": {
+      "video_id": "asllrp_261",
+      "sign_index": 1,
+      "gloss": "POSS-1p+",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.09026046469807625,
+        "motion_right": 0.03299351470195688,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.3655367254347859,
+        "reason": "ratio 0.366 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_261::sign02": {
+      "video_id": "asllrp_261",
+      "sign_index": 2,
+      "gloss": "FRIEND",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.08628841338213533,
+        "motion_right": 0.07053945306688547,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.8174846459917591
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_261::sign03": {
+      "video_id": "asllrp_261",
+      "sign_index": 3,
+      "gloss": "ARRIVE",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.05772602837532759,
+        "motion_right": 0.1494374657049775,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.3862888607151,
+        "reason": "ratio 0.386 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_261::sign04": {
+      "video_id": "asllrp_261",
+      "sign_index": 4,
+      "gloss": "TIME++",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.13592872867593542,
+        "motion_right": 0.15867178549524397,
+        "presence_fraction_left": 0.8518518518518519,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.8566660307733774
+      },
+      "num_frames_in_window": 27,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_362::sign00": {
+      "video_id": "asllrp_362",
+      "sign_index": 0,
+      "gloss": "TEACH+AGENT",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.36995101626962423,
+        "motion_right": 0.20777063793502748,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.9090909090909091,
+        "ratio": 0.5616166162484658,
+        "reason": "ratio 0.562 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 11,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_362::sign01": {
+      "video_id": "asllrp_362",
+      "sign_index": 1,
+      "gloss": "TEACH+AGENT",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.36995101626962423,
+        "motion_right": 0.20777063793502748,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.9090909090909091,
+        "ratio": 0.5616166162484658,
+        "reason": "ratio 0.562 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 11,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_362::sign02": {
+      "video_id": "asllrp_362",
+      "sign_index": 2,
+      "gloss": "UPSET",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0976393204764463,
+        "motion_right": 0.21037388313561678,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.9166666666666666,
+        "ratio": 0.464122822762669,
+        "reason": "ratio 0.464 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 12,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_362::sign03": {
+      "video_id": "asllrp_362",
+      "sign_index": 3,
+      "gloss": "WHY++",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.014900283480528742,
+        "motion_right": 0.08539737109094858,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.17448175851525774
+      },
+      "num_frames_in_window": 12,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_362::sign04": {
+      "video_id": "asllrp_362",
+      "sign_index": 4,
+      "gloss": "(1h)part:indef",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0049457617569714785,
+        "motion_right": 0.07519273832440376,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.06577445997024335
+      },
+      "num_frames_in_window": 3,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_463::sign00": {
+      "video_id": "asllrp_463",
+      "sign_index": 0,
+      "gloss": "ns-fs-JOHN",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.011231394892092794,
+        "motion_right": 0.18908902443945408,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.9,
+        "ratio": 0.059397391918371574
+      },
+      "num_frames_in_window": 10,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_463::sign01": {
+      "video_id": "asllrp_463",
+      "sign_index": 1,
+      "gloss": "IX-loc:i",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.01103665167465806,
+        "motion_right": 0.10038682632148266,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.10994123511100809
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_463::sign02": {
+      "video_id": "asllrp_463",
+      "sign_index": 2,
+      "gloss": "(L)LIVE",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.18746112752705812,
+        "motion_right": 0.17420747503638268,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9292991957025202
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_463::sign03": {
+      "video_id": "asllrp_463",
+      "sign_index": 3,
+      "gloss": "(1h)LAST-YEAR",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.08862390916328877,
+        "motion_right": 0.06065246858634055,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.6843804246390092
+      },
+      "num_frames_in_window": 13,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_463::sign04": {
+      "video_id": "asllrp_463",
+      "sign_index": 4,
+      "gloss": "WHERE",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.3033951992401853,
+        "motion_right": 0.12643380952067673,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.41672976315154003,
+        "reason": "ratio 0.417 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 20,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_463::sign05": {
+      "video_id": "asllrp_463",
+      "sign_index": 5,
+      "gloss": "1\"focus\"",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0209558408241719,
+        "motion_right": 0.02966215740889311,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.7064840407693698
+      },
+      "num_frames_in_window": 10,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_638::sign00": {
+      "video_id": "asllrp_638",
+      "sign_index": 0,
+      "gloss": "IX-3p:i",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.004449480460607447,
+        "motion_right": 0.08622881211340427,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.8,
+        "ratio": 0.05160085534700037
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_638::sign01": {
+      "video_id": "asllrp_638",
+      "sign_index": 1,
+      "gloss": "(5)MAN",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.010626381204929203,
+        "motion_right": 0.24457773426547647,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.04344786837134903
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_638::sign02": {
+      "video_id": "asllrp_638",
+      "sign_index": 2,
+      "gloss": "IX-2p",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.00579074356937781,
+        "motion_right": 0.03455790365114808,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.16756640182326077
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_638::sign03": {
+      "video_id": "asllrp_638",
+      "sign_index": 3,
+      "gloss": "RECENT-PAST",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.013016940967645496,
+        "motion_right": 0.02559261512942612,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.5086209792089107,
+        "reason": "ratio 0.509 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_638::sign04": {
+      "video_id": "asllrp_638",
+      "sign_index": 4,
+      "gloss": "MEET",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.06632228009402752,
+        "motion_right": 0.0382787324488163,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.5771624919189621,
+        "reason": "ratio 0.577 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_638::sign05": {
+      "video_id": "asllrp_638",
+      "sign_index": 5,
+      "gloss": "IX-loc:i",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0,
+        "motion_right": 0.014033515937626362,
+        "presence_fraction_left": 0.6666666666666666,
+        "presence_fraction_right": 0.6666666666666666,
+        "ratio": 0.0
+      },
+      "num_frames_in_window": 3,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_638::sign06": {
+      "video_id": "asllrp_638",
+      "sign_index": 6,
+      "gloss": "SEARCH-FOR",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.01821819122415036,
+        "motion_right": 0.20637421682476997,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.08827745783582656
+      },
+      "num_frames_in_window": 10,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_638::sign07": {
+      "video_id": "asllrp_638",
+      "sign_index": 7,
+      "gloss": "#JOB",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0149784812820144,
+        "motion_right": 0.07063582516275346,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.21205218807173515
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_638::sign08": {
+      "video_id": "asllrp_638",
+      "sign_index": 8,
+      "gloss": "IX-3p:i",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.007841883692890406,
+        "motion_right": 0.02302616834640503,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.34056398680480954,
+        "reason": "ratio 0.341 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 4,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_649::sign00": {
+      "video_id": "asllrp_649",
+      "sign_index": 0,
+      "gloss": "THAT",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.006354825338348746,
+        "motion_right": 0.07850142754614353,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.08095171689219725
+      },
+      "num_frames_in_window": 4,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_649::sign01": {
+      "video_id": "asllrp_649",
+      "sign_index": 1,
+      "gloss": "BOOK",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.05752206966280937,
+        "motion_right": 0.016978091094642878,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.29515786191573673
+      },
+      "num_frames_in_window": 3,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_649::sign02": {
+      "video_id": "asllrp_649",
+      "sign_index": 2,
+      "gloss": "IX-2p",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0,
+        "motion_right": 0.015167502220720053,
+        "presence_fraction_left": 0.0,
+        "presence_fraction_right": 1.0,
+        "ratio": null,
+        "reason": "insufficient_hand_presence: presence_fraction_left=0.00, presence_fraction_right=1.00 (min required: 0.3)"
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_649::sign03": {
+      "video_id": "asllrp_649",
+      "sign_index": 3,
+      "gloss": "READ+",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.08313412358984351,
+        "motion_right": 0.1384463720023632,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.6004788885939493
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_649::sign04": {
+      "video_id": "asllrp_649",
+      "sign_index": 4,
+      "gloss": "IX-loc:i",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.11078618466854095,
+        "motion_right": 0.035689109936356544,
+        "presence_fraction_left": 0.8,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.32214404750135683,
+        "reason": "ratio 0.322 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_649::sign05": {
+      "video_id": "asllrp_649",
+      "sign_index": 5,
+      "gloss": "IX-1p",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.003941647708415985,
+        "motion_right": 0.01777384988963604,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.22176668155132592
+      },
+      "num_frames_in_window": 2,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_649::sign06": {
+      "video_id": "asllrp_649",
+      "sign_index": 6,
+      "gloss": "READ_2",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0778138879686594,
+        "motion_right": 0.07902366202324629,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9846909897160802
+      },
+      "num_frames_in_window": 4,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_649::sign07": {
+      "video_id": "asllrp_649",
+      "sign_index": 7,
+      "gloss": "IX-3p:i",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.09161383518949151,
+        "motion_right": 0.06290089944377542,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.6865873403692023
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_649::sign08": {
+      "video_id": "asllrp_649",
+      "sign_index": 8,
+      "gloss": "LONG-AGO",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.08832077903207392,
+        "motion_right": 0.1565635302104056,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.9090909090909091,
+        "ratio": 0.5641210243112154,
+        "reason": "ratio 0.564 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 11,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_649::sign09": {
+      "video_id": "asllrp_649",
+      "sign_index": 9,
+      "gloss": "IX-1p",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.08930230513215065,
+        "motion_right": 0.11750693060457706,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.7599747918925915
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_649::sign10": {
+      "video_id": "asllrp_649",
+      "sign_index": 10,
+      "gloss": "YOUNG+",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.20308492484036833,
+        "motion_right": 0.22297921869903803,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.910779605495337
+      },
+      "num_frames_in_window": 21,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_649::sign11": {
+      "video_id": "asllrp_649",
+      "sign_index": 11,
+      "gloss": "IX-1p",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.1089361715130508,
+        "motion_right": 0.03076428733766079,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.28240654054906966
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_666::sign00": {
+      "video_id": "asllrp_666",
+      "sign_index": 0,
+      "gloss": "NEW",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.21319536119699478,
+        "motion_right": 0.08205188624560833,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.6666666666666666,
+        "ratio": 0.38486712743149937,
+        "reason": "ratio 0.385 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_666::sign01": {
+      "video_id": "asllrp_666",
+      "sign_index": 1,
+      "gloss": "STUDENT",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0756696630269289,
+        "motion_right": 0.24037236906588078,
+        "presence_fraction_left": 0.8888888888888888,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.31480183567267467,
+        "reason": "ratio 0.315 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_666::sign02": {
+      "video_id": "asllrp_666",
+      "sign_index": 2,
+      "gloss": "UP-TO-NOW",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.037960924208164215,
+        "motion_right": 0.05229998426511884,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.7258305091591017
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_666::sign03": {
+      "video_id": "asllrp_666",
+      "sign_index": 3,
+      "gloss": "NONE/NOTHING",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.044550785212777555,
+        "motion_right": 0.05807795887812972,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.7670859319671087
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_666::sign04": {
+      "video_id": "asllrp_666",
+      "sign_index": 4,
+      "gloss": "MEET",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.08616773574613035,
+        "motion_right": 0.14078603172674775,
+        "presence_fraction_left": 0.7272727272727273,
+        "presence_fraction_right": 0.8181818181818182,
+        "ratio": 0.6120474786403078
+      },
+      "num_frames_in_window": 11,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_666::sign05": {
+      "video_id": "asllrp_666",
+      "sign_index": 5,
+      "gloss": "NONE/NOTHING++",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.10941246687434614,
+        "motion_right": 0.09697004884947091,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.8862797048606479
+      },
+      "num_frames_in_window": 15,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_667::sign00": {
+      "video_id": "asllrp_667",
+      "sign_index": 0,
+      "gloss": "HOMEWORK",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.06752502731978893,
+        "motion_right": 0.19404948316514492,
+        "presence_fraction_left": 0.5555555555555556,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.3479783930283497,
+        "reason": "ratio 0.348 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_667::sign01": {
+      "video_id": "asllrp_667",
+      "sign_index": 1,
+      "gloss": "IX-1p",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0,
+        "motion_right": 0.0037242465186864138,
+        "presence_fraction_left": 0.5,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.0
+      },
+      "num_frames_in_window": 2,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_667::sign02": {
+      "video_id": "asllrp_667",
+      "sign_index": 2,
+      "gloss": "FINISH",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.13793417159467936,
+        "motion_right": 0.07810522662475705,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.5662500142043835,
+        "reason": "ratio 0.566 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_667::sign03": {
+      "video_id": "asllrp_667",
+      "sign_index": 3,
+      "gloss": "PAST+NIGHT",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.16501404531300068,
+        "motion_right": 0.5239612958393991,
+        "presence_fraction_left": 0.6,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.31493556227019415,
+        "reason": "ratio 0.315 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 15,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_667::sign04": {
+      "video_id": "asllrp_667",
+      "sign_index": 4,
+      "gloss": "PAST+NIGHT",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.16501404531300068,
+        "motion_right": 0.5239612958393991,
+        "presence_fraction_left": 0.6,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.31493556227019415,
+        "reason": "ratio 0.315 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 15,
+      "reliability": "reliable",
+      "split": "train"
+    },
+    "asllrp_667::sign05": {
+      "video_id": "asllrp_667",
+      "sign_index": 5,
+      "gloss": "IX-1p",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.04260334558784962,
+        "motion_right": 0.004203618969768286,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.09866875269455713
+      },
+      "num_frames_in_window": 3,
+      "reliability": "low_confidence_short_window",
+      "split": "train"
+    },
+    "asllrp_1068::sign00": {
+      "video_id": "asllrp_1068",
+      "sign_index": 0,
+      "gloss": "(1h)FISH",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.016391434473916888,
+        "motion_right": 0.18339488469064236,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.08937781717067299
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_1068::sign01": {
+      "video_id": "asllrp_1068",
+      "sign_index": 1,
+      "gloss": "ns-fs-ANN",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.009602928417734802,
+        "motion_right": 0.07032479764893651,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.13655109916807592
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_1068::sign02": {
+      "video_id": "asllrp_1068",
+      "sign_index": 2,
+      "gloss": "VOMIT/HATE",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.18038551416248083,
+        "motion_right": 0.5013941794168204,
+        "presence_fraction_left": 0.5714285714285714,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.3597678664165789,
+        "reason": "ratio 0.360 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 14,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_1068::sign03": {
+      "video_id": "asllrp_1068",
+      "sign_index": 3,
+      "gloss": "BUT",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.14466236904263496,
+        "motion_right": 0.12986559700220823,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.8977151270344134
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_1068::sign04": {
+      "video_id": "asllrp_1068",
+      "sign_index": 4,
+      "gloss": "BIRD+",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.12230047583580017,
+        "motion_right": 0.10059890151023865,
+        "presence_fraction_left": 0.875,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.8225552748077782
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_1068::sign05": {
+      "video_id": "asllrp_1068",
+      "sign_index": 5,
+      "gloss": "FINE+",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.00909147085621953,
+        "motion_right": 0.08447849005460739,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.10761876603550502
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_1068::sign06": {
+      "video_id": "asllrp_1068",
+      "sign_index": 6,
+      "gloss": "ICL:X-over-thumb\"eating out of a bowl\"",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.1095223993761465,
+        "motion_right": 0.3467377698980272,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.31586521251594873,
+        "reason": "ratio 0.316 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 19,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_1981::sign00": {
+      "video_id": "asllrp_1981",
+      "sign_index": 0,
+      "gloss": "PEOPLE+",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.25433754082769156,
+        "motion_right": 0.2717390740290284,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9359623445265809
+      },
+      "num_frames_in_window": 11,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_1981::sign01": {
+      "video_id": "asllrp_1981",
+      "sign_index": 1,
+      "gloss": "REFUSE",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.03450523177161813,
+        "motion_right": 0.04766766354441643,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.7238708425359756
+      },
+      "num_frames_in_window": 4,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_1981::sign02": {
+      "video_id": "asllrp_1981",
+      "sign_index": 2,
+      "gloss": "LEAVE",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.13577454071491957,
+        "motion_right": 0.1427021799609065,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9514538653306853
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_1981::sign03": {
+      "video_id": "asllrp_1981",
+      "sign_index": 3,
+      "gloss": "part:indef",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.05093646049499512,
+        "motion_right": 0.06836853176355362,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.7450278539131754
+      },
+      "num_frames_in_window": 3,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_2387::sign00": {
+      "video_id": "asllrp_2387",
+      "sign_index": 0,
+      "gloss": "ns-fs-JACK",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.008834813255816698,
+        "motion_right": 0.23191045131534338,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.0380957960527766
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_2387::sign01": {
+      "video_id": "asllrp_2387",
+      "sign_index": 1,
+      "gloss": "IX-loc:i",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0033766529231797904,
+        "motion_right": 0.06759433727711439,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.049954671636717615
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_2387::sign02": {
+      "video_id": "asllrp_2387",
+      "sign_index": 2,
+      "gloss": "LIE",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.005788999958895147,
+        "motion_right": 0.11868355330079794,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.048776766433873076
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_2387::sign03": {
+      "video_id": "asllrp_2387",
+      "sign_index": 3,
+      "gloss": "IX-3p:i",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.012552580214105546,
+        "motion_right": 0.07357650995254517,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.17060581185763796
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_2387::sign04": {
+      "video_id": "asllrp_2387",
+      "sign_index": 4,
+      "gloss": "NOT",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.04167338274419308,
+        "motion_right": 0.024754764512181282,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.5940186008929333,
+        "reason": "ratio 0.594 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 3,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_2387::sign05": {
+      "video_id": "asllrp_2387",
+      "sign_index": 5,
+      "gloss": "SICK",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0972512848675251,
+        "motion_right": 0.07242741249501705,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.7447450446919758
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_2387::sign06": {
+      "video_id": "asllrp_2387",
+      "sign_index": 6,
+      "gloss": "IX-3p:i",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.020946340635418892,
+        "motion_right": 0.0,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.0,
+        "ratio": null,
+        "reason": "insufficient_hand_presence: presence_fraction_left=1.00, presence_fraction_right=0.00 (min required: 0.3)"
+      },
+      "num_frames_in_window": 2,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_3199::sign00": {
+      "video_id": "asllrp_3199",
+      "sign_index": 0,
+      "gloss": "MOVIE_2",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.02524910308420658,
+        "motion_right": 0.08857358526438475,
+        "presence_fraction_left": 0.2857142857142857,
+        "presence_fraction_right": 1.0,
+        "ratio": null,
+        "reason": "insufficient_hand_presence: presence_fraction_left=0.29, presence_fraction_right=1.00 (min required: 0.3)"
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_3199::sign01": {
+      "video_id": "asllrp_3199",
+      "sign_index": 1,
+      "gloss": "START",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.04558303905650973,
+        "motion_right": 0.08102135406807065,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.5626052487127384,
+        "reason": "ratio 0.563 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_3199::sign02": {
+      "video_id": "asllrp_3199",
+      "sign_index": 2,
+      "gloss": "TIME+",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.1862671241397038,
+        "motion_right": 0.3784751955536194,
+        "presence_fraction_left": 0.76,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.49215147076478605,
+        "reason": "ratio 0.492 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 25,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_3199::sign03": {
+      "video_id": "asllrp_3199",
+      "sign_index": 3,
+      "gloss": "SEVEN",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.13743270514532924,
+        "motion_right": 0.14720391831360757,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9336212426936799
+      },
+      "num_frames_in_window": 15,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_565::sign00": {
+      "video_id": "asllrp_565",
+      "sign_index": 0,
+      "gloss": "LEAVE-THERE",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.2283356934785843,
+        "motion_right": 0.2526396047323942,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9038000741033712
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_565::sign01": {
+      "video_id": "asllrp_565",
+      "sign_index": 1,
+      "gloss": "BOOK",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0,
+        "motion_right": 0.04644442442804575,
+        "presence_fraction_left": 0.14285714285714285,
+        "presence_fraction_right": 0.8571428571428571,
+        "ratio": null,
+        "reason": "insufficient_hand_presence: presence_fraction_left=0.14, presence_fraction_right=0.86 (min required: 0.3)"
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_565::sign02": {
+      "video_id": "asllrp_565",
+      "sign_index": 2,
+      "gloss": "DCL:B-L\"stack of books\"",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.037228457629680634,
+        "motion_right": 0.372966218739748,
+        "presence_fraction_left": 0.5,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.09981723748460519
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_565::sign03": {
+      "video_id": "asllrp_565",
+      "sign_index": 3,
+      "gloss": "POSS-1p",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.04012868460267782,
+        "motion_right": 0.054476289078593254,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.7366266183216691
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_565::sign04": {
+      "video_id": "asllrp_565",
+      "sign_index": 4,
+      "gloss": "fs-OFFICE",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.024478424864355475,
+        "motion_right": 0.1526159888599068,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.160392269821908
+      },
+      "num_frames_in_window": 15,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_565::sign05": {
+      "video_id": "asllrp_565",
+      "sign_index": 5,
+      "gloss": "IX-loc:i",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.01373738911934197,
+        "motion_right": 0.06194206699728966,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.22177802235664923
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_565::sign06": {
+      "video_id": "asllrp_565",
+      "sign_index": 6,
+      "gloss": "WHO",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.009042534220498055,
+        "motion_right": 0.02672729385085404,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.33832584289894774,
+        "reason": "ratio 0.338 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_565::sign07": {
+      "video_id": "asllrp_565",
+      "sign_index": 7,
+      "gloss": "IX-3p:i",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0007198378443717957,
+        "motion_right": 0.021500837057828903,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.0334795265149776
+      },
+      "num_frames_in_window": 3,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_565::sign08": {
+      "video_id": "asllrp_565",
+      "sign_index": 8,
+      "gloss": "part:indef",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.03521612787153572,
+        "motion_right": 0.0686427082400769,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.5130352338134417,
+        "reason": "ratio 0.513 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_58::sign00": {
+      "video_id": "asllrp_58",
+      "sign_index": 0,
+      "gloss": "FATHER+",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.018798452452756464,
+        "motion_right": 0.0795330394175835,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.23636029240698708
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_58::sign01": {
+      "video_id": "asllrp_58",
+      "sign_index": 1,
+      "gloss": "REPAIR_2",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.2670025045517832,
+        "motion_right": 0.3088945201598108,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.8643808391733393
+      },
+      "num_frames_in_window": 15,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_58::sign02": {
+      "video_id": "asllrp_58",
+      "sign_index": 2,
+      "gloss": "TIME++DCL\"circular object\"",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.33077523740939796,
+        "motion_right": 0.2894146400503814,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.8749586042687203
+      },
+      "num_frames_in_window": 21,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_58::sign03": {
+      "video_id": "asllrp_58",
+      "sign_index": 3,
+      "gloss": "TIME++DCL\"circular object\"",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.33077523740939796,
+        "motion_right": 0.2894146400503814,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.8749586042687203
+      },
+      "num_frames_in_window": 21,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_58::sign04": {
+      "video_id": "asllrp_58",
+      "sign_index": 4,
+      "gloss": "HOW++",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.14377991785295308,
+        "motion_right": 0.08718909928575158,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.631578947368421,
+        "ratio": 0.6064066566995943
+      },
+      "num_frames_in_window": 19,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_629589::sign00": {
+      "video_id": "asllrp_629589",
+      "sign_index": 0,
+      "gloss": "PAST+NIGHT",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.1557922028005123,
+        "motion_right": 0.7413460682146251,
+        "presence_fraction_left": 0.7142857142857143,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.21014774270767336
+      },
+      "num_frames_in_window": 14,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_629589::sign01": {
+      "video_id": "asllrp_629589",
+      "sign_index": 1,
+      "gloss": "PAST+NIGHT",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.1557922028005123,
+        "motion_right": 0.7413460682146251,
+        "presence_fraction_left": 0.7142857142857143,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.21014774270767336
+      },
+      "num_frames_in_window": 14,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_629589::sign02": {
+      "video_id": "asllrp_629589",
+      "sign_index": 2,
+      "gloss": "IX-1p",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.016769226640462875,
+        "motion_right": 0.007452299352735281,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.44440328182776456,
+        "reason": "ratio 0.444 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 2,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_629589::sign03": {
+      "video_id": "asllrp_629589",
+      "sign_index": 3,
+      "gloss": "PLAY+",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.06764428154565394,
+        "motion_right": 0.06328340445179492,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9355322136001133
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_629589::sign04": {
+      "video_id": "asllrp_629589",
+      "sign_index": 4,
+      "gloss": "(crvd-5)BASKETBALL",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.05953851097729057,
+        "motion_right": 0.055261893081478775,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9281705601028047
+      },
+      "num_frames_in_window": 12,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_629589::sign05": {
+      "video_id": "asllrp_629589",
+      "sign_index": 5,
+      "gloss": "SCRIMMAGE",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.07056381274014711,
+        "motion_right": 0.14417612832039595,
+        "presence_fraction_left": 0.875,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.48942785162975394,
+        "reason": "ratio 0.489 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_629589::sign06": {
+      "video_id": "asllrp_629589",
+      "sign_index": 6,
+      "gloss": "WITH",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.04450371954590082,
+        "motion_right": 0.04104907717555761,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9223740755695686
+      },
+      "num_frames_in_window": 4,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_629589::sign07": {
+      "video_id": "asllrp_629589",
+      "sign_index": 7,
+      "gloss": "FRIEND",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.06551750306971371,
+        "motion_right": 0.06639816309325397,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9867366809183652
+      },
+      "num_frames_in_window": 10,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_629589::sign08": {
+      "video_id": "asllrp_629589",
+      "sign_index": 8,
+      "gloss": "(Y)WOW+",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.05305425589904189,
+        "motion_right": 0.10261459171306342,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.5170244797873886,
+        "reason": "ratio 0.517 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_629589::sign09": {
+      "video_id": "asllrp_629589",
+      "sign_index": 9,
+      "gloss": "(baby-O)BY-A-HAIR",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.00879700545920059,
+        "motion_right": 0.040957763558253646,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.21478236834608255
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_629589::sign10": {
+      "video_id": "asllrp_629589",
+      "sign_index": 10,
+      "gloss": "(1h)BEAT",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.3613201337866485,
+        "motion_right": 0.0,
+        "presence_fraction_left": 0.8571428571428571,
+        "presence_fraction_right": 0.2857142857142857,
+        "ratio": null,
+        "reason": "insufficient_hand_presence: presence_fraction_left=0.86, presence_fraction_right=0.29 (min required: 0.3)"
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_629589::sign11": {
+      "video_id": "asllrp_629589",
+      "sign_index": 11,
+      "gloss": "THIRTY_2+",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.016979252453893423,
+        "motion_right": 0.03539726266171783,
+        "presence_fraction_left": 0.9166666666666666,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.47967699130183017,
+        "reason": "ratio 0.480 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 12,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_629589::sign12": {
+      "video_id": "asllrp_629589",
+      "sign_index": 12,
+      "gloss": "TWENTY-EIGHT",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.012687265407294035,
+        "motion_right": 0.04726313753053546,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.26843891603889247
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_630376::sign00": {
+      "video_id": "asllrp_630376",
+      "sign_index": 0,
+      "gloss": "(crvd-L)POSS-1p",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.1386905089020729,
+        "motion_right": 0.09042413253337145,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.651985007836538
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_630376::sign01": {
+      "video_id": "asllrp_630376",
+      "sign_index": 1,
+      "gloss": "FRIEND",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.08812242094427347,
+        "motion_right": 0.08101780386641622,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.919377872263064
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_630376::sign02": {
+      "video_id": "asllrp_630376",
+      "sign_index": 2,
+      "gloss": "KISS-FIST",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.015449940459802747,
+        "motion_right": 0.05940181761980057,
+        "presence_fraction_left": 0.8,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.2600920490125335
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_630376::sign03": {
+      "video_id": "asllrp_630376",
+      "sign_index": 3,
+      "gloss": "LAPTOP",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.08255456481128931,
+        "motion_right": 0.013542182627134025,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.8,
+        "ratio": 0.1640391740673574
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_630376::sign04": {
+      "video_id": "asllrp_630376",
+      "sign_index": 4,
+      "gloss": "TYPE",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.027634479571133852,
+        "motion_right": 0.03358657844364643,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.82278341086457
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_630376::sign05": {
+      "video_id": "asllrp_630376",
+      "sign_index": 5,
+      "gloss": "INTERNET",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.17613242892548442,
+        "motion_right": 0.028014796087518334,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.875,
+        "ratio": 0.15905529866604198
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_630376::sign06": {
+      "video_id": "asllrp_630376",
+      "sign_index": 6,
+      "gloss": "(25)WHY",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.02896849438548088,
+        "motion_right": 0.04754930944181979,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.6092306013597536
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_630376::sign07": {
+      "video_id": "asllrp_630376",
+      "sign_index": 7,
+      "gloss": "USE_2+",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.14689946873113513,
+        "motion_right": 0.060303580947220325,
+        "presence_fraction_left": 0.6666666666666666,
+        "presence_fraction_right": 0.7777777777777778,
+        "ratio": 0.41050918337623005,
+        "reason": "ratio 0.411 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_630376::sign08": {
+      "video_id": "asllrp_630376",
+      "sign_index": 8,
+      "gloss": "fs-GOOGLE",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.1569801231380552,
+        "motion_right": 0.7881609238684177,
+        "presence_fraction_left": 0.9411764705882353,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.19917267956849735
+      },
+      "num_frames_in_window": 17,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_630376::sign09": {
+      "video_id": "asllrp_630376",
+      "sign_index": 9,
+      "gloss": "fs-CHROME",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.02749358522123657,
+        "motion_right": 0.4392215855186805,
+        "presence_fraction_left": 0.8888888888888888,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.06259616131745703
+      },
+      "num_frames_in_window": 18,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_630376::sign10": {
+      "video_id": "asllrp_630376",
+      "sign_index": 10,
+      "gloss": "VERY-FAST",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.22077758610248566,
+        "motion_right": 0.6838087781798095,
+        "presence_fraction_left": 0.8,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.3228645100025779,
+        "reason": "ratio 0.323 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 10,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_630672::sign00": {
+      "video_id": "asllrp_630672",
+      "sign_index": 0,
+      "gloss": "FRIEND",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.10295792459510267,
+        "motion_right": 0.22655013296753168,
+        "presence_fraction_left": 0.8888888888888888,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.45445978444805507,
+        "reason": "ratio 0.454 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_630672::sign01": {
+      "video_id": "asllrp_630672",
+      "sign_index": 1,
+      "gloss": "GROUP/TOGETHER",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.11953608295880258,
+        "motion_right": 0.14246275182813406,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.8390690297981185
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_630672::sign02": {
+      "video_id": "asllrp_630672",
+      "sign_index": 2,
+      "gloss": "PLAN",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.5624388074502349,
+        "motion_right": 0.2091660499572754,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.8666666666666667,
+        "ratio": 0.3718912123178531,
+        "reason": "ratio 0.372 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 15,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_630672::sign03": {
+      "video_id": "asllrp_630672",
+      "sign_index": 3,
+      "gloss": "SURPRISE",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.12754701194353402,
+        "motion_right": 0.07207057764753699,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.565051086257067,
+        "reason": "ratio 0.565 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_630672::sign04": {
+      "video_id": "asllrp_630672",
+      "sign_index": 4,
+      "gloss": "ns-fs-BOB",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.17300666496157646,
+        "motion_right": 0.05554147809743881,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.3210366381536467,
+        "reason": "ratio 0.321 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_630672::sign05": {
+      "video_id": "asllrp_630672",
+      "sign_index": 5,
+      "gloss": "WHY++",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.04615052160806954,
+        "motion_right": 0.08411026885733008,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.5486906918149459,
+        "reason": "ratio 0.549 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_630672::sign06": {
+      "video_id": "asllrp_630672",
+      "sign_index": 6,
+      "gloss": "ns-fs-BOB",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.03285533969756216,
+        "motion_right": 0.07928749918937683,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.4143823431621641,
+        "reason": "ratio 0.414 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_630672::sign07": {
+      "video_id": "asllrp_630672",
+      "sign_index": 7,
+      "gloss": "IX-loc:i",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.04707099124789238,
+        "motion_right": 0.028973445296287537,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.61552655952587
+      },
+      "num_frames_in_window": 3,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_630672::sign08": {
+      "video_id": "asllrp_630672",
+      "sign_index": 8,
+      "gloss": "AGE-TWENTY-ONE_2",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.026635449612513185,
+        "motion_right": 0.8381317495368421,
+        "presence_fraction_left": 0.6,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.03177954972739326
+      },
+      "num_frames_in_window": 15,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_630672::sign09": {
+      "video_id": "asllrp_630672",
+      "sign_index": 9,
+      "gloss": "IX-3p:i",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0017793233273550868,
+        "motion_right": 0.007102064788341522,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.2505360596366223
+      },
+      "num_frames_in_window": 2,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_630672::sign10": {
+      "video_id": "asllrp_630672",
+      "sign_index": 10,
+      "gloss": "BUOY",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.12477940786629915,
+        "motion_right": 1.8805537339067087,
+        "presence_fraction_left": 0.6578947368421053,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.06635248204638074
+      },
+      "num_frames_in_window": 38,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631066::sign00": {
+      "video_id": "asllrp_631066",
+      "sign_index": 0,
+      "gloss": "WHEN",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.11641673929989338,
+        "motion_right": 0.38913585897535086,
+        "presence_fraction_left": 0.875,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.2991673386421774
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631066::sign01": {
+      "video_id": "asllrp_631066",
+      "sign_index": 1,
+      "gloss": "IX-3p:i",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.006614040583372116,
+        "motion_right": 0.02486974000930786,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.2659473151266043
+      },
+      "num_frames_in_window": 2,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_631066::sign02": {
+      "video_id": "asllrp_631066",
+      "sign_index": 2,
+      "gloss": "FRIEND",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.06926734326407313,
+        "motion_right": 0.10360189294442534,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.6685914831810059
+      },
+      "num_frames_in_window": 10,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631066::sign03": {
+      "video_id": "asllrp_631066",
+      "sign_index": 3,
+      "gloss": "LAPTOP",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.07915530051104724,
+        "motion_right": 0.05329645541496575,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.6733150537092266
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631066::sign04": {
+      "video_id": "asllrp_631066",
+      "sign_index": 4,
+      "gloss": "TYPE",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.018159426050260663,
+        "motion_right": 0.02159864641726017,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.8407668563780406
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631066::sign05": {
+      "video_id": "asllrp_631066",
+      "sign_index": 5,
+      "gloss": "INTERNET",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0693485087249428,
+        "motion_right": 0.01920880505349487,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.2769894465890076
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631066::sign06": {
+      "video_id": "asllrp_631066",
+      "sign_index": 6,
+      "gloss": "5\"hey\"",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.06573183089494705,
+        "motion_right": 0.027364103589206934,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.41629912352419307,
+        "reason": "ratio 0.416 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 4,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_631066::sign07": {
+      "video_id": "asllrp_631066",
+      "sign_index": 7,
+      "gloss": "IX-1p",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.11480910889804363,
+        "motion_right": 0.08559369575232267,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.7455305295360689
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631066::sign08": {
+      "video_id": "asllrp_631066",
+      "sign_index": 8,
+      "gloss": "(1h)REMIND:i",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.015705671161413193,
+        "motion_right": 0.830583292292431,
+        "presence_fraction_left": 0.3333333333333333,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.018909206707090315
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631066::sign09": {
+      "video_id": "asllrp_631066",
+      "sign_index": 9,
+      "gloss": "GRAB-CHANCE",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.177315684966743,
+        "motion_right": 0.18411923572421074,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9630481262280565
+      },
+      "num_frames_in_window": 10,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631066::sign10": {
+      "video_id": "asllrp_631066",
+      "sign_index": 10,
+      "gloss": "HOME+WORK++",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.10579144209623337,
+        "motion_right": 0.2753110881894827,
+        "presence_fraction_left": 0.4090909090909091,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.38426146506464887,
+        "reason": "ratio 0.384 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 22,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631066::sign11": {
+      "video_id": "asllrp_631066",
+      "sign_index": 11,
+      "gloss": "HOME+WORK++",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.10579144209623337,
+        "motion_right": 0.2753110881894827,
+        "presence_fraction_left": 0.4090909090909091,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.38426146506464887,
+        "reason": "ratio 0.384 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 22,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631164::sign00": {
+      "video_id": "asllrp_631164",
+      "sign_index": 0,
+      "gloss": "WHEN",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.14105143211781979,
+        "motion_right": 0.12279818952083588,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.8705915826381895
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631164::sign01": {
+      "video_id": "asllrp_631164",
+      "sign_index": 1,
+      "gloss": "(crvd-5)POSS-1p",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.016151094809174538,
+        "motion_right": 0.008949634619057178,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.5541193785806637,
+        "reason": "ratio 0.554 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 2,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_631164::sign02": {
+      "video_id": "asllrp_631164",
+      "sign_index": 2,
+      "gloss": "FATHER+",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.009135412285104394,
+        "motion_right": 0.04527403018437326,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.20178040805957592
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631164::sign03": {
+      "video_id": "asllrp_631164",
+      "sign_index": 3,
+      "gloss": "START",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.063396439072676,
+        "motion_right": 0.08660731255076826,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.7319986870105651
+      },
+      "num_frames_in_window": 11,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631164::sign04": {
+      "video_id": "asllrp_631164",
+      "sign_index": 4,
+      "gloss": "VIDEO-GAME",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.04198495845776051,
+        "motion_right": 0.0408760083373636,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9735869663533766
+      },
+      "num_frames_in_window": 11,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631164::sign05": {
+      "video_id": "asllrp_631164",
+      "sign_index": 5,
+      "gloss": "IX-1p",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.02363068168051541,
+        "motion_right": 0.030074443202465773,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.7857396235544588
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631164::sign06": {
+      "video_id": "asllrp_631164",
+      "sign_index": 6,
+      "gloss": "5\"whoa\"",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.026473789010196924,
+        "motion_right": 0.06733661377802491,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.3931559299591118,
+        "reason": "ratio 0.393 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631164::sign07": {
+      "video_id": "asllrp_631164",
+      "sign_index": 7,
+      "gloss": "IX-1p",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.05162649601697922,
+        "motion_right": 0.03882791567593813,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.7520927948154409
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631164::sign08": {
+      "video_id": "asllrp_631164",
+      "sign_index": 8,
+      "gloss": "UP",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.15913646016269922,
+        "motion_right": 0.7043189210817218,
+        "presence_fraction_left": 0.8333333333333334,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.22594375275094264
+      },
+      "num_frames_in_window": 12,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631164::sign09": {
+      "video_id": "asllrp_631164",
+      "sign_index": 9,
+      "gloss": "WHY+",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.03322030417621136,
+        "motion_right": 0.06682732736226171,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.49710658030851174,
+        "reason": "ratio 0.497 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 10,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631164::sign10": {
+      "video_id": "asllrp_631164",
+      "sign_index": 10,
+      "gloss": "IX-loc:i",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.013841580366715789,
+        "motion_right": 0.05153624154627323,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.26857954618766183
+      },
+      "num_frames_in_window": 3,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_631164::sign11": {
+      "video_id": "asllrp_631164",
+      "sign_index": 11,
+      "gloss": "VIDEO-GAME",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.042608993127942085,
+        "motion_right": 0.020639218389987946,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.48438643757702826,
+        "reason": "ratio 0.484 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 3,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_631164::sign12": {
+      "video_id": "asllrp_631164",
+      "sign_index": 12,
+      "gloss": "BORE",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0604138751514256,
+        "motion_right": 0.12007692968472838,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.5031264149578697,
+        "reason": "ratio 0.503 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631164::sign13": {
+      "video_id": "asllrp_631164",
+      "sign_index": 13,
+      "gloss": "IX-1p",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0036399438977241516,
+        "motion_right": 0.020786263048648834,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.17511295268442964
+      },
+      "num_frames_in_window": 2,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_631164::sign14": {
+      "video_id": "asllrp_631164",
+      "sign_index": 14,
+      "gloss": "LOOK:i",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.32279205907252617,
+        "motion_right": 0.09388898592442274,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.875,
+        "ratio": 0.2908652282035457
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631165::sign00": {
+      "video_id": "asllrp_631165",
+      "sign_index": 0,
+      "gloss": "WHEN",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.029242963006254286,
+        "motion_right": 0.09492088574916124,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.30807722426370937,
+        "reason": "ratio 0.308 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631165::sign01": {
+      "video_id": "asllrp_631165",
+      "sign_index": 1,
+      "gloss": "FRIEND",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.044913645717315376,
+        "motion_right": 0.053020707331597805,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.8470963134539133
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631165::sign02": {
+      "video_id": "asllrp_631165",
+      "sign_index": 2,
+      "gloss": "i:CALL-ON-RELAY/VRS-1p",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.029214944457635283,
+        "motion_right": 0.20687694032676518,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.1412189507998806
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631165::sign03": {
+      "video_id": "asllrp_631165",
+      "sign_index": 3,
+      "gloss": "#VP",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.055111706256866455,
+        "motion_right": 0.03536153817549348,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.6416338846538203
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631165::sign04": {
+      "video_id": "asllrp_631165",
+      "sign_index": 4,
+      "gloss": "LIGHT",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.016211454523727298,
+        "motion_right": 0.02789742313325405,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.5811093894332863,
+        "reason": "ratio 0.581 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 4,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_631165::sign05": {
+      "video_id": "asllrp_631165",
+      "sign_index": 5,
+      "gloss": "LIGHT-FLASH",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.3530857040314004,
+        "motion_right": 0.24820597475627437,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.7029624023922563
+      },
+      "num_frames_in_window": 28,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631263::sign00": {
+      "video_id": "asllrp_631263",
+      "sign_index": 0,
+      "gloss": "#IF",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.015732891857624054,
+        "motion_right": 0.20690594799816608,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.07603885731580565
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631263::sign01": {
+      "video_id": "asllrp_631263",
+      "sign_index": 1,
+      "gloss": "POSS-1p",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.02077486366033554,
+        "motion_right": 0.019443579018115997,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9359184895753948
+      },
+      "num_frames_in_window": 2,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_631263::sign02": {
+      "video_id": "asllrp_631263",
+      "sign_index": 2,
+      "gloss": "FRIEND",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.06896994798444211,
+        "motion_right": 0.061695145443081856,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.8945221396570971
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631263::sign03": {
+      "video_id": "asllrp_631263",
+      "sign_index": 3,
+      "gloss": "IX-3p:i",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.01148225856013596,
+        "motion_right": 0.05520713236182928,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.2079850568017349
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631263::sign04": {
+      "video_id": "asllrp_631263",
+      "sign_index": 4,
+      "gloss": "START",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.023697944707237184,
+        "motion_right": 0.07772941922303289,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.304877418924738,
+        "reason": "ratio 0.305 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 14,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631263::sign05": {
+      "video_id": "asllrp_631263",
+      "sign_index": 5,
+      "gloss": "VIDEO-GAME",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.05060002609388903,
+        "motion_right": 0.11462161372764967,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.44145274567603654,
+        "reason": "ratio 0.441 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 23,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631263::sign06": {
+      "video_id": "asllrp_631263",
+      "sign_index": 6,
+      "gloss": "CONTINUE",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.06715790164889768,
+        "motion_right": 0.043424054922070354,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.6465963625411026
+      },
+      "num_frames_in_window": 19,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631263::sign07": {
+      "video_id": "asllrp_631263",
+      "sign_index": 7,
+      "gloss": "TO/UNTIL",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.06858224049210548,
+        "motion_right": 0.07741166232153773,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.8859419683721778
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631263::sign08": {
+      "video_id": "asllrp_631263",
+      "sign_index": 8,
+      "gloss": "DCL:5-C\"eyes falling out\"",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.2322690756409429,
+        "motion_right": 0.05221916106529534,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.7,
+        "ratio": 0.22482184045033707
+      },
+      "num_frames_in_window": 10,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631263::sign09": {
+      "video_id": "asllrp_631263",
+      "sign_index": 9,
+      "gloss": "FOR",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.08189369132742286,
+        "motion_right": 0.039790605660527945,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.4858812078874224,
+        "reason": "ratio 0.486 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631263::sign10": {
+      "video_id": "asllrp_631263",
+      "sign_index": 10,
+      "gloss": "REALLY",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.2266358231427148,
+        "motion_right": 0.13330016867257655,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.875,
+        "ratio": 0.588169014166115,
+        "reason": "ratio 0.588 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631755::sign00": {
+      "video_id": "asllrp_631755",
+      "sign_index": 0,
+      "gloss": "#IF+",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.029677628888748586,
+        "motion_right": 0.2401290093548596,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.1235903524046583
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631755::sign01": {
+      "video_id": "asllrp_631755",
+      "sign_index": 1,
+      "gloss": "FRIEND",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.1257064330857247,
+        "motion_right": 0.13364185439422727,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9406217360237009
+      },
+      "num_frames_in_window": 10,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631755::sign02": {
+      "video_id": "asllrp_631755",
+      "sign_index": 2,
+      "gloss": "GROUP/TOGETHER",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.08559919008985162,
+        "motion_right": 0.08828782197088003,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9695469678489157
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631755::sign03": {
+      "video_id": "asllrp_631755",
+      "sign_index": 3,
+      "gloss": "DEPART",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.017309352522715926,
+        "motion_right": 0.07860818319022655,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.22019784480743498
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631755::sign04": {
+      "video_id": "asllrp_631755",
+      "sign_index": 4,
+      "gloss": "FISHING",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.10500602284446359,
+        "motion_right": 0.09065599553287029,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.8633409120460761
+      },
+      "num_frames_in_window": 12,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631755::sign05": {
+      "video_id": "asllrp_631755",
+      "sign_index": 5,
+      "gloss": "IX-1p",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.007379968767054379,
+        "motion_right": 0.01044599711894989,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.7064877275972549
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631755::sign06": {
+      "video_id": "asllrp_631755",
+      "sign_index": 6,
+      "gloss": "CHECK",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.2892975644208491,
+        "motion_right": 0.10925685917027295,
+        "presence_fraction_left": 0.9333333333333333,
+        "presence_fraction_right": 0.8666666666666667,
+        "ratio": 0.3776625613457775,
+        "reason": "ratio 0.378 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 15,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631755::sign07": {
+      "video_id": "asllrp_631755",
+      "sign_index": 7,
+      "gloss": "(5)WEATHER",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.42918739933520555,
+        "motion_right": 0.10906101344153285,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.7777777777777778,
+        "ratio": 0.2541104739106136
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631755::sign08": {
+      "video_id": "asllrp_631755",
+      "sign_index": 8,
+      "gloss": "MAKE",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.04402568191289902,
+        "motion_right": 0.035914578940719366,
+        "presence_fraction_left": 0.8333333333333334,
+        "presence_fraction_right": 0.8333333333333334,
+        "ratio": 0.8157642853045011
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631755::sign09": {
+      "video_id": "asllrp_631755",
+      "sign_index": 9,
+      "gloss": "REALLY",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.01716272346675396,
+        "motion_right": 0.3370788786560297,
+        "presence_fraction_left": 0.75,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.05091604533391001
+      },
+      "num_frames_in_window": 4,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_631755::sign10": {
+      "video_id": "asllrp_631755",
+      "sign_index": 10,
+      "gloss": "#OK",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.08758614072576165,
+        "motion_right": 0.2299746002536267,
+        "presence_fraction_left": 0.9090909090909091,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.38085136632118316,
+        "reason": "ratio 0.381 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 11,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631854::sign00": {
+      "video_id": "asllrp_631854",
+      "sign_index": 0,
+      "gloss": "BOSS",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.030078697600401938,
+        "motion_right": 0.10616251500323415,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.2833269125122518
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631854::sign01": {
+      "video_id": "asllrp_631854",
+      "sign_index": 1,
+      "gloss": "SUMMON",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.15846445970237255,
+        "motion_right": 0.25649912282824516,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.6177972772580678
+      },
+      "num_frames_in_window": 8,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631854::sign02": {
+      "video_id": "asllrp_631854",
+      "sign_index": 2,
+      "gloss": "IX-1p",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.015061910497024655,
+        "motion_right": 0.011859893565997481,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.7874096429095298
+      },
+      "num_frames_in_window": 4,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_631854::sign03": {
+      "video_id": "asllrp_631854",
+      "sign_index": 3,
+      "gloss": "LOOK",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0008614340331405401,
+        "motion_right": 0.0071059842593967915,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.12122656083869021
+      },
+      "num_frames_in_window": 2,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_631854::sign04": {
+      "video_id": "asllrp_631854",
+      "sign_index": 4,
+      "gloss": "EACH+ONE",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.29730910575017333,
+        "motion_right": 0.28634009044617414,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9631056866680149
+      },
+      "num_frames_in_window": 11,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631854::sign05": {
+      "video_id": "asllrp_631854",
+      "sign_index": 5,
+      "gloss": "EACH+ONE",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.29730910575017333,
+        "motion_right": 0.28634009044617414,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9631056866680149
+      },
+      "num_frames_in_window": 11,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631854::sign06": {
+      "video_id": "asllrp_631854",
+      "sign_index": 6,
+      "gloss": "DCL:4\"many people staring\"",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.051409809151664376,
+        "motion_right": 0.41750957258045673,
+        "presence_fraction_left": 0.7272727272727273,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.12313444416117521
+      },
+      "num_frames_in_window": 11,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631854::sign07": {
+      "video_id": "asllrp_631854",
+      "sign_index": 7,
+      "gloss": "KNOW-THAT",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.007548243273049593,
+        "motion_right": 1.0651320172473788,
+        "presence_fraction_left": 0.5,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.00708667390597883
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631854::sign08": {
+      "video_id": "asllrp_631854",
+      "sign_index": 8,
+      "gloss": "IX-1p",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.04239288857206702,
+        "motion_right": 0.013021368999034166,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.3071592768890497,
+        "reason": "ratio 0.307 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631854::sign09": {
+      "video_id": "asllrp_631854",
+      "sign_index": 9,
+      "gloss": "TROUBLE",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.2415050519630313,
+        "motion_right": 0.2474272958934307,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9760647106091714
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_631854::sign10": {
+      "video_id": "asllrp_631854",
+      "sign_index": 10,
+      "gloss": "IX-1p",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.07366133574396372,
+        "motion_right": 0.011079697345849127,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.15041401617207392
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_633435::sign00": {
+      "video_id": "asllrp_633435",
+      "sign_index": 0,
+      "gloss": "GO-OUT",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.012795922229997814,
+        "motion_right": 0.11567711504176259,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.11061757742988436
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_633435::sign01": {
+      "video_id": "asllrp_633435",
+      "sign_index": 1,
+      "gloss": "TIE_2+FISHING",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.26913348003290594,
+        "motion_right": 0.33301334339194,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.808176264925665
+      },
+      "num_frames_in_window": 19,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_633435::sign02": {
+      "video_id": "asllrp_633435",
+      "sign_index": 2,
+      "gloss": "TIE_2+FISHING",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.26913348003290594,
+        "motion_right": 0.33301334339194,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.808176264925665
+      },
+      "num_frames_in_window": 19,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_633435::sign03": {
+      "video_id": "asllrp_633435",
+      "sign_index": 3,
+      "gloss": "WHO",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.20485251129139215,
+        "motion_right": 0.05522328554070555,
+        "presence_fraction_left": 0.9545454545454546,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.2695758289345707
+      },
+      "num_frames_in_window": 22,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_6612::sign00": {
+      "video_id": "asllrp_6612",
+      "sign_index": 0,
+      "gloss": "(5)WOMAN",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.009425638534594327,
+        "motion_right": 0.1408204808831215,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.06693371926784883
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_6612::sign01": {
+      "video_id": "asllrp_6612",
+      "sign_index": 1,
+      "gloss": "IX-3p:i",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.003982081077992916,
+        "motion_right": 0.008646144531667233,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.46056147493350463,
+        "reason": "ratio 0.461 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 2,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_6612::sign02": {
+      "video_id": "asllrp_6612",
+      "sign_index": 2,
+      "gloss": "MARRY",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.10721763130277395,
+        "motion_right": 1.0138031019596383,
+        "presence_fraction_left": 0.4666666666666667,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.10575784498540873
+      },
+      "num_frames_in_window": 15,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_6612::sign03": {
+      "video_id": "asllrp_6612",
+      "sign_index": 3,
+      "gloss": "PRINCE",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.01682730851462111,
+        "motion_right": 0.29192362970206887,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.05764284491733234
+      },
+      "num_frames_in_window": 13,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_6612::sign04": {
+      "video_id": "asllrp_6612",
+      "sign_index": 4,
+      "gloss": "ns-fs-CHARLES",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.02544435247546062,
+        "motion_right": 0.13576436159200966,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.18741554983276357
+      },
+      "num_frames_in_window": 28,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_6612::sign05": {
+      "video_id": "asllrp_6612",
+      "sign_index": 5,
+      "gloss": "IX-3p:j",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0670638270676136,
+        "motion_right": 0.03941367752850056,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.5877039717516236,
+        "reason": "ratio 0.588 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_6612::sign06": {
+      "video_id": "asllrp_6612",
+      "sign_index": 6,
+      "gloss": "SON",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.6947302408516407,
+        "motion_right": 0.169474424328655,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.8888888888888888,
+        "ratio": 0.24394277715750995
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_6612::sign07": {
+      "video_id": "asllrp_6612",
+      "sign_index": 7,
+      "gloss": "IX-3p:k",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.014447923400439322,
+        "motion_right": 0.05832662899047136,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.2477071562424709
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_6612::sign08": {
+      "video_id": "asllrp_6612",
+      "sign_index": 8,
+      "gloss": "NOW",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.08190452679991722,
+        "motion_right": 0.03761975932866335,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.4593123334997568,
+        "reason": "ratio 0.459 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 4,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_6612::sign09": {
+      "video_id": "asllrp_6612",
+      "sign_index": 9,
+      "gloss": "IX-3p:i",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.039658915251493454,
+        "motion_right": 0.020828086882829666,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.5251804480972366,
+        "reason": "ratio 0.525 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 2,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_6612::sign10": {
+      "video_id": "asllrp_6612",
+      "sign_index": 10,
+      "gloss": "(5)WOMAN",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.011631011147983372,
+        "motion_right": 0.15150890313088894,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.07676783943142478
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_6612::sign11": {
+      "video_id": "asllrp_6612",
+      "sign_index": 11,
+      "gloss": "FAMOUS",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.23109331913292408,
+        "motion_right": 0.1632305111270398,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.8,
+        "ratio": 0.7063402427187874
+      },
+      "num_frames_in_window": 15,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_6612::sign12": {
+      "video_id": "asllrp_6612",
+      "sign_index": 12,
+      "gloss": "IX-3p:i",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0016759864520281553,
+        "motion_right": 0.003252923022955656,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.5152247502325856,
+        "reason": "ratio 0.515 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 2,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_7726::sign00": {
+      "video_id": "asllrp_7726",
+      "sign_index": 0,
+      "gloss": "IF",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.002774386666715145,
+        "motion_right": 0.026975277811288834,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.10284923425530385
+      },
+      "num_frames_in_window": 3,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_7726::sign01": {
+      "video_id": "asllrp_7726",
+      "sign_index": 1,
+      "gloss": "IX-3p:i",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.898562366142869,
+        "motion_right": 0.0956479087471962,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.8,
+        "ratio": 0.10644548709264376
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_7726::sign02": {
+      "video_id": "asllrp_7726",
+      "sign_index": 2,
+      "gloss": "ALLERGY",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.1531950798816979,
+        "motion_right": 0.11331407073885202,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.8888888888888888,
+        "ratio": 0.7396717363661859
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_7726::sign03": {
+      "video_id": "asllrp_7726",
+      "sign_index": 3,
+      "gloss": "NUT+",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0724522948730737,
+        "motion_right": 0.09649146441370249,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.7508673986171251
+      },
+      "num_frames_in_window": 14,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_7726::sign04": {
+      "video_id": "asllrp_7726",
+      "sign_index": 4,
+      "gloss": "5\"wave no\"",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.21011432772502303,
+        "motion_right": 0.14994853176176548,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.7136521025734303
+      },
+      "num_frames_in_window": 10,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_7726::sign05": {
+      "video_id": "asllrp_7726",
+      "sign_index": 5,
+      "gloss": "CANNOT",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.08318723738193512,
+        "motion_right": 0.3952120942994952,
+        "presence_fraction_left": 0.6666666666666666,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.2104875801672585
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_7726::sign06": {
+      "video_id": "asllrp_7726",
+      "sign_index": 6,
+      "gloss": "EAT",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.08577911742031574,
+        "motion_right": 0.07270587421953678,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 0.75,
+        "ratio": 0.8475941045567027
+      },
+      "num_frames_in_window": 4,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_7726::sign07": {
+      "video_id": "asllrp_7726",
+      "sign_index": 7,
+      "gloss": "SHEET-CAKE",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0,
+        "motion_right": 0.5588674321770668,
+        "presence_fraction_left": 0.42857142857142855,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.0
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_7726::sign08": {
+      "video_id": "asllrp_7726",
+      "sign_index": 8,
+      "gloss": "IX-3p:j",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.07417122944025323,
+        "motion_right": 0.04646264563780278,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.6264240998624622
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_7928::sign00": {
+      "video_id": "asllrp_7928",
+      "sign_index": 0,
+      "gloss": "#IF",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0016107745468616486,
+        "motion_right": 0.1390637345612049,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.0115829950342137
+      },
+      "num_frames_in_window": 3,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_7928::sign01": {
+      "video_id": "asllrp_7928",
+      "sign_index": 1,
+      "gloss": "IX-2p",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.006081179715692997,
+        "motion_right": 0.0016562005039304495,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.2723485542873342
+      },
+      "num_frames_in_window": 2,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_7928::sign02": {
+      "video_id": "asllrp_7928",
+      "sign_index": 2,
+      "gloss": "(1h)WANT",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.05206465208902955,
+        "motion_right": 0.07099000038579106,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.7334082519522074
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_7928::sign03": {
+      "video_id": "asllrp_7928",
+      "sign_index": 3,
+      "gloss": "WALK+",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.21281307027675211,
+        "motion_right": 0.19918675813823938,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9359705110179913
+      },
+      "num_frames_in_window": 13,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_7928::sign04": {
+      "video_id": "asllrp_7928",
+      "sign_index": 4,
+      "gloss": "CAN",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.05471919337287545,
+        "motion_right": 0.06512084463611245,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.8402715548092137
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_7928::sign05": {
+      "video_id": "asllrp_7928",
+      "sign_index": 5,
+      "gloss": "WALK+",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.11187423206865788,
+        "motion_right": 0.10408959398046136,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9304161651503535
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_7928::sign06": {
+      "video_id": "asllrp_7928",
+      "sign_index": 6,
+      "gloss": "IX-loc:i",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.043292945018038154,
+        "motion_right": 0.10059306398034096,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.4303770389825183,
+        "reason": "ratio 0.430 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_7928::sign07": {
+      "video_id": "asllrp_7928",
+      "sign_index": 7,
+      "gloss": "fs-PARK",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.03796835166576784,
+        "motion_right": 0.13104836695129052,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.28972777417272455
+      },
+      "num_frames_in_window": 24,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_8030::sign00": {
+      "video_id": "asllrp_8030",
+      "sign_index": 0,
+      "gloss": "IX-2p",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.02834920957684517,
+        "motion_right": 0.007539798505604267,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.2659615071512456
+      },
+      "num_frames_in_window": 2,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_8030::sign01": {
+      "video_id": "asllrp_8030",
+      "sign_index": 1,
+      "gloss": "FINALLY_2",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.10031046066433191,
+        "motion_right": 0.07871739380061626,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.7847376363271588
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_8030::sign02": {
+      "video_id": "asllrp_8030",
+      "sign_index": 2,
+      "gloss": "GET",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.1367326145991683,
+        "motion_right": 0.0716048744507134,
+        "presence_fraction_left": 0.8571428571428571,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.5236854035200241,
+        "reason": "ratio 0.524 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 7,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_8030::sign03": {
+      "video_id": "asllrp_8030",
+      "sign_index": 3,
+      "gloss": "BOOK+",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.011244296561926603,
+        "motion_right": 0.06513343937695026,
+        "presence_fraction_left": 0.4444444444444444,
+        "presence_fraction_right": 0.7777777777777778,
+        "ratio": 0.17263477361992016
+      },
+      "num_frames_in_window": 9,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_8030::sign04": {
+      "video_id": "asllrp_8030",
+      "sign_index": 4,
+      "gloss": "IX-2p",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.004274236503988504,
+        "motion_right": 0.001987739000469446,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.4650512433307299,
+        "reason": "ratio 0.465 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 2,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_8030::sign05": {
+      "video_id": "asllrp_8030",
+      "sign_index": 5,
+      "gloss": "READ",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.10446014627814293,
+        "motion_right": 0.2276673261076212,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.45882801043116445,
+        "reason": "ratio 0.459 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_8030::sign06": {
+      "video_id": "asllrp_8030",
+      "sign_index": 6,
+      "gloss": "CHAPTER",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.1181400092318654,
+        "motion_right": 0.24547963868826628,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.4812619484986736,
+        "reason": "ratio 0.481 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 6,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_8030::sign07": {
+      "video_id": "asllrp_8030",
+      "sign_index": 7,
+      "gloss": "TWO",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0560041181743145,
+        "motion_right": 0.22771359235048294,
+        "presence_fraction_left": 0.6666666666666666,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.24594104197397387
+      },
+      "num_frames_in_window": 3,
+      "reliability": "low_confidence_short_window",
+      "split": "val"
+    },
+    "asllrp_8030::sign08": {
+      "video_id": "asllrp_8030",
+      "sign_index": 8,
+      "gloss": "IX-2p",
+      "category": "asymmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.01084184239152819,
+        "motion_right": 0.09503550827503204,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.11408201616759894
+      },
+      "num_frames_in_window": 5,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_9145::sign00": {
+      "video_id": "asllrp_9145",
+      "sign_index": 0,
+      "gloss": "NOT-MIND++",
+      "category": "symmetric",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.12140792980790138,
+        "motion_right": 0.1213732068426907,
+        "presence_fraction_left": 1.0,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.9997139975513493
+      },
+      "num_frames_in_window": 12,
+      "reliability": "reliable",
+      "split": "val"
+    },
+    "asllrp_9145::sign01": {
+      "video_id": "asllrp_9145",
+      "sign_index": 1,
+      "gloss": "2p-HELP-1p",
+      "category": "ambiguous",
+      "source": "heuristic_sign_level",
+      "evidence": {
+        "motion_left": 0.0771253767888993,
+        "motion_right": 0.142109409236582,
+        "presence_fraction_left": 0.5263157894736842,
+        "presence_fraction_right": 1.0,
+        "ratio": 0.5427182985505339,
+        "reason": "ratio 0.543 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+      },
+      "num_frames_in_window": 19,
+      "reliability": "reliable",
+      "split": "val"
+    }
+  },
+  "meta": {
+    "samples_processed": 41,
+    "samples_missing_sign_spans": [],
+    "aggregate_span_stats": {
+      "num_signs_total": 318,
+      "num_signs_missing_span": 0,
+      "num_signs_point_anchor": 33,
+      "num_signs_real_span": 285,
+      "num_spans_dropped_frame": 0,
+      "num_spans_partially_covered": 0
+    }
+  }
+}

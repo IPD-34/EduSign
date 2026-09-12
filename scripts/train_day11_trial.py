@@ -25,7 +25,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from src.preprocessing.config import WLASL_PROCESSED_DIR
 from src.models.dataset import SignLanguageDataset, collate_fn
 from src.models.sign_transformer import SignTransformer
-from src.models.train_utils import compute_loss, build_optimizer, build_scheduler, save_checkpoint
+from src.models.train_utils import (
+    compute_loss, build_optimizer, build_scheduler, save_checkpoint,
+    get_device, move_batch_to_device,   # ADD
+)
+
 
 TRIAL_STEPS = 30
 LOG_EVERY = 5
@@ -47,7 +51,15 @@ def main():
         collate_fn=partial(collate_fn, pad_id=pad_id),
     )
 
-    model = SignTransformer(vocab_size=vocab_size, pad_token_id=pad_id)
+    device = get_device()
+    print(f"Using device: {device}")
+
+    model = SignTransformer(
+        vocab_size=vocab_size,
+        pad_token_id=pad_id,
+    )
+    model.to(device)
+
     optimizer = build_optimizer(model)
     scheduler = build_scheduler(optimizer, warmup_steps=10, total_steps=TRIAL_STEPS)
 
@@ -64,6 +76,8 @@ def main():
         except StopIteration:
             data_iter = iter(dataloader)
             batch = next(data_iter)
+
+        batch = move_batch_to_device(batch, device)
 
         optimizer.zero_grad()
 

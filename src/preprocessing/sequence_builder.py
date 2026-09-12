@@ -19,6 +19,22 @@ Pipeline:
     ProcessedSample
 
 No detector logic here. No sampling policy here beyond calling frame_sampler.
+
+DAY 22 FIX: build() previously always imported and used the shared/WLASL
+MAX_SEQUENCE_LENGTH (150) when calling select_frame_indices(), regardless
+of the `source` argument passed in. This meant ASLLRP samples were being
+truncated to 150 frames at EXTRACTION time -- before any .npz was written
+-- even though ASLLRP_MAX_SEQUENCE_LENGTH (300) was set specifically
+because continuous-signing utterances run longer than WLASL's isolated
+signs. This is a real data-loss bug, not a logging bug: frames beyond
+150 were permanently dropped for ASLLRP samples and cannot be recovered
+without re-extraction.
+
+Fix: build() now takes an explicit `max_sequence_length` parameter,
+defaulting to the shared constant for backward compatibility. Callers
+that process multiple sources (DatasetProcessor) must pass the correct
+per-source value explicitly -- see dataset_processor.py's
+_max_sequence_length_for() helper.
 """
 
 import numpy as np
@@ -50,8 +66,18 @@ class SequenceBuilder:
         source,
         frame_start=None,
         frame_end=None,
-        translation=None, 
+        translation=None,
+        sign_spans=None, 
+        max_sequence_length=MAX_SEQUENCE_LENGTH,
     ) -> ProcessedSample:
+        """
+        max_sequence_length: hard cap passed straight to
+        select_frame_indices(). Defaults to the shared/WLASL constant
+        for backward compatibility, but callers handling multiple
+        sources (e.g. DatasetProcessor) MUST pass the correct
+        per-source value explicitly -- do not rely on this default
+        for ASLLRP or any other source with its own cap.
+        """
 
         probe = self.reader.probe(video_path)
 
@@ -59,7 +85,7 @@ class SequenceBuilder:
             num_frames=probe["num_frames"],
             fps=probe["fps"],
             target_fps=TARGET_FPS,
-            max_sequence_length=MAX_SEQUENCE_LENGTH,
+            max_sequence_length=max_sequence_length,
             frame_start=frame_start,
             frame_end=frame_end,
         )
@@ -92,8 +118,10 @@ class SequenceBuilder:
             split=split,
             source=source,
             fps=video["fps"],
-            num_frames=video["num_frames"], 
-            translation=translation, # NOTE: this is the sampled count, not the raw file's frame count — see flag below
+            num_frames=video["num_frames"],  # sampled count, not the raw file's frame count
+            translation=translation,
+            frame_indices=frame_indices,  
+            sign_spans=sign_spans,
         )
 
         presence = LandmarkPresence(

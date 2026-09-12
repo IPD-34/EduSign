@@ -7,8 +7,22 @@ for WLASL, ASLLRP, HF mirror, or anything else that yields samples
 with the expected attributes.
 
 Also logs a per-sample manifest (original vs. sampled frame count,
-whether MAX_SEQUENCE_LENGTH was hit) so the "% of clips hit the cap"
-question has a real measured answer instead of an assumed one.
+whether the source's max-sequence-length cap was hit) so the "% of
+clips hit the cap" question has a real measured answer instead of an
+assumed one.
+
+DAY 22 FIX: hit_max_cap previously always checked sampled_num_frames
+against the shared MAX_SEQUENCE_LENGTH (150), even for ASLLRP samples,
+which have their own, larger cap (ASLLRP_MAX_SEQUENCE_LENGTH = 300,
+set precisely because continuous-signing utterances run longer than
+WLASL's isolated signs -- see config.py). Because this processor is
+reader-agnostic and handles both sources, the cap used for manifest
+logging must be chosen per-sample based on sample.source, not
+hardcoded to the WLASL/shared constant. This means any previously
+reported ASLLRP cap-hit rate computed via this manifest logic (e.g.
+the original Week 1 smoke-test's ~60% figure) was measured against
+the wrong threshold and should be re-derived from a rerun of this
+logic, not trusted as-is.
 
 Pipeline:
 
@@ -24,10 +38,23 @@ Pipeline:
 import csv
 from pathlib import Path
 
-from src.preprocessing.config import MAX_SEQUENCE_LENGTH
+from src.preprocessing.config import MAX_SEQUENCE_LENGTH, ASLLRP_MAX_SEQUENCE_LENGTH
 from src.preprocessing.sample_writer import write_sample
 from src.preprocessing.sequence_builder import SequenceBuilder
 from src.preprocessing.video_reader import VideoReader
+
+
+# Per-source cap lookup. Falls back to the shared/WLASL constant for any
+# source not listed here (WLASL, HF mirror, etc.) -- only ASLLRP has its
+# own, separately-measured cap today. Add new sources here explicitly
+# rather than letting them silently inherit the wrong default.
+_MAX_SEQUENCE_LENGTH_BY_SOURCE = {
+    "asllrp": ASLLRP_MAX_SEQUENCE_LENGTH,
+}
+
+
+def _max_sequence_length_for(source: str) -> int:
+    return _MAX_SEQUENCE_LENGTH_BY_SOURCE.get(source, MAX_SEQUENCE_LENGTH)
 
 
 class DatasetProcessor:
@@ -63,6 +90,8 @@ class DatasetProcessor:
                 except Exception:
                     original_num_frames = None
 
+                cap = _max_sequence_length_for(sample.source)
+
                 processed = self.builder.build(
                     video_path=sample.video_path,
                     video_id=sample.video_id,
@@ -72,6 +101,11 @@ class DatasetProcessor:
                     frame_start=getattr(sample, "frame_start", None),
                     frame_end=getattr(sample, "frame_end", None),
                     translation=getattr(sample, "translation", None),
+                    sign_spans=getattr(sample, "sign_spans", None),  # NEW
+                    max_sequence_length=cap,  # DAY 22 FIX: was silently using the
+                                               # shared/WLASL default inside build()
+                                               # regardless of source -- now passed
+                                               # explicitly per-source.
                 )
 
                 print("  Sequence built.")
@@ -91,9 +125,11 @@ class DatasetProcessor:
                     "video_id": sample.video_id,
                     "gloss": sample.gloss,
                     "split": sample.split,
+                    "source": sample.source,
                     "original_num_frames": original_num_frames,
                     "sampled_num_frames": sampled_num_frames,
-                    "hit_max_cap": sampled_num_frames >= MAX_SEQUENCE_LENGTH,
+                    "max_sequence_length_cap": cap,
+                    "hit_max_cap": sampled_num_frames >= cap,
                     "status": "success",
                 })
 
@@ -114,8 +150,10 @@ class DatasetProcessor:
                     "video_id": getattr(sample, "video_id", "unknown"),
                     "gloss": getattr(sample, "gloss", ""),
                     "split": getattr(sample, "split", ""),
+                    "source": getattr(sample, "source", ""),
                     "original_num_frames": None,
                     "sampled_num_frames": None,
+                    "max_sequence_length_cap": None,
                     "hit_max_cap": None,
                     "status": f"failed: {e}",
                 })
@@ -134,6 +172,18 @@ class DatasetProcessor:
         if successful:
             capped = sum(1 for r in manifest_rows if r.get("hit_max_cap"))
             print(f"Hit max-length cap: {capped}/{successful} ({100*capped/successful:.1f}%)")
+
+            # Per-source breakdown -- the aggregate % above is easy to
+            # misread once sources with different caps are mixed together
+            # in one manifest; report each source's own rate explicitly.
+            sources = sorted({r.get("source") for r in manifest_rows if r.get("status") == "success"})
+            if len(sources) > 1:
+                for src in sources:
+                    src_rows = [r for r in manifest_rows if r.get("source") == src and r.get("status") == "success"]
+                    src_capped = sum(1 for r in src_rows if r.get("hit_max_cap"))
+                    src_cap_value = _max_sequence_length_for(src)
+                    print(f"  {src} (cap={src_cap_value}): {src_capped}/{len(src_rows)} "
+                          f"({100*src_capped/len(src_rows):.1f}%)")
 
     def _write_manifest(self, rows):
         if not rows:

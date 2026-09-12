@@ -41,7 +41,7 @@ ASLLRP_PROCESSED_DIR = (
     / "asllrp"
 )
 
-ASLLRP_MAX_SEQUENCE_LENGTH = 250  # continuous-signing utterances are structurally
+ASLLRP_MAX_SEQUENCE_LENGTH = 300  # continuous-signing utterances are structurally
                                    # longer than WLASL's isolated signs; measured
                                    # distribution (1,234 utterances): median=127,
                                    # p90=236, p95=288. Cap-hit rate at 250 is 8.5%,

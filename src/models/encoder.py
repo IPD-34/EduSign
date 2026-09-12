@@ -54,11 +54,11 @@ class SignEncoder(nn.Module):
             # no KV-cache scaffolding. Do not add these, even as a
             # "future toggle" -- see architecture constraints.
         )
-        self.transformer_encoder = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
+        self.transformer_encoder = nn.TransformerEncoder(encoder_layer, num_layers=num_layers, enable_nested_tensor=False,)
 
         self.hidden_dim = hidden_dim
 
-    def forward(self, landmarks, attention_mask):
+    def forward(self, landmarks, attention_mask, precomputed_projection=None):
         """
         landmarks: (batch, seq_len, RAW_FEATURE_DIM) -- already flattened
                    and concatenated (pose+face+left_hand+right_hand) per frame.
@@ -67,8 +67,21 @@ class SignEncoder(nn.Module):
                         entirely; presence-but-occluded real frames (per
                         the interface spec) still participate, just with
                         zero-filled coordinates.
+        precomputed_projection: optional (batch, seq_len, hidden_dim).
+                        Day 44 (C3 bimanual gate) addition -- when provided,
+                        this REPLACES the self.input_projection(landmarks)
+                        call below; landmarks is then only used for shape,
+                        not re-projected. Lets an external module (e.g.
+                        BimanualGateHead) supply what feeds into positional
+                        encoding + self-attention, without this file ever
+                        touching how attention itself is computed. Default
+                        None preserves the exact original behavior for
+                        every existing caller.
         """
-        x = self.input_projection(landmarks)
+        if precomputed_projection is not None:
+            x = precomputed_projection
+        else:
+            x = self.input_projection(landmarks)
         x = self.positional_encoding(x)
 
         # nn.TransformerEncoder expects a mask where True means "ignore" --

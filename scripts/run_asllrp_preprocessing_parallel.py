@@ -3,10 +3,25 @@ run_asllrp_preprocessing_parallel.py
 
 Parallel preprocessing for ASLLRP, mirroring run_preprocessing_parallel.py's
 structure (resume-before-pool-dispatch, maxtasksperchild memory recycling,
-manifest logging) but using ASLLRP_MAX_SEQUENCE_LENGTH (250), not WLASL's
+manifest logging) but using ASLLRP_MAX_SEQUENCE_LENGTH (300), not WLASL's
 150 — continuous-signing utterances are structurally longer; see config.py
 comment and scripts/asllrp_acquisition/check_asllrp_length_distribution.py
 for the measured distribution behind this choice.
+
+DAY 22 FIX (round 2): ASLLRP_MAX_SEQUENCE_LENGTH was already correctly
+imported and used for hit_max_cap logging, but was never actually passed
+into SequenceBuilder.build() -- so extraction itself silently fell back
+to build()'s default parameter (the shared/WLASL MAX_SEQUENCE_LENGTH=150).
+The manifest was reporting against the right cap while the real frames
+being kept were still capped at the wrong one. Confirmed via
+recompute_asllrp_cap.py: max(sampled_num_frames) == 150 across the full
+1234-utterance corpus even after the first "fix" (dataset_processor.py /
+sequence_builder.py) was applied, because this script bypasses
+DatasetProcessor entirely and calls SequenceBuilder.build() directly in
+its own worker function. Fixed by passing max_sequence_length explicitly
+below. Re-running the full corpus is required after this fix -- frames
+beyond 150 were genuinely dropped in every previously-processed .npz file
+and cannot be recovered without re-extraction.
 
 Deliberately NOT run concurrently with the WLASL run — see project notes
 on memory pressure from running multiple MediaPipe-heavy jobs at once.
@@ -54,6 +69,7 @@ def _process_one(sample_dict):
     frame_start = sample_dict.get("frame_start")
     frame_end = sample_dict.get("frame_end")
     translation = sample_dict.get("translation")
+    sign_spans = sample_dict.get("sign_spans")  # NEW
 
     output_path = ASLLRP_PROCESSED_DIR / split / f"{video_id}.npz"
 
@@ -72,6 +88,11 @@ def _process_one(sample_dict):
             frame_start=frame_start,
             frame_end=frame_end,
             translation=translation,
+            sign_spans=sign_spans,  # NEW
+            max_sequence_length=ASLLRP_MAX_SEQUENCE_LENGTH,  # DAY 22 FIX (round 2) --
+            # was missing entirely; build() was silently defaulting to the
+            # shared/WLASL cap (150) instead of ASLLRP's own (300). See
+            # module docstring above for the full story.
         )
 
         write_sample(processed, output_path)
@@ -119,6 +140,7 @@ def main():
             "frame_start": s.frame_start,
             "frame_end": s.frame_end,
             "translation": s.translation,
+            "sign_spans": s.sign_spans, 
         })
 
     total_dataset_size = len(all_samples)
