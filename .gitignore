@@ -113,3 +113,10 @@ test_face.png
 *.tmp
 *.temp
 *.bak
+
+
+# Large dataset/archive files
+*.zip
+
+# Generated graphify output
+graphify-out/
