@@ -10,10 +10,65 @@ target_tokens is [BOS, gloss_1, ..., gloss_n, EOS], padded with pad_id
 gloss sequence (no BOS/EOS/padding) plus each sample's real length,
 since CTCLoss internally handles alignment via the blank token and
 does NOT want start/end markers polluting the target sequence.
+
+--- STAGE A ADDITION: BLANK DOWNWEIGHTING, OFF BY DEFAULT ---
+nn.CTCLoss has no native per-class weighting -- the blank id is baked
+into its forward-backward algorithm as a structural symbol, not an
+exposed weight. Two options existed to work around that: (a) reweight
+the blank channel's log-probability before it reaches nn.CTCLoss, or
+(b) add a separate auxiliary entropy/blank-penalty term alongside the
+unmodified CTC loss. Chose (a): (b) (an ad-hoc "average softmax entropy"
+term) is NOT the same regularizer as the peer-reviewed EnCTC approach
+to this exact known CTC pathology (that method's entropy term is
+computed from the forward-backward algorithm's internal alpha/beta
+marginals, not exposed by nn.CTCLoss as a black box) -- calling a
+softmax-entropy proxy "the same fix" would overclaim a theoretical
+grounding it doesn't have. (a) is simple, exactly what it says, and
+needs no access to nn.CTCLoss internals: apply_blank_downweight() below
+subtracts blank_logit_bias from the blank column of the model's
+ALREADY-COMPUTED, already-normalized ctc_log_probs, then re-normalizes
+via log_softmax. This is mathematically EXACTLY equivalent to
+subtracting the same bias from the blank channel's PRE-softmax logit
+(log_softmax is shift-invariant: log_softmax(log_probs - bias*e_blank)
+== log_softmax(logits - bias*e_blank) for any per-row constant already
+absorbed by the first log_softmax -- algebra: log_probs = logits -
+logsumexp(logits), so log_probs with one entry shifted equals logits
+with that entry shifted, minus the SAME constant logsumexp(logits)
+applied to every entry, which log_softmax is invariant to). This means
+no change to SignTransformer/forward_ctc_boundary_and_gate is needed --
+the model's returned ctc_log_probs stay exactly what they've always
+been (still what eval/decode/confidence-signal consumers see); only a
+LOCAL COPY used for THIS loss computation is biased. blank_logit_bias
+defaults to 0.0, an exact no-op (early-return, not just an
+algebraically-zero operation) -- existing behavior is byte-identical
+when this parameter is left unset, same pattern as every other
+additive change this project has made (use_bimanual_gate,
+precomputed_projection, gate_reg_weight, etc.).
 """
 
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
+
+
+def apply_blank_downweight(ctc_log_probs, blank_id, blank_logit_bias):
+    """
+    ctc_log_probs: (B, T, ctc_vocab_size + 1), already log_softmax'd
+    (e.g. straight from SignTransformer.forward_ctc_boundary_and_gate).
+    blank_logit_bias: subtracted from the blank channel, in logit space
+    (see module docstring for the exact equivalence proof) -- a POSITIVE
+    value makes blank LESS attractive to the loss, discouraging the
+    trivial all-blank collapse. 0.0 (default) is an exact no-op.
+
+    Returns a NEW tensor -- ctc_log_probs itself is never mutated, so
+    any other consumer of the same tensor (e.g. the boundary loss call
+    site, or a caller inspecting the raw model output) is unaffected.
+    """
+    if blank_logit_bias == 0.0:
+        return ctc_log_probs
+    biased = ctc_log_probs.clone()
+    biased[..., blank_id] = biased[..., blank_id] - blank_logit_bias
+    return F.log_softmax(biased, dim=-1)
 
 
 def strip_special_tokens(target_tokens, bos_id, eos_id, pad_id):
@@ -56,18 +111,30 @@ def compute_combined_loss(
     bos_id, eos_id, pad_id,
     blank_id,
     boundary_loss_weight=1.0,
+    blank_logit_bias=0.0,
 ):
     """
     Returns (total_loss, ctc_loss, boundary_loss) -- all three returned
     separately so the training loop can log and inspect them
     individually, per Day 32/33's own stated discipline of checking
     each loss term's magnitude before trusting the combined number.
+
+    blank_logit_bias: Stage A addition, see module docstring for the
+    mechanism and equivalence proof. 0.0 (default) is an exact no-op --
+    ctc_loss_for_backward below is byte-identical to before this change
+    whenever this parameter is left unset.
     """
     B, T, _ = ctc_log_probs.shape
 
     # --- CTC loss ---
+    # Stage A: bias applied to a LOCAL COPY only (apply_blank_downweight
+    # never mutates its input) -- ctc_log_probs itself, and anything else
+    # that reads it (there is nothing else in this function, but future
+    # callers might), is completely unaffected.
+    ctc_log_probs_for_loss = apply_blank_downweight(ctc_log_probs, blank_id, blank_logit_bias)
+
     # nn.CTCLoss expects (T, B, C) -- time-major, not batch-major.
-    ctc_log_probs_t_major = ctc_log_probs.permute(1, 0, 2)  # (T, B, C)
+    ctc_log_probs_t_major = ctc_log_probs_for_loss.permute(1, 0, 2)  # (T, B, C)
 
     input_lengths = encoder_attention_mask.sum(dim=1)  # (B,) real (non-padded) timesteps per sample
 
@@ -130,6 +197,7 @@ def compute_combined_loss_with_gate(
     blank_id,
     boundary_loss_weight=1.0,
     gate_reg_weight=0.0,
+    blank_logit_bias=0.0,
 ):
     """
     Day 44: three-way combined loss for the gate-enabled model. Wraps
@@ -167,6 +235,7 @@ def compute_combined_loss_with_gate(
         encoder_attention_mask,
         bos_id, eos_id, pad_id, blank_id,
         boundary_loss_weight=boundary_loss_weight,
+        blank_logit_bias=blank_logit_bias,
     )
 
     gate_entropy = compute_gate_entropy(gate_logits, encoder_attention_mask)
