@@ -46,6 +46,30 @@ additive change this project has made (use_bimanual_gate,
 precomputed_projection, gate_reg_weight, etc.).
 """
 
+"""
+--- ADDITIVE: TRANSITION-LOSS MECHANISM (boundary-mechanisms smoke test) ---
+Second, additive boundary-supervision term -- see boundary_labels.
+build_transition_targets' docstring for the target construction. This
+mechanism deliberately reuses the EXISTING boundary_head's output
+(boundary_logits) rather than adding a new head: adding a new head
+would mean fresh, randomly-initialized parameters that this
+mechanism's short smoke-test horizon would have to train from
+scratch, confounding "does a sharper target help" with "does the
+model tolerate an undertrained new head" -- reusing the existing head
+keeps this an isolated one-variable change, exactly the same
+resuming-from-checkpoint discipline as every other lever in this
+project (blank_logit_bias, gate_reg_weight, boundary_loss_weight).
+
+compute_transition_loss() mirrors compute_gate_entropy()'s pattern
+exactly: a small standalone helper, always computable and loggable,
+that a wrapper adds into total_loss ONLY when explicitly weighted.
+compute_combined_loss_with_gate_and_transition() wraps
+compute_combined_loss_with_gate() UNCHANGED -- does not duplicate or
+alter its CTC/boundary/gate math -- so every existing caller of
+compute_combined_loss_with_gate() (or compute_combined_loss()) is
+completely unaffected by this addition.
+"""
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -242,3 +266,74 @@ def compute_combined_loss_with_gate(
     total_loss = total_loss + gate_reg_weight * gate_entropy
 
     return total_loss, ctc_loss, boundary_loss, gate_entropy
+
+
+def compute_transition_loss(boundary_logits, transition_target, encoder_attention_mask):
+    """
+    Additive transition-loss mechanism -- see module docstring and
+    boundary_labels.build_transition_targets. Deliberately reuses
+    boundary_logits (the EXISTING boundary_head's raw output) rather
+    than a new head -- see module docstring for why.
+
+    MSE, not BCE: transition_target is a soft, continuous Gaussian
+    bump in [0, 1] (a real-valued "how close is this the change-point"
+    signal), not a hard 0/1 class label the way boundary_target is --
+    MSE against sigmoid(boundary_logits) is the natural loss for
+    matching a soft peaked shape; BCE would treat 0.5 the same
+    regardless of whether it came from the peak's shoulder or its
+    tail, which is not the distinction this target is trying to draw.
+
+    Masked-averaged over real (non-padded) timesteps only, same
+    padding discipline as compute_combined_loss's boundary_loss.
+    """
+    boundary_prob = torch.sigmoid(boundary_logits)
+    per_position_loss = (boundary_prob - transition_target) ** 2  # (B, T)
+    mask = encoder_attention_mask.float()
+    return (per_position_loss * mask).sum() / mask.sum().clamp(min=1.0)
+
+
+def compute_combined_loss_with_gate_and_transition(
+    ctc_log_probs,        # (B, T, ctc_vocab_size + 1)
+    boundary_logits,      # (B, T)
+    gate_logits,          # (B, T)
+    target_tokens,        # (B, tgt_len)
+    boundary_target,      # (B, T)
+    encoder_attention_mask,  # (B, T)
+    bos_id, eos_id, pad_id,
+    blank_id,
+    boundary_loss_weight=1.0,
+    gate_reg_weight=0.0,
+    blank_logit_bias=0.0,
+    transition_target=None,   # (B, T) or None
+    transition_loss_weight=0.0,
+):
+    """
+    Wraps compute_combined_loss_with_gate() UNCHANGED (see module
+    docstring) and adds the transition-loss mechanism's contribution
+    as a separately-visible fifth return value.
+
+    True no-op when transition_target is None or
+    transition_loss_weight == 0.0 (both defaults): transition_loss is
+    still computed and returned (0.0 tensor if transition_target is
+    None, same "always computed and logged" discipline as
+    compute_gate_entropy) but total_loss is byte-identical to calling
+    compute_combined_loss_with_gate() directly.
+    """
+    total_loss, ctc_loss, boundary_loss, gate_entropy = compute_combined_loss_with_gate(
+        ctc_log_probs, boundary_logits, gate_logits,
+        target_tokens, boundary_target,
+        encoder_attention_mask,
+        bos_id, eos_id, pad_id, blank_id,
+        boundary_loss_weight=boundary_loss_weight,
+        gate_reg_weight=gate_reg_weight,
+        blank_logit_bias=blank_logit_bias,
+    )
+
+    if transition_target is None:
+        transition_loss = torch.tensor(0.0, device=boundary_logits.device)
+    else:
+        transition_loss = compute_transition_loss(boundary_logits, transition_target, encoder_attention_mask)
+
+    total_loss = total_loss + transition_loss_weight * transition_loss
+
+    return total_loss, ctc_loss, boundary_loss, gate_entropy, transition_loss

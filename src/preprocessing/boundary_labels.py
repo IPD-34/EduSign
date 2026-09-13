@@ -39,6 +39,48 @@ trimmed, resampled to TARGET_FPS, and capped at MAX_SEQUENCE_LENGTH via
 uniform downsampling. Boundary labels must be re-mapped through that
 exact same transformation, not the raw frame numbers, or they will be
 silently misaligned against the actual landmark sequence.
+
+--- ADDITIVE: TRANSITION (CHANGE-POINT) TARGETS ---
+Boundary-detection-mechanism smoke test (following the boundary-F1
+strictness-vs-genuine-failure diagnostic): build_boundary_targets()
+above produces a FLAT presence target -- 1.0 across an entire sign's
+region, which is exactly the right supervision for "is a sign
+happening here" but gives the model no sharper pressure to notice the
+FRAME where one sign ends and the next begins. That distinction
+matters because the diagnostic's dominant genuine-failure mode was
+merged blobs swallowing several adjacent signs -- a model that has
+learned "something sign-like is happening" but not "here is where it
+changes."
+
+build_transition_targets() below is a separate, purely additive
+function (build_boundary_targets is untouched, still called exactly
+as before by every existing caller) that produces a SHARPLY PEAKED
+target at each sign's start/end frame(s) specifically -- not a
+replacement for the flat target, a second signal meant to be used
+alongside it via its own separately-weighted loss term (see
+combined_loss.py's compute_transition_loss / additive combined-loss
+wrapper).
+
+Construction: for each sign with a real span, map both start_raw and
+end_raw to the nearest surviving sampled position (same nearest-
+position snapping build_boundary_targets already uses for point
+anchors); for a genuine point anchor (start_raw == end_raw) there is
+only one such position. Place an (unnormalized, peak-height-1.0)
+Gaussian bump centered at each such position, then take the
+ELEMENTWISE MAX across all signs' bumps (not a sum -- adjacent signs'
+bumps overlapping and summing above 1.0 would make the target not a
+clean probability-like signal, and MSE against out-of-range values is
+not what's intended here).
+
+sigma=1.0 SAMPLED-SEQUENCE positions (not raw video frames) -- chosen
+to be sharply localized RELATIVE TO build_boundary_targets' own
+regions (median real-span width ~7-8 timesteps per the Day 31 audit;
+point-anchor tolerance window width 5): at sigma=1.0, the bump has
+already decayed to ~0.135 two positions away and ~0.011 three
+positions away, so it is concentrated on the exact change-point frame
+and its immediate neighbors, not spread across anything resembling a
+whole sign's duration. This is a deliberate, principled choice, not
+the same width as the presence target reused for a different purpose.
 """
 
 from __future__ import annotations
@@ -147,3 +189,109 @@ def build_boundary_targets(
             boundary_target[mask] = 1.0
 
     return boundary_target, stats
+
+
+def build_transition_targets(
+    sign_spans: Sequence[Optional[tuple[int, int]]],
+    sampled_frame_indices: Sequence[int],
+    sigma: float = 1.0,
+) -> tuple[np.ndarray, dict]:
+    """
+    Additive, second boundary-supervision target -- see module
+    docstring's "TRANSITION (CHANGE-POINT) TARGETS" section for the
+    full rationale. Does NOT call or modify build_boundary_targets;
+    every existing caller of that function is completely unaffected
+    by this function's existence.
+
+    Parameters
+    ----------
+    sign_spans, sampled_frame_indices : same meaning and same raw
+        1-indexed/0-indexed conventions as build_boundary_targets.
+    sigma : Gaussian half-width, in SAMPLED-SEQUENCE positions, of the
+        peak placed at each change-point position. See module
+        docstring for why 1.0 is the chosen default.
+
+    Returns
+    -------
+    transition_target : np.ndarray, shape (len(sampled_frame_indices),),
+        float32, values in [0.0, 1.0]. Elementwise MAX of every
+        sign-boundary's Gaussian bump (not a sum -- see module
+        docstring).
+    stats : dict of real, checkable counts, mirroring
+        build_boundary_targets' stats dict so the two are easy to
+        cross-reference during verification:
+          num_signs_total
+          num_signs_missing_span
+          num_signs_point_anchor      -- one change-point position
+          num_signs_real_span         -- two change-point positions
+                                          (start and end), unless they
+                                          snap to the same sampled
+                                          position (very short span),
+                                          in which case only one bump
+                                          is placed there
+          num_spans_dropped_frame     -- span's nearest sampled
+                                          position for BOTH start and
+                                          end still exists (nearest-
+                                          position snapping always
+                                          finds *some* position when
+                                          T > 0), so this tracks a span
+                                          whose raw frame range does
+                                          not overlap the sampled range
+                                          at all, for parity with
+                                          build_boundary_targets'
+                                          reporting -- the change-point
+                                          positions placed in that case
+                                          are still the nearest
+                                          surviving ones, same as a
+                                          point anchor, since "nearest
+                                          real frame to a change point
+                                          that got trimmed away" is
+                                          still a meaningful place to
+                                          supervise a change-point
+                                          detector.
+    """
+    T = len(sampled_frame_indices)
+    transition_target = np.zeros(T, dtype=np.float32)
+
+    stats = {
+        "num_signs_total": len(sign_spans),
+        "num_signs_missing_span": 0,
+        "num_signs_point_anchor": 0,
+        "num_signs_real_span": 0,
+        "num_spans_dropped_frame": 0,
+    }
+
+    if T == 0:
+        return transition_target, stats
+
+    sampled_arr = np.asarray(sampled_frame_indices)
+    lo_bound, hi_bound = sampled_arr.min(), sampled_arr.max()
+    positions = np.arange(T)
+
+    for span in sign_spans:
+        if span is None:
+            stats["num_signs_missing_span"] += 1
+            continue
+
+        start_raw, end_raw = span
+        start_0 = start_raw - 1
+        end_0 = end_raw - 1
+
+        if end_0 < lo_bound or start_0 > hi_bound:
+            stats["num_spans_dropped_frame"] += 1
+
+        if start_raw == end_raw:
+            stats["num_signs_point_anchor"] += 1
+            change_positions = {int(np.argmin(np.abs(sampled_arr - start_0)))}
+        else:
+            stats["num_signs_real_span"] += 1
+            change_positions = {
+                int(np.argmin(np.abs(sampled_arr - start_0))),
+                int(np.argmin(np.abs(sampled_arr - end_0))),
+            }
+
+        for pos in change_positions:
+            bump = np.exp(-0.5 * ((positions - pos) / sigma) ** 2)
+            transition_target = np.maximum(transition_target, bump)
+
+    return transition_target, stats
