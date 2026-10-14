@@ -10,10 +10,55 @@ target_tokens is [BOS, gloss_1, ..., gloss_n, EOS], padded with pad_id
 gloss sequence (no BOS/EOS/padding) plus each sample's real length,
 since CTCLoss internally handles alignment via the blank token and
 does NOT want start/end markers polluting the target sequence.
+
+Fix (attention-masking follow-up): nn.CTCLoss's `input_lengths` only
+supports a contiguous-prefix-of-length-N convention -- it has no API for
+an arbitrary/interior invalid-position mask (checked: there isn't one;
+every CTC implementation, this included, assumes real frames are
+[0, input_length) and padding/invalid frames come after). That
+assumption used to hold automatically because encoder_attention_mask's
+only source of False was trailing padding. It no longer does:
+src/models/dataset.py's collate_fn can now mark a genuine LEADING
+dropout timestep invalid too (see that module's docstring), which is a
+hole at the START of the mask, not the end. reorder_valid_frames_first()
+below fixes this the only structurally-correct way available: reorder
+each sample's timesteps (for the CTC loss computation only) so its valid
+frames really do form a prefix starting at index 0, in their original
+relative order -- equivalent to simply skipping the leading frame that
+was never observed, which is exactly what CTC should do with it. This
+does not touch the encoder's own attention masking (already correct;
+src_key_padding_mask has no positional-prefix assumption) or the
+boundary loss (already position-order-agnostic, see below).
 """
 
 import torch
 import torch.nn as nn
+
+
+def reorder_valid_frames_first(x: torch.Tensor, mask: torch.Tensor) -> torch.Tensor:
+    """
+    Reorders each batch row of `x` along the time dimension (dim=1) so
+    positions where `mask` is True come first, in their original relative
+    order, followed by positions where `mask` is False -- without
+    changing which VALUES are valid, only WHERE in the tensor they sit.
+
+    x: (B, T) or (B, T, C). mask: (B, T) bool, True = valid/real frame.
+    Returns a new tensor, same shape as x. After this, `mask.sum(dim=1)`
+    is safe to use directly as nn.CTCLoss's `input_lengths` -- the valid
+    frames are now guaranteed to be a genuine prefix.
+
+    Uses a stable sort (ties -- i.e. frames on the same side of the
+    valid/invalid split -- keep their original relative order) so this is
+    a pure reordering, never a reshuffling of which valid frame comes
+    before which other valid frame.
+    """
+    sort_key = (~mask).to(torch.float32)  # 0.0 = valid (sorts first), 1.0 = invalid
+    perm = torch.argsort(sort_key, dim=1, stable=True)  # (B, T)
+
+    if x.dim() == 2:
+        return torch.gather(x, dim=1, index=perm)
+    index = perm.unsqueeze(-1).expand(-1, -1, x.shape[-1])
+    return torch.gather(x, dim=1, index=index)
 
 
 def strip_special_tokens(target_tokens, bos_id, eos_id, pad_id):
@@ -66,10 +111,15 @@ def compute_combined_loss(
     B, T, _ = ctc_log_probs.shape
 
     # --- CTC loss ---
+    # Reorder so valid frames are a genuine prefix before computing
+    # input_lengths from the mask -- see reorder_valid_frames_first's
+    # docstring for why this is required now (leading-dropout timesteps
+    # can put a hole at the START of encoder_attention_mask).
+    ctc_log_probs_reordered = reorder_valid_frames_first(ctc_log_probs, encoder_attention_mask)
     # nn.CTCLoss expects (T, B, C) -- time-major, not batch-major.
-    ctc_log_probs_t_major = ctc_log_probs.permute(1, 0, 2)  # (T, B, C)
+    ctc_log_probs_t_major = ctc_log_probs_reordered.permute(1, 0, 2)  # (T, B, C)
 
-    input_lengths = encoder_attention_mask.sum(dim=1)  # (B,) real (non-padded) timesteps per sample
+    input_lengths = encoder_attention_mask.sum(dim=1)  # (B,) real (non-padded, non-invalid) timesteps per sample
 
     flat_targets, target_lengths = strip_special_tokens(target_tokens, bos_id, eos_id, pad_id)
 

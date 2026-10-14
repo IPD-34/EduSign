@@ -1,0 +1,407 @@
+{
+  "num_utterances": 21,
+  "K": 20,
+  "mean_ctc_variance": NaN,
+  "mean_boundary_variance": NaN,
+  "correlation": {
+    "spearman_correlation": null,
+    "n": 21,
+    "degenerate": true,
+    "degenerate_reason": "every utterance is incorrect -- no variation in outcome to correlate against"
+  },
+  "per_utterance": [
+    {
+      "video_id": "asllrp_1068",
+      "ctc_variance": NaN,
+      "boundary_variance": NaN,
+      "ctc_greedy_decoded": [
+        0
+      ],
+      "target": [
+        3,
+        1850,
+        2090,
+        264,
+        3,
+        2050,
+        1851
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_1981",
+      "ctc_variance": NaN,
+      "boundary_variance": NaN,
+      "ctc_greedy_decoded": [
+        0
+      ],
+      "target": [
+        3,
+        1370,
+        1010,
+        1902
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_2387",
+      "ctc_variance": NaN,
+      "boundary_variance": NaN,
+      "ctc_greedy_decoded": [
+        0
+      ],
+      "target": [
+        1850,
+        1933,
+        1026,
+        1861,
+        1177,
+        1489,
+        1861
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_3199",
+      "ctc_variance": NaN,
+      "boundary_variance": NaN,
+      "ctc_greedy_decoded": [
+        0
+      ],
+      "target": [
+        1130,
+        1576,
+        2072,
+        1464
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_565",
+      "ctc_variance": NaN,
+      "boundary_variance": NaN,
+      "ctc_greedy_decoded": [
+        0
+      ],
+      "target": [
+        3,
+        214,
+        1851,
+        1954,
+        1850,
+        1933,
+        1805,
+        1861,
+        1902
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_58",
+      "ctc_variance": NaN,
+      "boundary_variance": NaN,
+      "ctc_greedy_decoded": [
+        0
+      ],
+      "target": [
+        2085,
+        3,
+        3,
+        3,
+        3
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_629589",
+      "ctc_variance": 1.7905977145460383e-08,
+      "boundary_variance": 0.0020324590150266886,
+      "ctc_greedy_decoded": [],
+      "target": [
+        2089,
+        2089,
+        1853,
+        2169,
+        2037,
+        3,
+        1817,
+        751,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_630376",
+      "ctc_variance": NaN,
+      "boundary_variance": NaN,
+      "ctc_greedy_decoded": [
+        0
+      ],
+      "target": [
+        3,
+        751,
+        2065,
+        992,
+        1740,
+        936,
+        2099,
+        3,
+        1850,
+        1850,
+        2078
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_630672",
+      "ctc_variance": 3.935630488172137e-09,
+      "boundary_variance": 0.0012602644274011254,
+      "ctc_greedy_decoded": [],
+      "target": [
+        751,
+        1883,
+        1273,
+        1620,
+        1850,
+        2087,
+        1850,
+        1933,
+        3,
+        1861,
+        1911
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_631066",
+      "ctc_variance": NaN,
+      "boundary_variance": NaN,
+      "ctc_greedy_decoded": [
+        0
+      ],
+      "target": [
+        1800,
+        1861,
+        751,
+        992,
+        1740,
+        936,
+        3,
+        1853,
+        3,
+        2155,
+        3,
+        3
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_631164",
+      "ctc_variance": 2.5839861361731664e-09,
+      "boundary_variance": 0.0019384865881875157,
+      "ctc_greedy_decoded": [],
+      "target": [
+        1800,
+        3,
+        2085,
+        1576,
+        2165,
+        1853,
+        2014,
+        1853,
+        1750,
+        2162,
+        1933,
+        2165,
+        2013,
+        1853,
+        2030
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_631165",
+      "ctc_variance": 1.1257688115051678e-08,
+      "boundary_variance": 0.002066998276859522,
+      "ctc_greedy_decoded": [],
+      "target": [
+        1800,
+        751,
+        3,
+        2166,
+        1028,
+        3
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_631263",
+      "ctc_variance": 3.242014656734682e-09,
+      "boundary_variance": 0.001199848367832601,
+      "ctc_greedy_decoded": [],
+      "target": [
+        1897,
+        1954,
+        751,
+        1861,
+        1576,
+        2165,
+        413,
+        1872,
+        1851,
+        732,
+        1361
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_631755",
+      "ctc_variance": NaN,
+      "boundary_variance": NaN,
+      "ctc_greedy_decoded": [
+        0
+      ],
+      "target": [
+        2100,
+        751,
+        1883,
+        2144,
+        714,
+        1853,
+        328,
+        2073,
+        1063,
+        1361,
+        1934
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_631854",
+      "ctc_variance": 8.842116372420605e-09,
+      "boundary_variance": 0.0011586993932724,
+      "ctc_greedy_decoded": [],
+      "target": [
+        220,
+        1609,
+        1853,
+        1907,
+        2167,
+        2167,
+        1851,
+        1992,
+        1853,
+        1729,
+        1853
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_633435",
+      "ctc_variance": 3.215564703396012e-09,
+      "boundary_variance": 0.0010523279197514057,
+      "ctc_greedy_decoded": [],
+      "target": [
+        2051,
+        3,
+        3,
+        1805
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_6612",
+      "ctc_variance": 4.138355880201061e-09,
+      "boundary_variance": 0.0010056090541183949,
+      "ctc_greedy_decoded": [],
+      "target": [
+        2002,
+        1861,
+        1069,
+        3,
+        1850,
+        1866,
+        1543,
+        1891,
+        1182,
+        1861,
+        2002,
+        683,
+        1861
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_7726",
+      "ctc_variance": 2.7588438200609744e-09,
+      "boundary_variance": 0.0011054587084800005,
+      "ctc_greedy_decoded": [],
+      "target": [
+        906,
+        1861,
+        54,
+        3,
+        2008,
+        290,
+        600,
+        3,
+        1866
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_7928",
+      "ctc_variance": NaN,
+      "boundary_variance": NaN,
+      "ctc_greedy_decoded": [
+        0
+      ],
+      "target": [
+        1897,
+        1922,
+        2029,
+        3,
+        284,
+        3,
+        1933,
+        1850
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_8030",
+      "ctc_variance": 4.525036345626177e-09,
+      "boundary_variance": 0.00131858023814857,
+      "ctc_greedy_decoded": [],
+      "target": [
+        1922,
+        704,
+        781,
+        2074,
+        1922,
+        1358,
+        322,
+        1739,
+        1922
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_9145",
+      "ctc_variance": NaN,
+      "boundary_variance": NaN,
+      "ctc_greedy_decoded": [
+        0
+      ],
+      "target": [
+        3,
+        3
+      ],
+      "correct": false
+    }
+  ]
+}

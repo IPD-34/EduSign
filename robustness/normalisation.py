@@ -31,6 +31,8 @@ should run hold_last_value_sample() first.
 
 from __future__ import annotations
 
+from typing import Optional
+
 import numpy as np
 
 from src.preprocessing.sample_schema import LandmarkPresence, ProcessedSample
@@ -160,6 +162,7 @@ def normalize_landmarks_sample(
     sample: ProcessedSample,
     *,
     min_head_size: float = _DEFAULT_MIN_HEAD_SIZE,
+    face_validity: Optional[np.ndarray] = None,
 ) -> ProcessedSample:
     """
     Normalise all four landmark groups (pose, face, left_hand,
@@ -167,7 +170,9 @@ def normalize_landmarks_sample(
     size, computed from the face group.
 
     Does not mutate the input sample. Does not fill any missing frames
-    -- run hold_last_value_sample() first if that behavior is wanted.
+    itself -- run hold_last_value_sample() first if that behavior is
+    wanted, and see `face_validity` below for how to correctly combine
+    the two.
 
     Parameters
     ----------
@@ -178,6 +183,30 @@ def normalize_landmarks_sample(
         degenerate or undefined head size are output as NaN across ALL
         FOUR groups (except pose's visibility channel, which is always
         preserved).
+    face_validity:
+        Optional (T,) bool override for which frames have a usable face
+        reference, in place of `sample.presence.face`. Default None
+        preserves the original, fully-standalone behavior: a frame is a
+        valid reference only if the face group was actually observed
+        there (`sample.presence.face[t]`).
+
+        Pass this when `sample` is the OUTPUT of hold_last_value_sample()
+        and you want a frame that hold-last-value successfully filled
+        (a real, carried-forward face value, not a fabricated one) to
+        also count as a valid reference -- e.g.
+        `robustness.hold_last_value.compute_fill_validity_sample(...)
+        .face`. Without this, a hold-filled frame is still marked NaN
+        here even though it now holds a real value, because presence
+        (which tracks original observation, not post-fill validity) is
+        unchanged by hold_last_value_sample -- see hold_last_value.py's
+        module docstring for why presence itself is deliberately never
+        mutated to answer this question instead.
+
+        `sample.face` must actually contain the corresponding filled
+        values at those frames (i.e. `sample` should be
+        hold_last_value_sample()'s output, not the original raw sample)
+        -- this parameter only changes which frames are TRUSTED as a
+        reference, it does not itself supply or fill any values.
 
     Returns
     -------
@@ -187,9 +216,12 @@ def normalize_landmarks_sample(
     size was NaN/degenerate have NaN spatial values (visibility still
     preserved for pose).
     """
-    head_center = compute_head_center(sample.face, sample.presence.face)  # (T, 2)
+    presence_face_for_reference = (
+        sample.presence.face if face_validity is None else face_validity
+    )
+    head_center = compute_head_center(sample.face, presence_face_for_reference)  # (T, 2)
     head_size = compute_head_size(
-        sample.face, sample.presence.face, min_head_size=min_head_size
+        sample.face, presence_face_for_reference, min_head_size=min_head_size
     )  # (T,)
 
     valid_frames = ~np.isnan(head_size)

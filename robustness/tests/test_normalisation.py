@@ -355,3 +355,91 @@ def test_normalize_synthetic_sample_preserves_shapes():
     assert out.left_hand.shape == sample.left_hand.shape
     assert out.right_hand.shape == sample.right_hand.shape
     assert out.face.shape == sample.face.shape
+
+
+# ---------------------------------------------------------------------
+# face_validity parameter -- added alongside the fix for a real bug: this
+# function used to decide validity from sample.presence.face alone, which
+# silently defeated hold_last_value_sample (a hold-filled frame was still
+# marked NaN here despite holding a real, carried-forward value). Default
+# behavior (face_validity=None) must stay byte-for-byte identical to the
+# original presence-only behavior tested above -- these tests check the
+# opt-in override path specifically.
+# ---------------------------------------------------------------------
+
+
+def test_face_validity_default_none_matches_original_presence_only_behavior():
+    """No face_validity given -> must behave exactly as before this
+    parameter existed (all earlier tests in this file already prove this
+    for the plain-presence case; this pins the equivalence explicitly)."""
+    sample = _make_known_sample(face_presence=False)
+
+    out_default = normalize_landmarks_sample(sample)
+    out_explicit_presence = normalize_landmarks_sample(
+        sample, face_validity=sample.presence.face
+    )
+
+    np.testing.assert_array_equal(out_default.pose, out_explicit_presence.pose)
+    np.testing.assert_array_equal(out_default.face, out_explicit_presence.face)
+
+
+def test_face_validity_override_rescues_a_hold_filled_frame():
+    """
+    The actual bug fix, isolated to one frame: face is absent (presence
+    False) at frame 1, but the caller supplies face_validity=True there
+    (as compute_fill_validity would after hold_last_value_sample filled a
+    real value in). The frame must NOT be NaN'd, in contrast to leaving
+    face_validity unset, which must still NaN it (unchanged old behavior).
+
+    Built directly (not via _make_known_sample, which hardcodes T=1) since
+    this needs two frames with IDENTICAL face geometry -- frame 1 standing
+    in for "hold-last-value already copied frame 0's real value here".
+    """
+    T = 2
+    face = np.stack([_known_square_face(1)[0], _known_square_face(1)[0]])  # (2, 478, 3)
+    pose = np.zeros((T, 33, 4), dtype=np.float64)
+    pose[:, :, :3] = 1.0  # matches head center (1,1) -> normalizes to origin
+    left_hand = np.zeros((T, 21, 3), dtype=np.float64)
+    right_hand = np.zeros((T, 21, 3), dtype=np.float64)
+
+    metadata = SampleMetadata(
+        video_id="face_validity_rescue_0001", gloss="TEST", split="train",
+        source="synthetic", fps=30.0, num_frames=T, translation=None,
+    )
+    presence = LandmarkPresence(
+        pose=np.array([True, True]),
+        left_hand=np.array([True, True]),
+        right_hand=np.array([True, True]),
+        face=np.array([True, False]),  # frame 1 "absent" per presence
+    )
+    sample = ProcessedSample(
+        metadata=metadata, pose=pose, left_hand=left_hand,
+        right_hand=right_hand, face=face, presence=presence,
+    )
+
+    out_without_override = normalize_landmarks_sample(sample)
+    out_with_override = normalize_landmarks_sample(
+        sample, face_validity=np.array([True, True])
+    )
+
+    assert np.isnan(out_without_override.pose[1, :, :3]).all(), (
+        "unchanged default behavior: frame 1 must still be NaN without an override"
+    )
+    assert not np.isnan(out_with_override.pose[1, :, :3]).any(), (
+        "with face_validity override: frame 1 must use the real face value, not NaN"
+    )
+    # And since both frames now have IDENTICAL face geometry, the rescued
+    # frame's normalized values should exactly match frame 0's.
+    np.testing.assert_allclose(out_with_override.pose[1, :, :3], out_with_override.pose[0, :, :3])
+
+
+def test_face_validity_override_still_nans_genuinely_never_observed_frames():
+    """A frame with no usable value at all (face_validity False, e.g. a
+    leading-dropout frame hold-last-value itself couldn't fill) must still
+    come out NaN -- the override only rescues frames that ARE valid per
+    the caller, it doesn't disable NaN-ing altogether."""
+    sample = _make_known_sample(face_presence=False)  # T=1, no valid face ever
+
+    out = normalize_landmarks_sample(sample, face_validity=np.array([False]))
+
+    assert np.isnan(out.pose[0, :, :3]).all()

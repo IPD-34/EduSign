@@ -115,7 +115,7 @@ from src.models.train_utils import (
     get_device,
 )
 from src.models.dataset import SignLanguageDataset, collate_fn
-from src.models.combined_loss import compute_combined_loss
+from src.models.combined_loss import compute_combined_loss, reorder_valid_frames_first
 
 VOCAB_MERGED_PATH = "data/vocab_merged.json"
 ASLLRP_TOKEN_TO_ID_PATH = "data/asllrp_token_to_id.json"
@@ -314,7 +314,12 @@ def compute_val_ctc_loss(model, val_loader, blank_id, device):
         enc_mask = batch["encoder_attention_mask"].to(device)
 
         log_probs = model.forward_ctc(landmarks, enc_mask)
-        log_probs_ctc = log_probs.transpose(0, 1)
+        # Same fix as compute_combined_loss: reorder so valid frames are a
+        # genuine prefix before using enc_mask.sum() as input_lengths --
+        # required now that a sample can have a leading-dropout timestep
+        # marked invalid (a hole at the START of enc_mask, not the end).
+        log_probs_reordered = reorder_valid_frames_first(log_probs, enc_mask)
+        log_probs_ctc = log_probs_reordered.transpose(0, 1)
         input_lengths = enc_mask.sum(dim=1).cpu()
 
         target_tokens = batch["target_tokens"]

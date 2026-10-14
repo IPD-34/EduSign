@@ -1,0 +1,436 @@
+{
+  "num_utterances": 21,
+  "num_excluded": 0,
+  "exclusion_reasons": [],
+  "mean_top_token_probability": 0.9582339553605943,
+  "mean_entropy": 0.325674797807421,
+  "ece": {
+    "ece": 0.9582339553605943,
+    "bin_edges": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1.0
+    ],
+    "bin_confidence": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      0.9582339553605943
+    ],
+    "bin_accuracy": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      0.0
+    ],
+    "bin_count": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      21
+    ]
+  },
+  "per_utterance": [
+    {
+      "video_id": "asllrp_1068",
+      "top_token_probability": 0.9357891082763672,
+      "entropy": 0.4800932705402374,
+      "ctc_greedy_decoded": [
+        1897
+      ],
+      "target": [
+        3,
+        1850,
+        2090,
+        264,
+        3,
+        2050,
+        1851
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_1981",
+      "top_token_probability": 0.9796680212020874,
+      "entropy": 0.18326282501220703,
+      "ctc_greedy_decoded": [],
+      "target": [
+        3,
+        1370,
+        1010,
+        1902
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_2387",
+      "top_token_probability": 0.9598397016525269,
+      "entropy": 0.3051244020462036,
+      "ctc_greedy_decoded": [],
+      "target": [
+        1850,
+        1933,
+        1026,
+        1861,
+        1177,
+        1489,
+        1861
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_3199",
+      "top_token_probability": 0.9730403423309326,
+      "entropy": 0.23492863774299622,
+      "ctc_greedy_decoded": [],
+      "target": [
+        1130,
+        1576,
+        2072,
+        1464
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_565",
+      "top_token_probability": 0.974226713180542,
+      "entropy": 0.21952567994594574,
+      "ctc_greedy_decoded": [],
+      "target": [
+        3,
+        214,
+        1851,
+        1954,
+        1850,
+        1933,
+        1805,
+        1861,
+        1902
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_58",
+      "top_token_probability": 0.9604687094688416,
+      "entropy": 0.3032403290271759,
+      "ctc_greedy_decoded": [],
+      "target": [
+        2085,
+        3,
+        3,
+        3,
+        3
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_629589",
+      "top_token_probability": 0.9697957038879395,
+      "entropy": 0.26855796575546265,
+      "ctc_greedy_decoded": [],
+      "target": [
+        2089,
+        2089,
+        1853,
+        2169,
+        2037,
+        3,
+        1817,
+        751,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_630376",
+      "top_token_probability": 0.9557698965072632,
+      "entropy": 0.36751407384872437,
+      "ctc_greedy_decoded": [],
+      "target": [
+        3,
+        751,
+        2065,
+        992,
+        1740,
+        936,
+        2099,
+        3,
+        1850,
+        1850,
+        2078
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_630672",
+      "top_token_probability": 0.9592078924179077,
+      "entropy": 0.350495845079422,
+      "ctc_greedy_decoded": [],
+      "target": [
+        751,
+        1883,
+        1273,
+        1620,
+        1850,
+        2087,
+        1850,
+        1933,
+        3,
+        1861,
+        1911
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_631066",
+      "top_token_probability": 0.9532029032707214,
+      "entropy": 0.3628775477409363,
+      "ctc_greedy_decoded": [],
+      "target": [
+        1800,
+        1861,
+        751,
+        992,
+        1740,
+        936,
+        3,
+        1853,
+        3,
+        2155,
+        3,
+        3
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_631164",
+      "top_token_probability": 0.9645842909812927,
+      "entropy": 0.28215423226356506,
+      "ctc_greedy_decoded": [],
+      "target": [
+        1800,
+        3,
+        2085,
+        1576,
+        2165,
+        1853,
+        2014,
+        1853,
+        1750,
+        2162,
+        1933,
+        2165,
+        2013,
+        1853,
+        2030
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_631165",
+      "top_token_probability": 0.9767236709594727,
+      "entropy": 0.16037684679031372,
+      "ctc_greedy_decoded": [
+        751
+      ],
+      "target": [
+        1800,
+        751,
+        3,
+        2166,
+        1028,
+        3
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_631263",
+      "top_token_probability": 0.953035295009613,
+      "entropy": 0.3648943603038788,
+      "ctc_greedy_decoded": [],
+      "target": [
+        1897,
+        1954,
+        751,
+        1861,
+        1576,
+        2165,
+        413,
+        1872,
+        1851,
+        732,
+        1361
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_631755",
+      "top_token_probability": 0.9651296734809875,
+      "entropy": 0.303282231092453,
+      "ctc_greedy_decoded": [],
+      "target": [
+        2100,
+        751,
+        1883,
+        2144,
+        714,
+        1853,
+        328,
+        2073,
+        1063,
+        1361,
+        1934
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_631854",
+      "top_token_probability": 0.9480764269828796,
+      "entropy": 0.3832321763038635,
+      "ctc_greedy_decoded": [],
+      "target": [
+        220,
+        1609,
+        1853,
+        1907,
+        2167,
+        2167,
+        1851,
+        1992,
+        1853,
+        1729,
+        1853
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_633435",
+      "top_token_probability": 0.9691683650016785,
+      "entropy": 0.22572876513004303,
+      "ctc_greedy_decoded": [],
+      "target": [
+        2051,
+        3,
+        3,
+        1805
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_6612",
+      "top_token_probability": 0.9395573735237122,
+      "entropy": 0.4353790283203125,
+      "ctc_greedy_decoded": [],
+      "target": [
+        2002,
+        1861,
+        1069,
+        3,
+        1850,
+        1866,
+        1543,
+        1891,
+        1182,
+        1861,
+        2002,
+        683,
+        1861
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_7726",
+      "top_token_probability": 0.928524911403656,
+      "entropy": 0.5236603021621704,
+      "ctc_greedy_decoded": [],
+      "target": [
+        906,
+        1861,
+        54,
+        3,
+        2008,
+        290,
+        600,
+        3,
+        1866
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_7928",
+      "top_token_probability": 0.9468012452125549,
+      "entropy": 0.39833733439445496,
+      "ctc_greedy_decoded": [],
+      "target": [
+        1897,
+        1922,
+        2029,
+        3,
+        284,
+        3,
+        1933,
+        1850
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_8030",
+      "top_token_probability": 0.9441521763801575,
+      "entropy": 0.4184720516204834,
+      "ctc_greedy_decoded": [],
+      "target": [
+        1922,
+        704,
+        781,
+        2074,
+        1922,
+        1358,
+        322,
+        1739,
+        1922
+      ],
+      "correct": false
+    },
+    {
+      "video_id": "asllrp_9145",
+      "top_token_probability": 0.9661506414413452,
+      "entropy": 0.26803284883499146,
+      "ctc_greedy_decoded": [],
+      "target": [
+        3,
+        3
+      ],
+      "correct": false
+    }
+  ]
+}

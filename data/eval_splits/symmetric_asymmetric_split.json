@@ -1,0 +1,546 @@
+{
+  "asllrp_1169": {
+    "category": "asymmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 1.4237660680373665,
+      "motion_right": 4.817839799594367,
+      "presence_fraction_left": 0.8477157360406091,
+      "presence_fraction_right": 0.9898477157360406,
+      "ratio": 0.2955195953500237
+    },
+    "split": "train",
+    "gloss": "VEGETABLE|IX-3p:i|BROCCOLI|IX-3p:j|FINE|EAT+|BUT|IX-3p:k|fs-SPINACH|5\"whoa\"|REFUSE|BUOY"
+  },
+  "asllrp_1170": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 1.898826637698221,
+      "motion_right": 1.5820575880643446,
+      "presence_fraction_left": 0.990909090909091,
+      "presence_fraction_right": 0.9545454545454546,
+      "ratio": 0.8331764241427182
+    },
+    "split": "train",
+    "gloss": "POSS-1p+|UNCLE|IX-loc:i|NEVER|VISIT-1p|IX-1p|NEVER"
+  },
+  "asllrp_1271": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 1.2854622172162635,
+      "motion_right": 1.9155874655698426,
+      "presence_fraction_left": 0.9739130434782609,
+      "presence_fraction_right": 0.9826086956521739,
+      "ratio": 0.6710537839282993
+    },
+    "split": "train",
+    "gloss": "COMPUTER_5|POSS-1p|SISTER|(1h)USE_2|fs-MAC|ONLY"
+  },
+  "asllrp_1372": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 1.1770020913681947,
+      "motion_right": 1.2259556210483424,
+      "presence_fraction_left": 0.9811320754716981,
+      "presence_fraction_right": 0.9056603773584906,
+      "ratio": 0.9600690850144424
+    },
+    "split": "train",
+    "gloss": "ns-BOSTON|WOW+|WONDERFUL|CITY/COMMUNITY_3++"
+  },
+  "asllrp_1473": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 2.457473621616373,
+      "motion_right": 2.1061248513287865,
+      "presence_fraction_left": 0.9147286821705426,
+      "presence_fraction_right": 0.9069767441860465,
+      "ratio": 0.8570284672856464
+    },
+    "split": "train",
+    "gloss": "POSS-1p|CAT|IX-loc:i|ONLY|EAT|CAT|EAT++|(1h)part:indef|FINISH"
+  },
+  "asllrp_1474": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 1.9250404676131438,
+      "motion_right": 1.512917776213726,
+      "presence_fraction_left": 0.90625,
+      "presence_fraction_right": 0.953125,
+      "ratio": 0.7859147907106553
+    },
+    "split": "train",
+    "gloss": "DATE/DESSERT+|(G/Q)POSS-1p+|FAVORITE/PREFER+|MELON/PUMPKIN+|PIE"
+  },
+  "asllrp_1575": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 0.8887062102148775,
+      "motion_right": 1.46530786837684,
+      "presence_fraction_left": 0.91,
+      "presence_fraction_right": 0.98,
+      "ratio": 0.6064979444895228
+    },
+    "split": "train",
+    "gloss": "POSS-1p+|NEW+|#CAR|IX-1p|5\"awestruck\"|KISS-FIST|IX-1p"
+  },
+  "asllrp_1676": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 2.3950237655517412,
+      "motion_right": 1.715562000812497,
+      "presence_fraction_left": 0.9551282051282052,
+      "presence_fraction_right": 0.967948717948718,
+      "ratio": 0.7163027045860162
+    },
+    "split": "train",
+    "gloss": "VOLUNTEER/SHIRT+|IX-3p-pl-arc|NOT|CLEAR|WHO|IX-3p:i|IX-3p:j|WIN|IX-3p-pl-arc|part:indef"
+  },
+  "asllrp_1677": {
+    "category": "ambiguous",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 2.385366383503424,
+      "motion_right": 3.991557707078755,
+      "presence_fraction_left": 0.9416666666666667,
+      "presence_fraction_right": 0.8083333333333333,
+      "ratio": 0.5976028805178338,
+      "reason": "ratio 0.598 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+    },
+    "split": "train",
+    "gloss": "THAT|DRESS/CLOTHES|LCL:1\"dress over there\"|3\"contemplation\"|NOT|POSS-1p|FAVORITE/PREFER+|part:indef"
+  },
+  "asllrp_1778": {
+    "category": "asymmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 0.5691428009304218,
+      "motion_right": 3.150114589894656,
+      "presence_fraction_left": 0.9259259259259259,
+      "presence_fraction_right": 0.9814814814814815,
+      "ratio": 0.1806736817626227
+    },
+    "split": "train",
+    "gloss": "IX-1p|NEVER|SEE|COW|PURPLE+"
+  },
+  "asllrp_1879": {
+    "category": "ambiguous",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 2.165711387176998,
+      "motion_right": 1.2745980896870606,
+      "presence_fraction_left": 0.9885057471264368,
+      "presence_fraction_right": 0.8735632183908046,
+      "ratio": 0.5885355256632314,
+      "reason": "ratio 0.589 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+    },
+    "split": "train",
+    "gloss": "POSS-1p|FRIEND|IX-loc:i|WANT+NEG|WANT+NEG|GO-OUT|THUMB-IX-3p:i"
+  },
+  "asllrp_1880": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 1.4759099973016419,
+      "motion_right": 1.376609475715668,
+      "presence_fraction_left": 0.961038961038961,
+      "presence_fraction_right": 0.922077922077922,
+      "ratio": 0.9327191212421341
+    },
+    "split": "train",
+    "gloss": "NONE/NOTHING+|WANT|GO-OUT|part:indef"
+  },
+  "asllrp_260": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 0.9443421751639107,
+      "motion_right": 1.2685901440272573,
+      "presence_fraction_left": 0.9270833333333334,
+      "presence_fraction_right": 0.96875,
+      "ratio": 0.744402894512493
+    },
+    "split": "train",
+    "gloss": "LOSE|KEY|WHO"
+  },
+  "asllrp_261": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 1.017413979920093,
+      "motion_right": 1.2241833834850695,
+      "presence_fraction_left": 0.9541284403669725,
+      "presence_fraction_right": 0.944954128440367,
+      "ratio": 0.8310960544356234
+    },
+    "split": "train",
+    "gloss": "ATTENTION-WAVE|POSS-1p+|FRIEND|ARRIVE|TIME++"
+  },
+  "asllrp_362": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 1.3379874158417806,
+      "motion_right": 1.5230674133927096,
+      "presence_fraction_left": 0.956989247311828,
+      "presence_fraction_right": 0.9247311827956989,
+      "ratio": 0.8784820711654162
+    },
+    "split": "train",
+    "gloss": "TEACH+AGENT|TEACH+AGENT|UPSET|WHY++|(1h)part:indef"
+  },
+  "asllrp_463": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 0.9587127430131659,
+      "motion_right": 1.4485847693576943,
+      "presence_fraction_left": 0.9911504424778761,
+      "presence_fraction_right": 0.9823008849557522,
+      "ratio": 0.6618271593717372
+    },
+    "split": "train",
+    "gloss": "ns-fs-JOHN|IX-loc:i|(L)LIVE|(1h)LAST-YEAR|WHERE|1\"focus\""
+  },
+  "asllrp_638": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 1.4636083346122177,
+      "motion_right": 1.887408227456035,
+      "presence_fraction_left": 0.9473684210526315,
+      "presence_fraction_right": 0.8947368421052632,
+      "ratio": 0.7754593380071035
+    },
+    "split": "train",
+    "gloss": "IX-3p:i|(5)MAN|IX-2p|RECENT-PAST|MEET|IX-loc:i|SEARCH-FOR|#JOB|IX-3p:i"
+  },
+  "asllrp_649": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 2.158989951305557,
+      "motion_right": 2.5858067332592327,
+      "presence_fraction_left": 0.9075144508670521,
+      "presence_fraction_right": 0.976878612716763,
+      "ratio": 0.8349386377319459
+    },
+    "split": "train",
+    "gloss": "THAT|BOOK|IX-2p|READ+|IX-loc:i|IX-1p|READ_2|IX-3p:i|LONG-AGO|IX-1p|YOUNG+|IX-1p"
+  },
+  "asllrp_666": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 1.3743141774320975,
+      "motion_right": 1.7046030109049752,
+      "presence_fraction_left": 0.9298245614035088,
+      "presence_fraction_right": 0.8947368421052632,
+      "ratio": 0.8062370937045763
+    },
+    "split": "train",
+    "gloss": "NEW|STUDENT|UP-TO-NOW|NONE/NOTHING|MEET|NONE/NOTHING++"
+  },
+  "asllrp_667": {
+    "category": "ambiguous",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 1.3825720544264186,
+      "motion_right": 2.352800558277522,
+      "presence_fraction_left": 0.7391304347826086,
+      "presence_fraction_right": 0.9565217391304348,
+      "ratio": 0.5876282414003655,
+      "reason": "ratio 0.588 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+    },
+    "split": "train",
+    "gloss": "HOMEWORK|IX-1p|FINISH|PAST+NIGHT|PAST+NIGHT|IX-1p"
+  },
+  "asllrp_1068": {
+    "category": "ambiguous",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 1.6331551525217947,
+      "motion_right": 3.246673237415962,
+      "presence_fraction_left": 0.8987341772151899,
+      "presence_fraction_right": 0.9810126582278481,
+      "ratio": 0.5030241829392195,
+      "reason": "ratio 0.503 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+    },
+    "split": "val",
+    "gloss": "(1h)FISH|ns-fs-ANN|VOMIT/HATE|BUT|BIRD+|FINE+|ICL:X-over-thumb\"eating out of a bowl\""
+  },
+  "asllrp_1981": {
+    "category": "asymmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 0.9257815865566954,
+      "motion_right": 3.2985307534690946,
+      "presence_fraction_left": 0.9125,
+      "presence_fraction_right": 0.9875,
+      "ratio": 0.28066483405772175
+    },
+    "split": "val",
+    "gloss": "PEOPLE+|REFUSE|LEAVE|part:indef"
+  },
+  "asllrp_2387": {
+    "category": "ambiguous",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 4.173455266325618,
+      "motion_right": 1.4343137212854344,
+      "presence_fraction_left": 0.9905660377358491,
+      "presence_fraction_right": 0.8207547169811321,
+      "ratio": 0.3436753552526343,
+      "reason": "ratio 0.344 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+    },
+    "split": "val",
+    "gloss": "ns-fs-JACK|IX-loc:i|LIE|IX-3p:i|NOT|SICK|IX-3p:i"
+  },
+  "asllrp_3199": {
+    "category": "ambiguous",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 0.7802702804328874,
+      "motion_right": 2.2125607685011346,
+      "presence_fraction_left": 0.8148148148148148,
+      "presence_fraction_right": 0.9907407407407407,
+      "ratio": 0.35265484751475074,
+      "reason": "ratio 0.353 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+    },
+    "split": "val",
+    "gloss": "MOVIE_2|START|TIME+|SEVEN"
+  },
+  "asllrp_565": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 1.5502162754892197,
+      "motion_right": 2.446400151558919,
+      "presence_fraction_left": 0.9078014184397163,
+      "presence_fraction_right": 0.9787234042553191,
+      "ratio": 0.6336724082122771
+    },
+    "split": "val",
+    "gloss": "LEAVE-THERE|BOOK|DCL:B-L\"stack of books\"|POSS-1p|fs-OFFICE|IX-loc:i|WHO|IX-3p:i|part:indef"
+  },
+  "asllrp_58": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 1.7561951159441378,
+      "motion_right": 1.7611117650085362,
+      "presence_fraction_left": 0.9849624060150376,
+      "presence_fraction_right": 0.9172932330827067,
+      "ratio": 0.997208212924309
+    },
+    "split": "val",
+    "gloss": "FATHER+|REPAIR_2|TIME++DCL\"circular object\"|TIME++DCL\"circular object\"|HOW++"
+  },
+  "asllrp_629589": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 1.7800316071079578,
+      "motion_right": 2.9357050826074556,
+      "presence_fraction_left": 0.909952606635071,
+      "presence_fraction_right": 0.9241706161137441,
+      "ratio": 0.6063387012727303
+    },
+    "split": "val",
+    "gloss": "PAST+NIGHT|PAST+NIGHT|IX-1p|PLAY+|(crvd-5)BASKETBALL|SCRIMMAGE|WITH|FRIEND|(Y)WOW+|(baby-O)BY-A-HAIR|(1h)BEAT|THIRTY_2+|TWENTY-EIGHT"
+  },
+  "asllrp_630376": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 2.853821502736537,
+      "motion_right": 4.211029350582976,
+      "presence_fraction_left": 0.923469387755102,
+      "presence_fraction_right": 0.9591836734693877,
+      "ratio": 0.6777016413674374
+    },
+    "split": "val",
+    "gloss": "(crvd-L)POSS-1p|FRIEND|KISS-FIST|LAPTOP|TYPE|INTERNET|(25)WHY|USE_2+|fs-GOOGLE|fs-CHROME|VERY-FAST"
+  },
+  "asllrp_630672": {
+    "category": "ambiguous",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 2.4107107656891458,
+      "motion_right": 4.556033436558209,
+      "presence_fraction_left": 0.8982035928143712,
+      "presence_fraction_right": 0.9820359281437125,
+      "ratio": 0.5291249064032951,
+      "reason": "ratio 0.529 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+    },
+    "split": "val",
+    "gloss": "FRIEND|GROUP/TOGETHER|PLAN|SURPRISE|ns-fs-BOB|WHY++|ns-fs-BOB|IX-loc:i|AGE-TWENTY-ONE_2|IX-3p:i|BUOY"
+  },
+  "asllrp_631066": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 1.8889207446482033,
+      "motion_right": 2.9629787101293914,
+      "presence_fraction_left": 0.8430232558139535,
+      "presence_fraction_right": 0.9825581395348837,
+      "ratio": 0.6375073631783589
+    },
+    "split": "val",
+    "gloss": "WHEN|IX-3p:i|FRIEND|LAPTOP|TYPE|INTERNET|5\"hey\"|IX-1p|(1h)REMIND:i|GRAB-CHANCE|HOME+WORK++|HOME+WORK++"
+  },
+  "asllrp_631164": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 2.9291258809680585,
+      "motion_right": 4.670562475454062,
+      "presence_fraction_left": 0.9333333333333333,
+      "presence_fraction_right": 0.9822222222222222,
+      "ratio": 0.6271462797814936
+    },
+    "split": "val",
+    "gloss": "WHEN|(crvd-5)POSS-1p|FATHER+|START|VIDEO-GAME|IX-1p|5\"whoa\"|IX-1p|UP|WHY+|IX-loc:i|VIDEO-GAME|BORE|IX-1p|LOOK:i"
+  },
+  "asllrp_631165": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 1.309167505853111,
+      "motion_right": 1.7808573222137056,
+      "presence_fraction_left": 0.975609756097561,
+      "presence_fraction_right": 0.975609756097561,
+      "ratio": 0.7351332919954207
+    },
+    "split": "val",
+    "gloss": "WHEN|FRIEND|i:CALL-ON-RELAY/VRS-1p|#VP|LIGHT|LIGHT-FLASH"
+  },
+  "asllrp_631263": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 2.205877840897301,
+      "motion_right": 2.2455677762482082,
+      "presence_fraction_left": 0.9900497512437811,
+      "presence_fraction_right": 0.9651741293532339,
+      "ratio": 0.9823252115697798
+    },
+    "split": "val",
+    "gloss": "#IF|POSS-1p|FRIEND|IX-3p:i|START|VIDEO-GAME|CONTINUE|TO/UNTIL|DCL:5-C\"eyes falling out\"|FOR|REALLY"
+  },
+  "asllrp_631755": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 3.190841185976751,
+      "motion_right": 2.9655162362614647,
+      "presence_fraction_left": 0.945,
+      "presence_fraction_right": 0.96,
+      "ratio": 0.9293838406293756
+    },
+    "split": "val",
+    "gloss": "#IF+|FRIEND|GROUP/TOGETHER|DEPART|FISHING|IX-1p|CHECK|(5)WEATHER|MAKE|REALLY|#OK"
+  },
+  "asllrp_631854": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 2.6047239808831364,
+      "motion_right": 4.186659965489525,
+      "presence_fraction_left": 0.9625,
+      "presence_fraction_right": 0.9875,
+      "ratio": 0.6221484434737414
+    },
+    "split": "val",
+    "gloss": "BOSS|SUMMON|IX-1p|LOOK|EACH+ONE|EACH+ONE|DCL:4\"many people staring\"|KNOW-THAT|IX-1p|TROUBLE|IX-1p"
+  },
+  "asllrp_633435": {
+    "category": "ambiguous",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 0.7624596087262034,
+      "motion_right": 1.4711249716056045,
+      "presence_fraction_left": 0.967032967032967,
+      "presence_fraction_right": 0.978021978021978,
+      "ratio": 0.5182833705106952,
+      "reason": "ratio 0.518 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+    },
+    "split": "val",
+    "gloss": "GO-OUT|TIE_2+FISHING|TIE_2+FISHING|WHO"
+  },
+  "asllrp_6612": {
+    "category": "ambiguous",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 2.7450903008138994,
+      "motion_right": 5.224341563854978,
+      "presence_fraction_left": 0.922077922077922,
+      "presence_fraction_right": 0.9653679653679653,
+      "ratio": 0.5254423485259894,
+      "reason": "ratio 0.525 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+    },
+    "split": "val",
+    "gloss": "(5)WOMAN|IX-3p:i|MARRY|PRINCE|ns-fs-CHARLES|IX-3p:j|SON|IX-3p:k|NOW|IX-3p:i|(5)WOMAN|FAMOUS|IX-3p:i"
+  },
+  "asllrp_7726": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 2.736832535585563,
+      "motion_right": 3.7626505089574493,
+      "presence_fraction_left": 0.9181286549707602,
+      "presence_fraction_right": 0.9473684210526315,
+      "ratio": 0.7273682551887822
+    },
+    "split": "val",
+    "gloss": "IF|IX-3p:i|ALLERGY|NUT+|5\"wave no\"|CANNOT|EAT|SHEET-CAKE|IX-3p:j"
+  },
+  "asllrp_7928": {
+    "category": "ambiguous",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 1.2555931782335392,
+      "motion_right": 2.477965090307407,
+      "presence_fraction_left": 0.9872611464968153,
+      "presence_fraction_right": 0.9936305732484076,
+      "ratio": 0.5067033361950127,
+      "reason": "ratio 0.507 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+    },
+    "split": "val",
+    "gloss": "#IF|IX-2p|(1h)WANT|WALK+|CAN|WALK+|IX-loc:i|fs-PARK"
+  },
+  "asllrp_8030": {
+    "category": "symmetric",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 2.014529855863657,
+      "motion_right": 2.7376443224056857,
+      "presence_fraction_left": 0.9051094890510949,
+      "presence_fraction_right": 0.9635036496350365,
+      "ratio": 0.7358625221604401
+    },
+    "split": "val",
+    "gloss": "IX-2p|FINALLY_2|GET|BOOK+|IX-2p|READ|CHAPTER|TWO|IX-2p"
+  },
+  "asllrp_9145": {
+    "category": "ambiguous",
+    "source": "heuristic",
+    "evidence": {
+      "motion_left": 0.6080832493171329,
+      "motion_right": 1.2353494781127665,
+      "presence_fraction_left": 0.8,
+      "presence_fraction_right": 0.9888888888888889,
+      "ratio": 0.49223580864428484,
+      "reason": "ratio 0.492 falls between asymmetric threshold (0.3) and symmetric threshold (0.6)"
+    },
+    "split": "val",
+    "gloss": "NOT-MIND++|2p-HELP-1p"
+  }
+}

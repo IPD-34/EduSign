@@ -18,6 +18,31 @@ value. Once the hold budget is exceeded, the landmark is left as-is
 value appears. Landmarks that have never had a valid value yet are left
 unfilled (nothing to hold from). Frames that are already valid are left
 completely unchanged.
+
+--- Fill-validity mask (added after a real bug: normalize_landmarks_sample
+was NaN-ing every hold-filled frame anyway) ---
+hold_last_value_sample() deliberately leaves `presence` UNCHANGED in its
+returned sample (see that function's docstring) -- a frame this module
+filled is still not "truly present" as far as the original sensor data
+is concerned, and callers that care about that distinction (e.g. dropout
+characterization scripts) must keep working from the unchanged presence
+arrays. But that leaves no way for a caller who DOES want to know "does
+this frame have a usable value after filling" (e.g. normalisation.py's
+head_center/head_size reference, which is happy to use a held/carried-
+forward face value) to ask that question -- compute_fill_validity() and
+compute_fill_validity_sample() below answer exactly that, as a SEPARATE
+concept from `presence`, not a replacement for it.
+
+Deliberately implemented as standalone functions of (presence,
+max_hold_frames) alone, NOT as an added return value on
+hold_last_value_sample() / _hold_last_value_array(): the fill decision
+(is frame t held, and within budget) never actually depends on the
+landmark values themselves, only on the presence array and the hold
+bookkeeping -- so it can be computed independently, without changing
+either function's existing return signature and without touching the
+~15 existing call sites (including hold_last_value_sample's own
+presence-unchanged contract and its dedicated test) that depend on that
+signature staying a single ProcessedSample.
 """
 
 from __future__ import annotations
@@ -96,6 +121,72 @@ def _hold_last_value_array(
         # else: hold budget exceeded, leave frame as-is (zero-filled).
 
     return out
+
+
+def compute_fill_validity(
+    presence: np.ndarray,
+    max_hold_frames: Optional[int] = None,
+) -> np.ndarray:
+    """
+    Returns a (T,) bool array: True at frame t if hold_last_value_sample
+    would give that frame a legitimate value -- either originally present
+    (presence[t] is True), or successfully held from an earlier valid
+    frame within max_hold_frames. False only for frames with no valid
+    observation to hold from yet (leading dropout before any valid frame
+    appears at all) or where the hold budget was exceeded (frame is left
+    at its original zero-filled value) -- the same two "still garbage"
+    cases _hold_last_value_array itself leaves untouched.
+
+    Mirrors _hold_last_value_array's own has_valid/hold_count bookkeeping
+    exactly, but needs only `presence` (and max_hold_frames) -- never the
+    actual landmark values -- since the fill DECISION at each frame
+    depends only on those two things.
+    """
+    T = presence.shape[0]
+    if max_hold_frames is not None and max_hold_frames < 0:
+        raise ValueError("max_hold_frames must be >= 0 or None")
+
+    validity = np.zeros(T, dtype=bool)
+    has_valid = False
+    hold_count = 0
+
+    for t in range(T):
+        if presence[t]:
+            has_valid = True
+            hold_count = 0
+            validity[t] = True
+            continue
+
+        if not has_valid:
+            continue  # nothing to hold from yet -- stays False
+
+        hold_count += 1
+        if max_hold_frames is None or hold_count <= max_hold_frames:
+            validity[t] = True
+        # else: hold budget exceeded -- stays False
+
+    return validity
+
+
+def compute_fill_validity_sample(
+    sample: ProcessedSample,
+    max_hold_frames: Optional[int] = None,
+) -> LandmarkPresence:
+    """
+    compute_fill_validity() applied to all four of sample.presence's
+    groups. Returns a LandmarkPresence-shaped result -- reusing that
+    existing type because the shape (four (T,) bool arrays, one per
+    group) is identical; this is NOT sample.presence itself and must
+    never be assigned back into a ProcessedSample's `presence` field --
+    it answers a different question ("usable after filling") than
+    presence answers ("originally observed").
+    """
+    return LandmarkPresence(
+        pose=compute_fill_validity(sample.presence.pose, max_hold_frames),
+        left_hand=compute_fill_validity(sample.presence.left_hand, max_hold_frames),
+        right_hand=compute_fill_validity(sample.presence.right_hand, max_hold_frames),
+        face=compute_fill_validity(sample.presence.face, max_hold_frames),
+    )
 
 
 def hold_last_value_sample(

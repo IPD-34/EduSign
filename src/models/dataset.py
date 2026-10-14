@@ -16,6 +16,25 @@ Day 32 additions:
      WLASL samples have no sign_spans concept -- boundary_target is an
      all-zero array of the right length for those, not a crash or a None.
 
+Robustness-layer wiring fix: __getitem__ now runs hold_last_value_sample()
+then normalize_landmarks_sample() on the loaded sample BEFORE
+flatten_frame_features(), in that order (hold-last-value must run first --
+normalization needs valid coordinates to compute head_center/head_size
+from). Previously this module flattened the raw loaded sample directly;
+robustness/hold_last_value.py and robustness/normalisation.py existed and
+were tested but were never actually reached by the live training/inference
+path.
+
+Wiring this in first surfaced a real bug (now fixed): normalize_landmarks_sample
+used to decide frame validity from sample.presence.face alone, which
+hold_last_value_sample deliberately never mutates -- so a hold-filled frame
+was still marked NaN despite holding a real, carried-forward value, which
+then poisoned 100% of a sample's model output via self-attention mixing on
+31/41 real ASLLRP samples. Fixed via
+hold_last_value.compute_fill_validity() + normalize_landmarks_sample's new
+face_validity parameter -- see the inline comment below and both modules'
+docstrings for the full explanation.
+
 Key distinction (per the interface spec, and worth being careful about):
 padding mask != presence flag.
   - A PADDED frame (added just to make the batch rectangular) is fully
@@ -38,6 +57,8 @@ from torch.utils.data import Dataset
 from src.preprocessing.sample_writer import load_sample
 from src.models.feature_utils import flatten_frame_features
 from src.preprocessing.boundary_labels import build_boundary_targets
+from robustness.hold_last_value import compute_fill_validity, hold_last_value_sample
+from robustness.normalisation import normalize_landmarks_sample
 
 
 class SignLanguageDataset(Dataset):
@@ -107,7 +128,71 @@ class SignLanguageDataset(Dataset):
         sample = load_sample(self.npz_paths[idx])
         meta = sample.metadata
 
-        features = flatten_frame_features(sample)  # (T, RAW_FEATURE_DIM)
+        # Wires the Month 1 robustness layer into the live data path:
+        # previously flatten_frame_features ran on the raw loaded sample
+        # (zero-filled at missing frames, un-normalized coordinates) --
+        # hold_last_value_sample() must run BEFORE normalize_landmarks_sample()
+        # here, since normalization needs valid (filled, non-zero) coordinates
+        # to compute head_center/head_size from; running it in the other
+        # order would compute the normalization reference off already-zeroed
+        # frames.
+        #
+        # BUG FIX: normalize_landmarks_sample used to decide "does this frame
+        # have a usable face reference" from sample.presence.face alone --
+        # which hold_last_value_sample deliberately never changes (see that
+        # module's docstring), so a hold-filled frame was STILL marked NaN
+        # even though it now holds a real, carried-forward face value. On
+        # real ASLLRP data this poisoned 31/41 samples down to 100% NaN
+        # model output via self-attention mixing. Fix: compute each frame's
+        # POST-FILL validity (originally present, OR successfully held --
+        # see compute_fill_validity) and pass that to normalize_landmarks_sample
+        # via face_validity, instead of letting it fall back to raw presence.
+        # A frame is still correctly left NaN if hold-last-value itself
+        # couldn't fill it (leading dropout before any valid frame exists).
+        filled = hold_last_value_sample(sample)
+        face_fill_validity = compute_fill_validity(sample.presence.face)
+        normalized = normalize_landmarks_sample(filled, face_validity=face_fill_validity)
+
+        # REMAINING BUG (fixed here): a frame with no valid observation to
+        # hold from AT ALL yet -- leading dropout before the first face was
+        # ever seen -- is still correctly left NaN by normalize_landmarks_sample
+        # (there is no reference to normalize against). But the encoder's
+        # self-attention has no notion of "this timestep is undefined" --
+        # SignEncoder.forward already accepts and applies an attention_mask
+        # (wired to nn.TransformerEncoder's src_key_padding_mask), it was
+        # just never told about anything besides padding. A single NaN
+        # timestep poisons 100% of that sample's output via attention
+        # mixing (confirmed directly: ~0.5% NaN input -> 100% NaN
+        # ctc_log_probs). Fix: mark these timesteps invalid in the SAME
+        # mask that already excludes padding (encoder_attention_mask,
+        # built in collate_fn below) -- standard key-padding-mask usage,
+        # no changes needed to sign_transformer.py/encoder.py itself.
+        #
+        # Checked empirically across all 41 real samples (mismatches: 0/41):
+        # NaN currently only ever comes from face validity (normalize_landmarks_sample
+        # applies one shared valid_frames mask to all four groups) -- pose/
+        # hand dropout never independently produces NaN today. OR-ed across
+        # all four groups anyway (rather than checking pose alone) so this
+        # stays correct if that ever changes.
+        invalid_timestep = (
+            np.isnan(normalized.pose[:, 0, 0])
+            | np.isnan(normalized.face[:, 0, 0])
+            | np.isnan(normalized.left_hand[:, 0, 0])
+            | np.isnan(normalized.right_hand[:, 0, 0])
+        )
+        landmark_validity = ~invalid_timestep  # (T,) bool -- True = safe to attend to/from
+
+        features = flatten_frame_features(normalized)  # (T, RAW_FEATURE_DIM)
+        # Safe placeholder for masked-out timesteps, applied AFTER
+        # landmark_validity is derived from the NaN pattern above (this
+        # must not run before that, or there would be nothing left to
+        # detect). Zeroing is not enough on its own without the mask above:
+        # a masked KEY's attention weight is exactly 0.0, but
+        # 0.0 * NaN == NaN in IEEE float, which would still poison the
+        # weighted sum for every other (valid) position. The mask makes
+        # this timestep's OWN output irrelevant (nothing downstream should
+        # read it); the zeroing makes sure it can't corrupt anyone else's.
+        features = np.nan_to_num(features, nan=0.0, posinf=0.0, neginf=0.0)
         landmarks = torch.tensor(features, dtype=torch.float32)
         T = landmarks.shape[0]
 
@@ -135,6 +220,7 @@ class SignLanguageDataset(Dataset):
             "landmarks": landmarks,          # (T, RAW_FEATURE_DIM)
             "target_tokens": target_tokens,  # (tgt_len,)
             "boundary_target": torch.tensor(boundary_target, dtype=torch.float32),  # (T,)
+            "landmark_validity": torch.tensor(landmark_validity, dtype=torch.bool),  # (T,)
             "video_id": meta.video_id,
             "num_frames": meta.num_frames,   # for mask verification
             "source": meta.source,
@@ -146,11 +232,28 @@ def collate_fn(batch, pad_id=0):
     Pads variable-length landmark sequences, target token sequences,
     and per-timestep boundary targets to the batch's max length.
     Produces:
-      - encoder_attention_mask: True/1 = real frame, False/0 = padding
+      - encoder_attention_mask: True/1 = attend to this timestep,
+        False/0 = do not (padding OR a genuinely never-observed timestep
+        -- see landmark_validity below). Fed directly into
+        SignEncoder's src_key_padding_mask, so both padding and
+        never-observed frames are excluded from self-attention the same
+        way -- neither attended TO nor meaningfully attended FROM.
       - target_padding_mask: True/1 = real token, False/0 = padding
       - boundary_target: padded to max_seq_len, aligned 1:1 with
         landmarks/encoder_attention_mask, NOT with target_tokens --
         this is a per-encoder-timestep label, not a per-gloss-token one.
+
+    encoder_attention_mask used to be True for every real (non-padded)
+    frame unconditionally -- but a frame with genuinely no valid
+    observation yet (leading dropout before hold_last_value_sample has
+    anything to hold from) is left NaN by normalize_landmarks_sample, and
+    that landmarks tensor is now nan_to_num'd to 0.0 in __getitem__ (a
+    real, un-masked zero would look like legitimate data). Excluding it
+    from encoder_attention_mask here -- via each item's own
+    landmark_validity -- is what actually keeps that placeholder zero
+    from being attended to. Without this, self-attention's global mixing
+    turns a single such frame into 100% NaN output for the whole sample
+    (confirmed directly against best_val.pt).
     """
     batch_size = len(batch)
 
@@ -174,7 +277,7 @@ def collate_fn(batch, pad_id=0):
         tgt_len = item["target_tokens"].shape[0]
 
         landmarks_padded[i, :seq_len, :] = item["landmarks"]
-        encoder_attention_mask[i, :seq_len] = True
+        encoder_attention_mask[i, :seq_len] = item["landmark_validity"]
         boundary_target_padded[i, :seq_len] = item["boundary_target"]
 
         target_tokens_padded[i, :tgt_len] = item["target_tokens"]
