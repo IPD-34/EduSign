@@ -1,0 +1,23 @@
+# video
+*.mp4
+*.mov
+*.avi
+*.webm
+# poses
+*.pkl
+# checkpoints
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+ckpt/
+# predictions (contain sentence text)
+pred_*.csv
+# python / env
+__pycache__/
+.venv*/
+.env
+.pytest_cache/
+
+CLAUDE.md
+experiments/*.local.yaml

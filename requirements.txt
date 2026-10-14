@@ -1,0 +1,61 @@
+# EduSign env 1: training / eval / inference server
+# Python 3.10 (also installs on 3.11). Create with: py -3.10 -m venv .venv
+--extra-index-url https://download.pytorch.org/whl/cu121
+
+# --- packaging pin: keeps pkg_resources/distutils shims that torch 2.1 + tensorboard expect
+setuptools==69.5.1
+wheel==0.43.0
+
+# --- core model stack (Uni-Sign's pins; do not change without telling the team) ---
+torch==2.1.1+cu121
+torchvision==0.16.1+cu121
+torchaudio==2.1.1+cu121
+transformers==4.40.0
+tokenizers==0.19.1
+sentencepiece==0.2.0
+accelerate==0.29.2
+huggingface_hub==0.23.4
+safetensors==0.4.3
+einops==0.6.1
+timm==0.9.12                      # [verify] Uni-Sign pins an unreleased dev build
+
+# --- fine-tuning (P2) ---
+peft==0.10.0                      # LoRA                                [verify with transformers 4.40]
+bitsandbytes==0.43.1; sys_platform == "linux"   # 8-bit Adam, Kaggle only
+deepspeed==0.16.3; sys_platform == "linux"      # Uni-Sign pin; Windows has no wheel
+
+# --- numerics / data ---
+numpy==1.26.4
+pandas==2.1.4
+scipy==1.11.4
+scikit-learn==1.3.2
+scikit-image==0.22.0
+opencv-python==4.9.0.80
+decord==0.6.0
+pyyaml==6.0.1
+tqdm==4.66.4
+rich==13.7.1
+
+# --- metrics / plots ---
+sacrebleu==2.2.0                  # same as Uni-Sign so scores match the baseline
+rouge==1.0.1
+matplotlib==3.8.4
+seaborn==0.13.2
+tensorboard==2.15.2
+protobuf==4.25.3
+
+# --- backend + C1 store (P3) ---
+fastapi==0.111.0
+uvicorn[standard]==0.30.1
+websockets==12.0
+pydantic==2.7.4
+httpx==0.27.0
+sqlalchemy==2.0.31
+# DB driver for the C1 store is not decided yet (sqlite needs none; Postgres: psycopg[binary])
+
+# --- dev / CI (everyone) ---
+pytest==8.2.2
+pytest-asyncio==0.23.7
+ruff==0.5.0
+pre-commit==3.7.1
+
