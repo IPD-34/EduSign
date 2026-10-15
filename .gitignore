@@ -22,3 +22,6 @@ __pycache__/
 CLAUDE.md
 experiments/*.local.yaml
 *.onnx
+
+# local copies of licensed dataset files (contain sentence text) - never commit
+local/
