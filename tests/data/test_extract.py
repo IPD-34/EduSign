@@ -4,11 +4,14 @@ Run: pytest tests/data/test_extract.py -s
 The clip is synthetic (written with OpenCV) unless EDUSIGN_TEST_CLIP points to a real .mp4, e.g.
     EDUSIGN_TEST_CLIP=/path/to/clip.mp4 pytest tests/data/test_extract.py -s
 The model tests need the rtmlib lightweight ONNX models (downloaded on first use) and a CUDA onnxruntime;
-set EDUSIGN_TEST_DEVICE=cpu to run them without a GPU. They skip, with the reason, if the models cannot be loaded.
+set EDUSIGN_TEST_DEVICE=cpu to run them without a GPU. They are skipped, with the reason, when the device is cuda and
+no CUDA GPU is visible, or when EDUSIGN_SKIP_MODEL_TESTS=1. If a GPU is visible and the models fail to load, they fail.
 """
 import csv
 import os
 import pickle
+import shutil
+import subprocess
 import sys
 from pathlib import Path
 
@@ -42,15 +45,35 @@ def clip(tmp_path_factory):
     return _make_clip(tmp_path_factory.mktemp("clips") / "tiny.mp4")
 
 
+def _no_cuda_gpu_reason():
+    """Why no CUDA GPU is usable here, or None when one is visible."""
+    import onnxruntime as ort
+    if "CUDAExecutionProvider" not in ort.get_available_providers():
+        return f"onnxruntime has no CUDAExecutionProvider (available: {ort.get_available_providers()})"
+    vis = ex.visible_gpus()
+    if vis is not None and not [v for v in vis if v != "-1"]:
+        return f"CUDA_VISIBLE_DEVICES={os.environ['CUDA_VISIBLE_DEVICES']!r} hides every GPU"
+    # a CUDA-enabled onnxruntime lists the provider even on a machine without a GPU, so also ask the driver
+    smi = shutil.which("nvidia-smi")
+    if smi is None:
+        return "nvidia-smi not found, so no NVIDIA GPU/driver"
+    out = subprocess.run([smi, "-L"], capture_output=True, text=True, timeout=30)
+    if out.returncode != 0 or "GPU" not in out.stdout:
+        return "nvidia-smi -L lists no GPU"
+    return None
+
+
 @pytest.fixture(scope="module")
 def extractor():
+    if os.environ.get("EDUSIGN_SKIP_MODEL_TESTS") == "1":
+        pytest.skip("EDUSIGN_SKIP_MODEL_TESTS=1")
     device = os.environ.get("EDUSIGN_TEST_DEVICE", "cuda")
-    try:
-        return ex.build_extractor(device)
-    except RuntimeError:
-        raise   # CUDA requested but not active: a real failure, not a skip
-    except Exception as e:   # no internet / model download failed
-        pytest.skip(f"RTMW models unavailable: {type(e).__name__}: {e}")
+    if device.startswith("cuda"):
+        reason = _no_cuda_gpu_reason()
+        if reason:
+            pytest.skip(f"model tests need a CUDA GPU (device={device!r}): {reason}. "
+                        f"Set EDUSIGN_TEST_DEVICE=cpu to run them on CPU.")
+    return ex.build_extractor(device)   # no try/except: a visible GPU or an explicit cpu device must load or fail loudly
 
 
 def _check_shapes(data, n_frames=None):
