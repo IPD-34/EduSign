@@ -52,6 +52,20 @@ def test_splits_share_no_article():
         assert not (arts[a] & arts[b]), f"{a}/{b} share articles: {sorted(arts[a] & arts[b])[:5]}"
 
 
+def test_eval300():
+    p = MAN / "eval300.csv"
+    assert p.exists(), f"{p} missing - run python data/make_manifests.py"
+    with open(p, newline="", encoding="utf-8") as f:
+        rd = csv.DictReader(f)
+        cols, rows = rd.fieldnames, list(rd)
+    assert cols == EXPECTED_COLUMNS, f"eval300: columns {cols}"
+    ids = [r["clip_id"] for r in rows]
+    assert len(ids) == 300 and len(set(ids)) == 300, f"eval300: {len(ids)} rows, {len(set(ids))} unique clip_ids"
+    test_ids = {r["clip_id"] for r in load("test")[1]}
+    assert set(ids) <= test_ids, f"eval300: clips not in test split, e.g. {sorted(set(ids) - test_ids)[:3]}"
+    assert all(r["split"] == "test" for r in rows), "eval300: wrong split label"
+
+
 def test_report_counts():
     total = 0
     print()
