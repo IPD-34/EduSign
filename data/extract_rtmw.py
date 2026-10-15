@@ -8,7 +8,8 @@ Existing .pkl files are skipped, so an interrupted run (e.g. a Kaggle session) c
 
 All paths come from the command line, so the same script runs locally and on Kaggle:
     python data/extract_rtmw.py --manifest manifests/eval300.csv --clips <clip_folder> --out <pose_folder>
-Optional: --device cuda|cuda:1|cpu (default cuda; fails loudly if the CUDA provider cannot be created),
+Optional: --device cuda|cuda:N|cpu (default cuda; N indexes the GPUs visible after CUDA_VISIBLE_DEVICES; fails loudly
+          if the CUDA provider cannot be created), --shard i/N (e.g. 0/2 and 1/2 on two GPUs/sessions),
           --det-model / --pose-model <local .onnx> for machines without internet (default: rtmlib downloads and caches them).
 """
 import argparse
@@ -60,19 +61,69 @@ def build_extractor(device="cuda", det_model=None, pose_model=None):
     return wb
 
 
+def cuda_device_index(device):
+    """'cuda' -> 0, 'cuda:N' -> N, anything else -> None. N indexes the GPUs *visible* to the process, i.e. after
+    CUDA_VISIBLE_DEVICES has been applied (so with CUDA_VISIBLE_DEVICES=1 the only GPU is 'cuda' / 'cuda:0')."""
+    if device == "cuda":
+        return 0
+    if device.startswith("cuda:") and device[5:].isdigit():
+        return int(device[5:])
+    return None
+
+
+def visible_gpus(env=None):
+    """Entries of CUDA_VISIBLE_DEVICES (ids or UUIDs), or None when it is unset."""
+    raw = (os.environ if env is None else env).get("CUDA_VISIBLE_DEVICES")
+    return None if raw is None else [t.strip() for t in raw.split(",") if t.strip()]
+
+
+def physical_gpu(device, env=None):
+    """The nvidia-smi id/UUID behind `device`, honouring CUDA_VISIBLE_DEVICES (for utilisation sampling)."""
+    idx = cuda_device_index(device) or 0
+    vis = visible_gpus(env)
+    return str(idx) if vis is None else (vis[idx] if idx < len(vis) else None)
+
+
 def providers_in_use(wb):
     """Providers the live onnxruntime sessions are actually using (first entry is what runs the graph)."""
     return {"detector": wb.det_model.session.get_providers(), "pose": wb.pose_model.session.get_providers()}
 
 
 def assert_on_cuda(wb):
-    """Raise unless both sessions run on CUDAExecutionProvider (no-op for an explicit cpu extractor)."""
-    if not wb.pose_model.device.startswith("cuda"):
+    """Raise unless both sessions run on CUDAExecutionProvider, on the requested device (no-op for a cpu extractor).
+    Works when CUDA_VISIBLE_DEVICES selects one GPU: the device id is the index among visible GPUs, not the physical id."""
+    expected = cuda_device_index(wb.pose_model.device)
+    if expected is None:
         return
-    for name, active in providers_in_use(wb).items():
+    vis = visible_gpus()
+    if vis is not None and expected >= len(vis):
+        raise RuntimeError(f"device {wb.pose_model.device!r} but CUDA_VISIBLE_DEVICES={os.environ['CUDA_VISIBLE_DEVICES']!r} "
+                           f"exposes only {len(vis)} GPU(s); use 'cuda' or 'cuda:<index among visible GPUs>'.")
+    for name, tool in (("detector", wb.det_model), ("pose", wb.pose_model)):
+        active = tool.session.get_providers()
         if not active or active[0] != "CUDAExecutionProvider":
             raise RuntimeError(f"{name} is not running on CUDA (providers: {active}); onnxruntime fell back to CPU. "
                                f"Check the CUDA 12 / cuDNN 9 DLLs or pass --device cpu explicitly.")
+        got = int(tool.session.get_provider_options().get("CUDAExecutionProvider", {}).get("device_id", 0))
+        if got != expected:
+            raise RuntimeError(f"{name} is on CUDA device_id {got}, expected {expected} "
+                               f"(CUDA_VISIBLE_DEVICES={os.environ.get('CUDA_VISIBLE_DEVICES')!r}).")
+
+
+def parse_shard(text):
+    """'i/N' -> (i, N) with 0 <= i < N."""
+    try:
+        i, n = (int(x) for x in text.split("/"))
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"--shard must look like i/N, got {text!r}")
+    if n < 1 or not 0 <= i < n:
+        raise argparse.ArgumentTypeError(f"--shard i/N needs N >= 1 and 0 <= i < N, got {text!r}")
+    return i, n
+
+
+def shard_ids(clip_ids, i=0, n=1):
+    """Sort clip_ids, keep those whose index % n == i."""
+    return [c for k, c in enumerate(sorted(clip_ids)) if k % n == i]
 
 
 def _largest(bboxes):
@@ -129,9 +180,11 @@ def main(argv=None):
     ap.add_argument("--device", default="cuda", help="cuda, cuda:N or cpu (default: cuda)")
     ap.add_argument("--det-model", default=None, help="local YOLOX .onnx (default: rtmlib downloads lightweight)")
     ap.add_argument("--pose-model", default=None, help="local RTMW .onnx (default: rtmlib downloads lightweight)")
+    ap.add_argument("--shard", type=parse_shard, default=(0, 1), metavar="i/N",
+                    help="process only sorted clip_ids with index %% N == i (default 0/1 = all)")
     args = ap.parse_args(argv)
 
-    clip_ids = read_clip_ids(args.manifest)
+    clip_ids = shard_ids(read_clip_ids(args.manifest), *args.shard)
     args.out.mkdir(parents=True, exist_ok=True)
     todo = [c for c in clip_ids if not (args.out / f"{c}.pkl").exists()]
     print(f"{len(clip_ids)} clips in manifest, {len(clip_ids) - len(todo)} already done, {len(todo)} to extract")

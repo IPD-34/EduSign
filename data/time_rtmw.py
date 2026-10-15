@@ -36,14 +36,16 @@ def gpu_name():
 class GpuSampler:
     """Polls nvidia-smi once per second in a background thread while the timed loop runs."""
 
-    def __init__(self):
+    def __init__(self, gpu=None):
+        self.gpu = gpu      # nvidia-smi id/UUID of the GPU in use (nvidia-smi ignores CUDA_VISIBLE_DEVICES)
         self.samples = []   # (utilization %, memory MiB)
         self.raw = []
         self._stop = threading.Event()
         self._t = threading.Thread(target=self._run, daemon=True)
 
     def _run(self):
-        q = ["nvidia-smi", "--query-gpu=utilization.gpu,memory.used", "--format=csv,noheader,nounits"]
+        q = ["nvidia-smi"] + (["-i", self.gpu] if self.gpu else []) + [
+            "--query-gpu=utilization.gpu,memory.used", "--format=csv,noheader,nounits"]
         while not self._stop.is_set():
             try:
                 line = subprocess.run(q, capture_output=True, text=True, timeout=10).stdout.strip().splitlines()[0]
@@ -72,9 +74,12 @@ def main(argv=None):
     ap.add_argument("--det-model", default=None)
     ap.add_argument("--pose-model", default=None)
     ap.add_argument("--report", type=Path, default=ROOT / "docs" / "rtmw_speed.md")
+    ap.add_argument("--shard", type=ex.parse_shard, default=(0, 1), metavar="i/N",
+                    help="time only sorted clip_ids with index %% N == i (default 0/1 = all)")
     args = ap.parse_args(argv)
 
-    present = [c for c in ex.read_clip_ids(args.manifest) if (args.clips / f"{c}.mp4").exists()]
+    ids = ex.shard_ids(ex.read_clip_ids(args.manifest), *args.shard)
+    present = [c for c in ids if (args.clips / f"{c}.mp4").exists()]
     if len(present) < args.n + 1:
         sys.exit(f"need {args.n + 1} clips present in {args.clips} (n timed + 1 warm-up), found {len(present)}")
     picked = random.Random(SEED).sample(present, args.n + 1)
@@ -83,13 +88,14 @@ def main(argv=None):
     wb = ex.build_extractor(args.device, args.det_model, args.pose_model)
     ex.extract_clip(wb, args.clips / f"{warmup}.mp4")   # warm-up, not timed
 
-    idle = GpuSampler()   # idle baseline before the timed run
+    smi_id = ex.physical_gpu(args.device)
+    idle = GpuSampler(smi_id)   # idle baseline before the timed run
     with idle:
         time.sleep(3)
     providers = ex.providers_in_use(wb)
     print(f"providers before timing: {providers}")
     rows = []
-    with GpuSampler() as gpu:
+    with GpuSampler(smi_id) as gpu:
         for cid in clips:
             path = args.clips / f"{cid}.mp4"
             t0 = time.perf_counter()
@@ -118,7 +124,8 @@ def main(argv=None):
         f"- Date: {date.today().isoformat()}",
         f"- Model: rtmlib Wholebody `{ex.MODE}` (YOLOX-tiny + RTMW-dw-l-m 256x192), onnxruntime",
         f"- Device: `{args.device}` ({gpu_name()})",
-        f"- Clips timed: {len(rows)} (seed {SEED}, sampled from `{args.manifest.name}`), 1 extra warm-up clip excluded",
+        f"- Clips timed: {len(rows)} (seed {SEED}, sampled from `{args.manifest.name}`, "
+        f"shard {args.shard[0]}/{args.shard[1]}), 1 extra warm-up clip excluded",
         "- Timed work per clip: video decode + detection + pose for every frame; model load excluded",
         f"- onnxruntime providers in use (before / after the timed run): `{providers}` / `{providers_after}`",
         f"- GPU utilisation from nvidia-smi during the timed run ({len(utils)} samples at 1/s): "
