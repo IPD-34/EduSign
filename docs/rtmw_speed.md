@@ -44,10 +44,13 @@
 
 ## Kaggle T4
 
+Source: figures from Kaggle runs, entered here by hand; not produced by this laptop's `data/time_rtmw.py` run above.
+Model: rtmlib Wholebody `lightweight` (YOLOX-tiny + RTMW-dw-l-m 256x192), onnxruntime.
+
+### Single GPU
+
 - Device: `cuda` (Tesla T4); both the detector and the pose model sessions on `CUDAExecutionProvider`
-- Model: rtmlib Wholebody `lightweight` (YOLOX-tiny + RTMW-dw-l-m 256x192), onnxruntime
 - Clips timed: 20 from `eval300.csv` (seed 42), 1 extra warm-up clip excluded
-- Source: figures from a Kaggle run, entered here by hand; not produced by this laptop's `data/time_rtmw.py` run above
 - GPU utilisation during the timed run: mean 77% (idle: 24%)
 
 | Metric | Value |
@@ -58,5 +61,26 @@
 | Mean seconds per frame | 0.0330 |
 | Total frames | 8892 |
 | Total seconds | 293.6 |
+
+### Two GPUs (`--shard 0/2` and `--shard 1/2`)
+
+- One process per GPU, `CUDA_VISIBLE_DEVICES=0` and `CUDA_VISIBLE_DEVICES=1`
+- The same 16 clips, 8 per shard
+
+| Metric | Shard 0 | Shard 1 |
+|---|---|---|
+| Mean seconds per clip | 15.83 | 13.88 |
+| Mean seconds per frame (per process) | about 0.0338 | about 0.0338 |
+| GPU utilisation | 75% | 75% |
+
+| Run | Wall-clock (16 clips) |
+|---|---|
+| Single GPU | 232.4 s |
+| Two GPUs | 126.6 s |
+| Speed-up | about 1.84x |
+
+The 2-GPU test used only 8 clips per shard, so treat 1.84x as approximate.
+
+### Subset cap
 
 This exceeds the 5 s/clip threshold, so the subset cap is 3k clips.
