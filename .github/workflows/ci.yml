@@ -15,4 +15,4 @@ jobs:
       - name: Install pinned packages
         run: pip install pytest==8.2.2 sacrebleu==2.2.0 rouge==1.0.1 numpy==1.26.4 pandas==2.1.4 scipy==1.11.4 pyyaml==6.0.1
       - name: Run tests
-        run: pytest tests/ -v
+        run: pytest tests/test_*.py -v
