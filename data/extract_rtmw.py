@@ -55,12 +55,24 @@ def build_extractor(device="cuda", det_model=None, pose_model=None):
         warm = np.random.default_rng(0).integers(0, 255, (240, 320, 3), dtype=np.uint8)
         wb.det_model(warm)
         wb.pose_model(warm, bboxes=[[0, 0, 320, 240]])
-        for name, tool in (("detector", wb.det_model), ("pose model", wb.pose_model)):
-            active = tool.session.get_providers()
-            if "CUDAExecutionProvider" not in active:
-                raise RuntimeError(f"{name} is not running on CUDA (providers: {active}). "
-                                   f"Fix the CUDA/cuDNN install or pass --device cpu explicitly.")
+    print(f"providers in use ({device}): {providers_in_use(wb)}", flush=True)
+    assert_on_cuda(wb)
     return wb
+
+
+def providers_in_use(wb):
+    """Providers the live onnxruntime sessions are actually using (first entry is what runs the graph)."""
+    return {"detector": wb.det_model.session.get_providers(), "pose": wb.pose_model.session.get_providers()}
+
+
+def assert_on_cuda(wb):
+    """Raise unless both sessions run on CUDAExecutionProvider (no-op for an explicit cpu extractor)."""
+    if not wb.pose_model.device.startswith("cuda"):
+        return
+    for name, active in providers_in_use(wb).items():
+        if not active or active[0] != "CUDAExecutionProvider":
+            raise RuntimeError(f"{name} is not running on CUDA (providers: {active}); onnxruntime fell back to CPU. "
+                               f"Check the CUDA 12 / cuDNN 9 DLLs or pass --device cpu explicitly.")
 
 
 def _largest(bboxes):
@@ -139,10 +151,15 @@ def main(argv=None):
             if not src.exists():
                 raise FileNotFoundError(src)
             data = extract_clip(wb, src)
-            tmp = args.out / f"{cid}.pkl.tmp"
+            assert_on_cuda(wb)   # a mid-run CPU fallback must stop the job, not silently slow it down
+            tmp =args.out / f"{cid}.pkl.tmp"
             with open(tmp, "wb") as f:
                 pickle.dump(data, f, protocol=pickle.HIGHEST_PROTOCOL)
             tmp.replace(args.out / f"{cid}.pkl")   # atomic: a half-written .pkl never counts as done
+        except RuntimeError as e:
+            if "not running on CUDA" in str(e):
+                raise
+            failed.append((cid, f"{type(e).__name__}: {e}"))
         except Exception as e:   # keep going; report everything at the end
             failed.append((cid, f"{type(e).__name__}: {e}"))
     print(f"done: {len(todo) - len(failed)} written, {len(failed)} failed")

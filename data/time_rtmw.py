@@ -10,6 +10,7 @@ import random
 import statistics
 import subprocess
 import sys
+import threading
 import time
 from datetime import date
 from pathlib import Path
@@ -32,6 +33,36 @@ def gpu_name():
         return "n/a"
 
 
+class GpuSampler:
+    """Polls nvidia-smi once per second in a background thread while the timed loop runs."""
+
+    def __init__(self):
+        self.samples = []   # (utilization %, memory MiB)
+        self.raw = []
+        self._stop = threading.Event()
+        self._t = threading.Thread(target=self._run, daemon=True)
+
+    def _run(self):
+        q = ["nvidia-smi", "--query-gpu=utilization.gpu,memory.used", "--format=csv,noheader,nounits"]
+        while not self._stop.is_set():
+            try:
+                line = subprocess.run(q, capture_output=True, text=True, timeout=10).stdout.strip().splitlines()[0]
+                util, mem = (float(x) for x in line.split(","))
+                self.samples.append((util, mem))
+                self.raw.append(line)
+            except Exception:
+                pass
+            self._stop.wait(1.0)
+
+    def __enter__(self):
+        self._t.start()
+        return self
+
+    def __exit__(self, *exc):
+        self._stop.set()
+        self._t.join()
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--manifest", required=True, type=Path)
@@ -52,14 +83,32 @@ def main(argv=None):
     wb = ex.build_extractor(args.device, args.det_model, args.pose_model)
     ex.extract_clip(wb, args.clips / f"{warmup}.mp4")   # warm-up, not timed
 
+    idle = GpuSampler()   # idle baseline before the timed run
+    with idle:
+        time.sleep(3)
+    providers = ex.providers_in_use(wb)
+    print(f"providers before timing: {providers}")
     rows = []
-    for cid in clips:
-        path = args.clips / f"{cid}.mp4"
-        t0 = time.perf_counter()
-        data = ex.extract_clip(wb, path)
-        dt = time.perf_counter() - t0
-        rows.append((cid, len(data["keypoints"]), dt))
-        print(f"{cid}: {len(data['keypoints'])} frames, {dt:.2f}s")
+    with GpuSampler() as gpu:
+        for cid in clips:
+            path = args.clips / f"{cid}.mp4"
+            t0 = time.perf_counter()
+            data = ex.extract_clip(wb, path)
+            dt = time.perf_counter() - t0
+            ex.assert_on_cuda(wb)   # fail loudly on a mid-run CPU fallback
+            rows.append((cid, len(data["keypoints"]), dt))
+            print(f"{cid}: {len(data['keypoints'])} frames, {dt:.2f}s")
+    providers_after = ex.providers_in_use(wb)
+    print(f"providers after timing:  {providers_after}")
+    utils = [s[0] for s in gpu.samples]
+    idle_utils = [s[0] for s in idle.samples]
+    print(f"nvidia-smi during timed run ({len(utils)} samples, 1/s; columns: util %, memory MiB):")
+    for line in gpu.raw[:5] + (["..."] if len(gpu.raw) > 10 else []) + gpu.raw[-5:]:
+        print("  ", line)
+    if not utils:
+        sys.exit("no nvidia-smi samples collected - cannot confirm GPU utilisation")
+    print(f"GPU utilisation: mean {statistics.mean(utils):.0f}%, max {max(utils):.0f}% "
+          f"(idle before run: {statistics.mean(idle_utils) if idle_utils else float('nan'):.0f}%)")
 
     secs = [r[2] for r in rows]
     frames = sum(r[1] for r in rows)
@@ -71,6 +120,11 @@ def main(argv=None):
         f"- Device: `{args.device}` ({gpu_name()})",
         f"- Clips timed: {len(rows)} (seed {SEED}, sampled from `{args.manifest.name}`), 1 extra warm-up clip excluded",
         "- Timed work per clip: video decode + detection + pose for every frame; model load excluded",
+        f"- onnxruntime providers in use (before / after the timed run): `{providers}` / `{providers_after}`",
+        f"- GPU utilisation from nvidia-smi during the timed run ({len(utils)} samples at 1/s): "
+        f"mean {statistics.mean(utils):.0f}%, max {max(utils):.0f}%, "
+        f"memory {min(s[1] for s in gpu.samples):.0f}-{max(s[1] for s in gpu.samples):.0f} MiB "
+        f"(idle before run: {statistics.mean(idle_utils) if idle_utils else float('nan'):.0f}%)",
         "",
         "| Metric | Value |",
         "|---|---|",
