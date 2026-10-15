@@ -69,7 +69,7 @@ def test_main_processes_only_its_shard(tmp_path, monkeypatch):
     for c in ids:
         (clips / f"{c}.mp4").write_bytes(b"x")
     monkeypatch.setattr(ex, "build_extractor", lambda *a, **k: object())
-    monkeypatch.setattr(ex, "extract_clip", lambda wb, p: {"keypoints": [], "scores": []})
+    monkeypatch.setattr(ex, "extract_clip", lambda wb, p: {"keypoints": [], "scores": [], "n_frames": 0})
     monkeypatch.setattr(ex, "assert_on_cuda", lambda wb: None)
     out = tmp_path / "out"
     written = []

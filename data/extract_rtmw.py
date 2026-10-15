@@ -2,7 +2,11 @@
 
 For each manifest row, reads <clips>/<clip_id>.mp4 and writes <out>/<clip_id>.pkl:
     {"keypoints": [ndarray (1, 133, 2) float32, ...],   # one per frame, x/frame_width, y/frame_height
-     "scores":    [ndarray (1, 133)    float32, ...]}   # one per frame
+     "scores":    [ndarray (1, 133)    float32, ...],   # one per frame
+     "n_frames":  int}                                   # frame count of the original clip
+Frames are counted with a grab() pass; clips with n <= 256 keep every frame, longer clips keep the 256 frames with
+index (i*(n-1))//255, i = 0..255 (first and last frame included). Pose runs only on kept frames. Each clip's
+"<clip_id>,<n_frames>" is appended to <out>/frame_counts.csv.
 Several people detected -> the one with the largest bounding box is kept. None detected -> zeros for both.
 Existing .pkl files are skipped, so an interrupted run (e.g. a Kaggle session) can simply be restarted.
 
@@ -24,6 +28,8 @@ import numpy as np
 
 NUM_KPTS = 133
 MODE = "lightweight"
+MAX_FRAMES = 256   # clips longer than this are subsampled evenly (see keep_indices)
+COUNTS_FILE = "frame_counts.csv"
 
 
 def _expose_pip_cuda_dlls():
@@ -140,28 +146,59 @@ def extract_frame(wb, frame):
     return kpts.astype(np.float32), scores.astype(np.float32)
 
 
-def extract_clip(wb, video_path):
+def count_frames(video_path):
+    """Number of frames by decoding through the whole file with grab() (CAP_PROP_FRAME_COUNT is not trusted)."""
+    cap = cv2.VideoCapture(str(video_path))
+    if not cap.isOpened():
+        raise IOError(f"cannot open {video_path}")
+    n = 0
+    try:
+        while cap.grab():
+            n += 1
+    finally:
+        cap.release()
+    return n
+
+
+def keep_indices(n, max_frames=MAX_FRAMES):
+    """All frames if n <= max_frames, else max_frames indices (i*(n-1))//(max_frames-1), integer arithmetic only."""
+    if n <= max_frames:
+        return list(range(n))
+    return [(i * (n - 1)) // (max_frames - 1) for i in range(max_frames)]
+
+
+def extract_clip(wb, video_path, max_frames=MAX_FRAMES):
+    n = count_frames(video_path)
+    if n == 0:
+        raise IOError(f"no frames decoded from {video_path}")
+    keep = keep_indices(n, max_frames)
     cap = cv2.VideoCapture(str(video_path))
     if not cap.isOpened():
         raise IOError(f"cannot open {video_path}")
     keypoints, scores = [], []
     try:
-        while True:
-            ok, frame = cap.read()
-            if not ok:
+        i = j = 0
+        while j < len(keep):
+            if not cap.grab():
                 break
-            h, w = frame.shape[:2]
-            k, s = extract_frame(wb, frame)
-            k = k.copy()
-            k[..., 0] /= w
-            k[..., 1] /= h
-            keypoints.append(k)
-            scores.append(s)
+            if i == keep[j]:   # keep is strictly increasing; detection and pose run only on kept frames
+                ok, frame = cap.retrieve()
+                if not ok:
+                    raise IOError(f"cannot decode frame {i} of {video_path}")
+                h, w = frame.shape[:2]
+                k, s = extract_frame(wb, frame)
+                k = k.copy()
+                k[..., 0] /= w
+                k[..., 1] /= h
+                keypoints.append(k)
+                scores.append(s)
+                j += 1
+            i += 1
     finally:
         cap.release()
-    if not keypoints:
-        raise IOError(f"no frames decoded from {video_path}")
-    return {"keypoints": keypoints, "scores": scores}
+    if len(keypoints) != len(keep):
+        raise IOError(f"{video_path}: decoded {i} frames on the second pass, counted {n} on the first")
+    return {"keypoints": keypoints, "scores": scores, "n_frames": n}
 
 
 def read_clip_ids(manifest):
@@ -191,6 +228,13 @@ def main(argv=None):
     if not todo:
         return 0
 
+    counts_file = args.out / COUNTS_FILE
+    try:   # exclusive create, so shards writing to the same folder cannot both write the header
+        with open(counts_file, "x", newline="", encoding="utf-8") as f:
+            f.write("clip_id,n_frames\n")
+    except FileExistsError:
+        pass
+
     wb = build_extractor(args.device, args.det_model, args.pose_model)
     failed = []
     try:
@@ -205,10 +249,12 @@ def main(argv=None):
                 raise FileNotFoundError(src)
             data = extract_clip(wb, src)
             assert_on_cuda(wb)   # a mid-run CPU fallback must stop the job, not silently slow it down
-            tmp =args.out / f"{cid}.pkl.tmp"
+            tmp = args.out / f"{cid}.pkl.tmp"
             with open(tmp, "wb") as f:
                 pickle.dump(data, f, protocol=pickle.HIGHEST_PROTOCOL)
             tmp.replace(args.out / f"{cid}.pkl")   # atomic: a half-written .pkl never counts as done
+            with open(counts_file, "a", newline="", encoding="utf-8") as f:   # after the pkl; n_frames is also in the pkl
+                f.write(f"{cid},{data['n_frames']}\n")
         except RuntimeError as e:
             if "not running on CUDA" in str(e):
                 raise

@@ -54,12 +54,13 @@ def extractor():
 
 
 def _check_shapes(data, n_frames=None):
-    assert set(data) == {"keypoints", "scores"}
+    assert set(data) == {"keypoints", "scores", "n_frames"}
     kp, sc = data["keypoints"], data["scores"]
     assert isinstance(kp, list) and isinstance(sc, list)
     assert len(kp) == len(sc) and len(kp) > 0
+    assert isinstance(data["n_frames"], int) and len(kp) == min(data["n_frames"], ex.MAX_FRAMES)
     if n_frames is not None:
-        assert len(kp) == n_frames
+        assert data["n_frames"] == n_frames
     for k, s in zip(kp, sc):
         assert k.shape == (1, 133, 2), k.shape
         assert s.shape == (1, 133), s.shape
@@ -117,6 +118,9 @@ def test_cli_writes_one_pkl_per_clip(extractor, clip, tmp_path):
     rc = ex.main(["--manifest", str(manifest), "--clips", str(clips), "--out", str(out),
                   "--device", os.environ.get("EDUSIGN_TEST_DEVICE", "cuda")])
     assert rc == 0
-    assert sorted(p.name for p in out.iterdir()) == ["a.pkl"]
+    assert sorted(p.name for p in out.iterdir()) == ["a.pkl", "frame_counts.csv"]
+    with open(out / "frame_counts.csv", newline="") as f:
+        rows = list(csv.reader(f))
+    assert rows[0] == ["clip_id", "n_frames"] and len(rows) == 2 and rows[1][0] == "a" and int(rows[1][1]) > 0
     with open(out / "a.pkl", "rb") as f:
         _check_shapes(pickle.load(f))
