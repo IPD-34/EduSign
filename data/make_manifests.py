@@ -10,6 +10,8 @@ Output (manifests/{train,val,test}.csv): clip_id, article_id, signer_id, split
 Split: by ARTICLE, seed 42, 80/10/10 (articles, not clips), so no article appears in two splits.
 
 Also writes manifests/eval300.csv: 300 clips sampled uniformly at random (seed 42) from the test split, same columns.
+And nested train subsets manifests/train_{500,1k,2k,3k}.csv: train clip_ids sorted, shuffled once with seed 42, the
+first 500/1000/2000/3000 taken (each file is a prefix of the next, rows kept in shuffled order), same columns.
 
 Usage (from the repo root):  python data/make_manifests.py
 """
@@ -27,6 +29,7 @@ FRACTIONS = (0.8, 0.1, 0.1)   # train, val, test (of articles)
 NAME_RE = re.compile(r"^\d+-(\d+)(?:&[^_]*)?_\d+_\d+\.mp4$")   # <hash>-<article_id>[&junk]_<sec>_<sent>.mp4
 FIELDS = ["clip_id", "article_id", "signer_id", "split"]
 EVAL_N = 300   # manifests/eval300.csv: uniform random sample of test clips, same seed
+SUBSETS = (("train_500", 500), ("train_1k", 1000), ("train_2k", 2000), ("train_3k", 3000))   # nested train subsets
 
 
 def read_index(path: Path):
@@ -76,6 +79,8 @@ def main():
         print(f"{split:5s} rows={len(sel):6d} articles={len(parts[split]):4d} signers={len({r[2] for r in sel}):3d}")
         if split == "test":
             test_rows = sel
+        elif split == "train":
+            train_rows = sel
     if len(test_rows) < EVAL_N:
         sys.exit(f"test split has only {len(test_rows)} clips, need {EVAL_N} for eval300 - not guessing, stopping.")
     sample = sorted(random.Random(SEED).sample(test_rows, EVAL_N), key=lambda r: r[0])   # uniform over clips, no replacement
@@ -84,6 +89,18 @@ def main():
         w.writerow(FIELDS)
         w.writerows((cid, aid, sid, "test") for cid, aid, sid in sample)
     print(f"eval300 rows={len(sample):4d} articles={len({r[1] for r in sample}):4d} signers={len({r[2] for r in sample}):3d}")
+
+    if len(train_rows) < SUBSETS[-1][1]:
+        sys.exit(f"train split has only {len(train_rows)} clips, need {SUBSETS[-1][1]} - not guessing, stopping.")
+    shuffled = sorted(train_rows, key=lambda r: r[0])   # fixed starting order, then one shuffle
+    random.Random(SEED).shuffle(shuffled)
+    for name, k in SUBSETS:
+        sub = shuffled[:k]
+        with open(OUT / f"{name}.csv", "w", newline="", encoding="utf-8") as f:
+            w = csv.writer(f)
+            w.writerow(FIELDS)
+            w.writerows((cid, aid, sid, "train") for cid, aid, sid in sub)
+        print(f"{name:9s} rows={len(sub):5d} articles={len({r[1] for r in sub}):4d} signers={len({r[2] for r in sub}):3d}")
 
 
 if __name__ == "__main__":

@@ -66,6 +66,45 @@ def test_eval300():
     assert all(r["split"] == "test" for r in rows), "eval300: wrong split label"
 
 
+SUBSETS = ("train_500", "train_1k", "train_2k", "train_3k")
+SUBSET_SIZES = {"train_500": 500, "train_1k": 1000, "train_2k": 2000, "train_3k": 3000}
+
+
+def _ids(name):
+    return [r["clip_id"] for r in load(name)[1]]
+
+
+def test_train_subsets_schema_and_sizes():
+    for name in SUBSETS:
+        cols, rows = load(name)
+        assert cols == EXPECTED_COLUMNS, f"{name}: columns {cols}"
+        assert len(rows) == SUBSET_SIZES[name], f"{name}: {len(rows)} rows"
+        assert all(r["split"] == "train" for r in rows), f"{name}: wrong split label"
+        assert not [c for c in cols if any(w in c.lower() for w in FORBIDDEN_WORDS)], f"{name}: text-like column"
+
+
+def test_train_subsets_unique_and_nested():
+    for name in SUBSETS:
+        ids = _ids(name)
+        assert len(ids) == len(set(ids)), f"{name}: duplicate clip_ids"
+    for small, big in zip(SUBSETS, SUBSETS[1:]):
+        assert set(_ids(small)) <= set(_ids(big)), f"{small} is not inside {big}"
+        assert _ids(big)[:len(_ids(small))] == _ids(small), f"{small} is not a prefix of {big}"
+
+
+def test_train_subsets_only_train_clips_and_no_leakage():
+    train = {r["clip_id"]: r for r in load("train")[1]}
+    other = {n: set(_ids(n)) for n in ("val", "test", "eval300")}
+    for name in SUBSETS:
+        for r in load(name)[1]:
+            assert r["clip_id"] in train, f"{name}: {r['clip_id']} not in train"
+            t = train[r["clip_id"]]
+            assert (r["article_id"], r["signer_id"]) == (t["article_id"], t["signer_id"]), f"{name}: row differs from train"
+        for o, ids in other.items():
+            shared = set(_ids(name)) & ids
+            assert not shared, f"{name} shares {len(shared)} clips with {o}, e.g. {sorted(shared)[:3]}"
+
+
 def test_report_counts():
     total = 0
     print()
@@ -74,6 +113,10 @@ def test_report_counts():
         total += len(rows)
         print(f"{s:5s} rows={len(rows):6d} articles={len({r['article_id'] for r in rows}):4d} signers={len({r['signer_id'] for r in rows}):3d}")
     print(f"total rows={total}")
+    for name in SUBSETS:
+        rows = load(name)[1]
+        print(f"{name:9s} rows={len(rows):5d} articles={len({r['article_id'] for r in rows}):4d} "
+              f"signers={len({r['signer_id'] for r in rows}):3d}")
 
 
 if __name__ == "__main__":
