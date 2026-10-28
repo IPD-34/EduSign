@@ -12,11 +12,17 @@ Percentiles use numpy's default linear interpolation and are computed on train c
 True/False; rows are sorted by clip_id, so the output is deterministic. Sentences are read one row at a time and only
 their word count and the two regex flags are kept; no sentence text is printed or written.
 
+Also writes manifests/edge_candidates_test.csv (next to --out): for each text flag (has_digit, has_acronym,
+long_sentence, short_sentence) up to 50 clips sampled uniformly at random (seed 42, per flag, from the clips sorted by
+clip_id) from the TEST split only. Columns clip_id, article_id, signer_id, split, flag; rows ordered by flag, then
+clip_id. A clip that has several flags appears once per flag. Fewer than 50 are written if the test split has fewer.
+
     python data/make_edge_flags.py
 Options: --videos <csv> (default local/videos.csv), --manifests <dir> (default manifests), --out <csv>.
 """
 import argparse
 import csv
+import random
 import re
 import sys
 from pathlib import Path
@@ -29,6 +35,10 @@ FIELDS = ["clip_id", "article_id", "signer_id", "split", "has_digit", "has_acron
 DIGIT = re.compile(r"\d")
 ACRONYM = re.compile(r"(?<![A-Za-z])[A-Z]{2,}(?![A-Za-z])")
 LONG_PCT, SHORT_PCT = 90, 10
+SEED = 42
+CANDIDATES_PER_FLAG = 50
+CANDIDATE_FIELDS = ["clip_id", "article_id", "signer_id", "split", "flag"]
+TEXT_FLAGS = ("has_digit", "has_acronym", "long_sentence", "short_sentence")   # columns 4..7 of the flag rows
 
 
 def read_manifests(manifest_dir):
@@ -83,6 +93,16 @@ def build_flags(manifest_rows, feats):
     return out, hi, lo
 
 
+def build_candidates(rows, n=CANDIDATES_PER_FLAG, seed=SEED):
+    """Up to n test-split clips per text flag: [(clip_id, article_id, signer_id, split, flag)], ordered by flag, clip_id."""
+    out = []
+    for k, flag in enumerate(TEXT_FLAGS):
+        pool = sorted((r for r in rows if r[3] == "test" and r[4 + k]), key=lambda r: r[0])
+        picked = random.Random(seed).sample(pool, min(n, len(pool)))
+        out.extend((r[0], r[1], r[2], r[3], flag) for r in sorted(picked, key=lambda r: r[0]))
+    return out, {flag: sum(1 for r in rows if r[3] == "test" and r[4 + k]) for k, flag in enumerate(TEXT_FLAGS)}
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--videos", type=Path, default=ROOT / "local" / "videos.csv")
@@ -108,10 +128,22 @@ def main(argv=None):
         w.writerows(rows)
     tmp.replace(out_path)
 
+    cand, available = build_candidates(rows)
+    cand_path = out_path.with_name("edge_candidates_test.csv")
+    ctmp = cand_path.with_name(cand_path.name + ".tmp")
+    with open(ctmp, "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(CANDIDATE_FIELDS)
+        w.writerows(cand)
+    ctmp.replace(cand_path)
+
     print(f"train word-count percentiles: p{LONG_PCT}={hi:g} (long_sentence: > this), p{SHORT_PCT}={lo:g} (short_sentence: < this)")
     print(f"wrote {len(rows)} rows to {out_path}")
     for name, col in (("has_digit", 4), ("has_acronym", 5), ("long_sentence", 6), ("short_sentence", 7)):
         print(f"  {name:15s} {sum(r[col] for r in rows):6d} ({100 * sum(r[col] for r in rows) / len(rows):.1f}%)")
+    print(f"wrote {len(cand)} candidate rows to {cand_path} (test split only, up to {CANDIDATES_PER_FLAG} per flag)")
+    for flag in TEXT_FLAGS:
+        print(f"  {flag:15s} {sum(1 for c in cand if c[4] == flag):3d} sampled of {available[flag]:5d} in test")
     return 0
 
 

@@ -200,3 +200,126 @@ def test_real_output_regenerates_identically(tmp_path):
     out = tmp_path / "again.csv"
     assert mf.main(["--out", str(out)]) == 0
     assert out.read_bytes() == (MAN / "edge_text_flags.csv").read_bytes(), "output is not deterministic / is stale"
+
+
+# ---------------------------------------------------------------- manifests/edge_candidates_test.csv
+CAND_COLUMNS = ["clip_id", "article_id", "signer_id", "split", "flag"]
+TEXT_FLAG_NAMES = ["has_digit", "has_acronym", "long_sentence", "short_sentence"]
+
+
+def _big_dataset(tmp_path):
+    """train: 1..20 words (sets the percentiles). val and test both hold flagged clips, so a split leak would show.
+    test: 70 with digits, 20 with acronyms, 60 long, 7 short (and some clips carry several flags)."""
+    train = {f"t{n:02d}": _words(n) for n in range(1, 21)}
+    val = {f"v{i:02d}": f"Val clip {i} with DNA and a very long tail " + "w " * 40 for i in range(15)}
+    test = {}
+    for i in range(70):
+        test[f"x{i:03d}"] = f"Measured {i} samples today"            # digit
+    for i in range(20):
+        test[f"y{i:03d}"] = "The NASA team met"                       # acronym only
+    for i in range(60):
+        test[f"z{i:03d}"] = _words(60)                                # long only
+    for i in range(7):
+        test[f"s{i:03d}"] = "One"                                     # short only
+    for i in range(10):
+        test[f"m{i:03d}"] = "NASA 2 " + "w " * 50                     # digit + acronym + long
+    d = tmp_path / "man"
+    d.mkdir(parents=True, exist_ok=True)
+    for split, clips in (("train", train), ("val", val), ("test", test)):
+        with open(d / f"{split}.csv", "w", newline="") as f:
+            w = csv.writer(f)
+            w.writerow(["clip_id", "article_id", "signer_id", "split"])
+            for i, cid in enumerate(sorted(clips)):
+                w.writerow([cid, str(100 + i), f"P{i % 5}", split])
+    videos = tmp_path / "videos.csv"
+    with open(videos, "w", newline="", encoding="utf-8-sig") as f:
+        w = csv.writer(f)
+        w.writerow(VIDEO_HEADER)
+        for cid, text in sorted({**train, **val, **test}.items()):
+            w.writerow(["P9", "1", "0", "0", f"{cid}.mp4", "5.0", text])
+    return d, videos, set(train), set(val), set(test)
+
+
+def _run_big(tmp_path, name="flags.csv"):
+    d, videos, train, val, test = _big_dataset(tmp_path)
+    out = tmp_path / name
+    assert mf.main(["--videos", str(videos), "--manifests", str(d), "--out", str(out)]) == 0
+    cand = out.with_name("edge_candidates_test.csv")
+    with open(cand, newline="") as f:
+        rd = csv.DictReader(f)
+        rows = list(rd)
+        return rd.fieldnames, rows, cand, out, (train, val, test)
+
+
+def test_candidates_only_test_clips_and_at_most_50_per_flag(tmp_path):
+    cols, rows, _, _, (train, val, test) = _run_big(tmp_path)
+    assert cols == CAND_COLUMNS
+    assert rows and all(r["split"] == "test" for r in rows)
+    ids = {r["clip_id"] for r in rows}
+    assert ids <= test and not ids & train and not ids & val, "candidates must come from the test split only"
+    for flag in TEXT_FLAG_NAMES:
+        n = sum(r["flag"] == flag for r in rows)
+        assert n <= 50, f"{flag}: {n} candidates"
+    assert {r["flag"] for r in rows} == set(TEXT_FLAG_NAMES)
+
+
+def test_candidates_counts_when_pool_is_larger_or_smaller_than_50(tmp_path):
+    _, rows, _, flags_out, _ = _run_big(tmp_path)
+    by_flag = {f: [r for r in rows if r["flag"] == f] for f in TEXT_FLAG_NAMES}
+    assert len(by_flag["has_digit"]) == 50        # 80 test clips have a digit
+    assert len(by_flag["long_sentence"]) == 50    # 70 test clips are long
+    assert len(by_flag["has_acronym"]) == 30      # only 30 exist: all of them are taken
+    assert len(by_flag["short_sentence"]) == 7    # only 7 exist
+    assert len({r["clip_id"] for r in by_flag["has_acronym"]}) == 30
+    for f in TEXT_FLAG_NAMES:
+        assert len({r["clip_id"] for r in by_flag[f]}) == len(by_flag[f]), f"{f}: a clip is listed twice"
+
+
+def test_candidates_really_have_their_flag(tmp_path):
+    _, rows, _, flags_out, _ = _run_big(tmp_path)
+    col = dict(zip(TEXT_FLAG_NAMES, ["has_digit", "has_acronym", "long_sentence", "short_sentence"]))
+    with open(flags_out, newline="") as f:
+        flagged = {r["clip_id"]: r for r in csv.DictReader(f)}
+    for r in rows:
+        assert flagged[r["clip_id"]][col[r["flag"]]] == "True"
+        assert flagged[r["clip_id"]]["split"] == "test"
+        assert (flagged[r["clip_id"]]["article_id"], flagged[r["clip_id"]]["signer_id"]) == (r["article_id"], r["signer_id"])
+
+
+def test_candidates_are_seeded_deterministic_and_not_just_the_first_50(tmp_path):
+    _, rows1, cand1, _, _ = _run_big(tmp_path, "a.csv")
+    _, rows2, cand2, _, _ = _run_big(tmp_path / "again", "b.csv")
+    assert cand1.read_bytes() == cand2.read_bytes()
+    digits = [r["clip_id"] for r in rows1 if r["flag"] == "has_digit"]
+    assert digits == sorted(digits)
+    pool = sorted(f"x{i:03d}" for i in range(70)) + sorted(f"m{i:03d}" for i in range(10))
+    assert digits != sorted(pool)[:50], "sample must be random, not the first 50 by clip_id"
+
+
+def test_candidates_contain_no_text(tmp_path, capsys):
+    cols, rows, cand, _, _ = _run_big(tmp_path)
+    assert cols == CAND_COLUMNS and not [c for c in cols if any(w in c.lower() for w in TEXT_LIKE)]
+    blob = cand.read_text() + capsys.readouterr().out
+    for fragment in ("samples today", "NASA team met", "Val clip"):
+        assert fragment not in blob
+
+
+def test_real_candidates_are_test_only_at_most_50_per_flag_and_agree_with_flags():
+    p = MAN / "edge_candidates_test.csv"
+    assert p.exists(), f"{p} missing - run python data/make_edge_flags.py"
+    with open(p, newline="", encoding="utf-8") as f:
+        rd = csv.DictReader(f)
+        assert rd.fieldnames == CAND_COLUMNS
+        rows = list(rd)
+    split_of = {}
+    for split in ("train", "val", "test"):
+        with open(MAN / f"{split}.csv", newline="", encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                split_of[r["clip_id"]] = split
+    assert all(split_of[r["clip_id"]] == "test" and r["split"] == "test" for r in rows)
+    assert not [r for r in rows if split_of[r["clip_id"]] in ("train", "val")]
+    for flag in TEXT_FLAG_NAMES:
+        assert 0 < sum(r["flag"] == flag for r in rows) <= 50
+    _, flagged = _real_flags()
+    flagged = {r["clip_id"]: r for r in flagged}
+    assert all(flagged[r["clip_id"]][r["flag"]] == "True" for r in rows)
