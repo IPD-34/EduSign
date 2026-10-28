@@ -58,7 +58,7 @@ def main():
     ok = skipped = 0
     missing, failed = [], []
     nbytes, t0 = 0, time.time()
-    with RemoteZip(a.url, timeout=60) as rz:
+    with RemoteZip(a.url, timeout=60, support_suffix_range=False) as rz:
         names = set(rz.namelist())
         for i, cid in enumerate(ids, 1):
             dest = out / f"{cid}.mp4"
