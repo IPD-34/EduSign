@@ -7,6 +7,7 @@ For each manifest row, reads <clips>/<clip_id>.mp4 and writes <out>/<clip_id>.pk
 Frames are counted with a grab() pass; clips with n <= 256 keep every frame, longer clips keep the 256 frames with
 index (i*(n-1))//255, i = 0..255 (first and last frame included). Pose runs only on kept frames. Each clip's
 "<clip_id>,<n_frames>" is appended to <out>/frame_counts.csv.
+--stats additionally writes <out>/clip_stats.csv (one row per clip; see compute_clip_stats for the definitions).
 Several people detected -> the one with the largest bounding box is kept. None detected -> zeros for both.
 Existing .pkl files are skipped, so an interrupted run (e.g. a Kaggle session) can simply be restarted.
 
@@ -30,6 +31,13 @@ NUM_KPTS = 133
 MODE = "lightweight"
 MAX_FRAMES = 256   # clips longer than this are subsampled evenly (see keep_indices)
 COUNTS_FILE = "frame_counts.csv"
+STATS_FILE = "clip_stats.csv"
+# COCO-WholeBody 133 layout (rtmlib/visualization/skeleton/coco133.py; to_openpose=False)
+LEFT_WRIST, RIGHT_WRIST = 9, 10
+LEFT_HAND, RIGHT_HAND = slice(91, 112), slice(112, 133)   # 21 points each, roots at 91 and 112
+HAND_LOW_CONF = 0.3
+STATS_FIELDS = ["clip_id", "n_frames", "fps", "width", "height", "frames_no_person_frac", "max_persons_detected",
+                "left_hand_mean_score", "right_hand_mean_score", "hand_low_conf_frac", "left_path_len", "right_path_len"]
 
 
 def _expose_pip_cuda_dlls():
@@ -137,13 +145,47 @@ def _largest(bboxes):
     return bboxes[int(np.argmax(areas))]
 
 
-def extract_frame(wb, frame):
-    """Return (keypoints (1,133,2), scores (1,133)) in pixel coordinates; zeros if no person is detected."""
+def _detect_and_pose(wb, frame):
+    """(keypoints (1,133,2), scores (1,133), number of person boxes the detector returned); pixel coordinates."""
     bboxes = wb.det_model(frame)
     if bboxes is None or len(bboxes) == 0:
-        return np.zeros((1, NUM_KPTS, 2), np.float32), np.zeros((1, NUM_KPTS), np.float32)
+        return np.zeros((1, NUM_KPTS, 2), np.float32), np.zeros((1, NUM_KPTS), np.float32), 0
     kpts, scores = wb.pose_model(frame, bboxes=[_largest(bboxes)])   # one bbox -> exactly one person
-    return kpts.astype(np.float32), scores.astype(np.float32)
+    return kpts.astype(np.float32), scores.astype(np.float32), len(bboxes)
+
+
+def extract_frame(wb, frame):
+    """Return (keypoints (1,133,2), scores (1,133)) in pixel coordinates; zeros if no person is detected."""
+    return _detect_and_pose(wb, frame)[:2]
+
+
+def compute_clip_stats(keypoints, scores, n_boxes, n_frames, fps, width, height):
+    """Per-clip summary from values the frame loop already produced (no model passes). Everything is over the kept
+    frames and uses the saved arrays, so frames with no person count with their zero scores/keypoints:
+      frames_no_person_frac  fraction of kept frames where the detector returned no box
+      max_persons_detected   largest number of boxes on any kept frame
+      left/right_hand_mean_score  mean over kept frames of the mean score of that hand's 21 keypoints
+      hand_low_conf_frac     fraction of kept frames whose mean score over both hands' 42 keypoints is < 0.3
+      left/right_path_len    sum of Euclidean wrist (keypoints 9 / 10) movement in normalised coordinates between
+                             consecutive kept frames that both have a person (pairs touching a no-person frame are
+                             skipped; on capped clips this is the path of the subsampled trajectory)"""
+    k = np.concatenate(keypoints, axis=0)          # (T, 133, 2) normalised
+    s = np.concatenate(scores, axis=0)             # (T, 133)
+    has = np.asarray(n_boxes) > 0
+    pair = has[1:] & has[:-1]
+
+    def path(idx):
+        step = np.linalg.norm(np.diff(k[:, idx, :].astype(np.float64), axis=0), axis=1)
+        return float(step[pair].sum())
+
+    both = s[:, LEFT_HAND].sum(1) + s[:, RIGHT_HAND].sum(1)
+    return {"n_frames": int(n_frames), "fps": float(fps), "width": int(width), "height": int(height),
+            "frames_no_person_frac": float((~has).mean()),
+            "max_persons_detected": int(max(n_boxes)),
+            "left_hand_mean_score": float(s[:, LEFT_HAND].mean()),
+            "right_hand_mean_score": float(s[:, RIGHT_HAND].mean()),
+            "hand_low_conf_frac": float(((both / (2 * 21)) < HAND_LOW_CONF).mean()),
+            "left_path_len": path(LEFT_WRIST), "right_path_len": path(RIGHT_WRIST)}
 
 
 def count_frames(video_path):
@@ -167,7 +209,9 @@ def keep_indices(n, max_frames=MAX_FRAMES):
     return [(i * (n - 1)) // (max_frames - 1) for i in range(max_frames)]
 
 
-def extract_clip(wb, video_path, max_frames=MAX_FRAMES):
+def extract_clip(wb, video_path, max_frames=MAX_FRAMES, stats_out=None):
+    """Pose for the kept frames. If `stats_out` is a dict it is filled with compute_clip_stats(...);
+    the returned dict is the same either way."""
     n = count_frames(video_path)
     if n == 0:
         raise IOError(f"no frames decoded from {video_path}")
@@ -175,7 +219,8 @@ def extract_clip(wb, video_path, max_frames=MAX_FRAMES):
     cap = cv2.VideoCapture(str(video_path))
     if not cap.isOpened():
         raise IOError(f"cannot open {video_path}")
-    keypoints, scores = [], []
+    keypoints, scores, n_boxes = [], [], []
+    fps, wh = cap.get(cv2.CAP_PROP_FPS), None
     try:
         i = j = 0
         while j < len(keep):
@@ -186,18 +231,22 @@ def extract_clip(wb, video_path, max_frames=MAX_FRAMES):
                 if not ok:
                     raise IOError(f"cannot decode frame {i} of {video_path}")
                 h, w = frame.shape[:2]
-                k, s = extract_frame(wb, frame)
+                wh = wh or (w, h)
+                k, s, nb = _detect_and_pose(wb, frame)
                 k = k.copy()
                 k[..., 0] /= w
                 k[..., 1] /= h
                 keypoints.append(k)
                 scores.append(s)
+                n_boxes.append(nb)
                 j += 1
             i += 1
     finally:
         cap.release()
     if len(keypoints) != len(keep):
         raise IOError(f"{video_path}: decoded {i} frames on the second pass, counted {n} on the first")
+    if stats_out is not None:
+        stats_out.update(compute_clip_stats(keypoints, scores, n_boxes, n, fps, *wh))
     return {"keypoints": keypoints, "scores": scores, "n_frames": n}
 
 
@@ -219,6 +268,8 @@ def main(argv=None):
     ap.add_argument("--pose-model", default=None, help="local RTMW .onnx (default: rtmlib downloads lightweight)")
     ap.add_argument("--shard", type=parse_shard, default=(0, 1), metavar="i/N",
                     help="process only sorted clip_ids with index %% N == i (default 0/1 = all)")
+    ap.add_argument("--stats", action="store_true",
+                    help="also write <out>/clip_stats.csv with one row of quality/motion statistics per clip")
     args = ap.parse_args(argv)
 
     clip_ids = shard_ids(read_clip_ids(args.manifest), *args.shard)
@@ -235,6 +286,14 @@ def main(argv=None):
     except FileExistsError:
         pass
 
+    stats_file = args.out / STATS_FILE
+    if args.stats:
+        try:   # same exclusive-create header as frame_counts.csv
+            with open(stats_file, "x", newline="", encoding="utf-8") as f:
+                f.write(",".join(STATS_FIELDS) + "\n")
+        except FileExistsError:
+            pass
+
     wb = build_extractor(args.device, args.det_model, args.pose_model)
     failed = []
     try:
@@ -247,7 +306,8 @@ def main(argv=None):
         try:
             if not src.exists():
                 raise FileNotFoundError(src)
-            data = extract_clip(wb, src)
+            st = {}
+            data = extract_clip(wb, src, stats_out=st) if args.stats else extract_clip(wb, src)
             assert_on_cuda(wb)   # a mid-run CPU fallback must stop the job, not silently slow it down
             tmp = args.out / f"{cid}.pkl.tmp"
             with open(tmp, "wb") as f:
@@ -255,6 +315,10 @@ def main(argv=None):
             tmp.replace(args.out / f"{cid}.pkl")   # atomic: a half-written .pkl never counts as done
             with open(counts_file, "a", newline="", encoding="utf-8") as f:   # after the pkl; n_frames is also in the pkl
                 f.write(f"{cid},{data['n_frames']}\n")
+            if args.stats:
+                with open(stats_file, "a", newline="", encoding="utf-8") as f:
+                    f.write(",".join([cid] + [f"{st[c]:.6g}" if isinstance(st[c], float) else str(st[c])
+                                              for c in STATS_FIELDS[1:]]) + "\n")
         except RuntimeError as e:
             if "not running on CUDA" in str(e):
                 raise
